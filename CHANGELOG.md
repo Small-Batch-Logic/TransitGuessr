@@ -4,8 +4,6 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## [1.2.0] - 2026-03-22
-
 ### Fixed
 - Daily challenge day number was calculated using local time, meaning players in different timezones could get different stations on the same calendar day. `getDayNumber()` now uses UTC so the daily is globally consistent.
 
