@@ -1,12 +1,22 @@
 # TransitGuessr Changelog
 
 ## Unreleased
-- Station coverage audit (remove dead Street View entries)
-- Street View heading tuned per station
 - GitHub Pages hosting
 - City/system filter on start screen
+- API key HTTP referrer restriction before going public
 
 
+
+## v0.9 — 2026-03-22
+- Added `heading` field to all 102 stations — panorama now opens facing the station entrance instead of defaulting to north
+- Coverage audit: removed O'Hare and Midway (inside airport terminals, no usable Street View); replaced with Fullerton and Roosevelt elevated CTA stations
+- Also added Queen Station (TTC) that was missing from the Yonge line
+
+## v0.8 — 2026-03-22
+- Daily already-played detection: shows your previous score in the meta text if you've played today's daily
+- Daily score saved to localStorage on game completion
+- In-game mode badge in the header (Daily #N / Toronto TTC / Worldwide), green tint when on Easy
+- Git repo initialized, ready for GitHub Pages
 
 ## v0.7 — 2026-03-22
 - Daily Challenge mode: date-seeded RNG ensures same 5 stations for everyone on a given day; high score stored per day
