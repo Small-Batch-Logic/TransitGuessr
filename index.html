@@ -4,6 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TransitGuessr</title>
+  <meta name="description" content="How well do you know your transit system? See a Street View and guess where the station is — TTC, Worldwide, and Daily Challenge modes.">
+  <meta property="og:title" content="TransitGuessr">
+  <meta property="og:description" content="Guess the transit station from Street View. TTC, Worldwide, and Daily Challenge modes.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://transitguessr.app">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="TransitGuessr">
+  <meta name="twitter:description" content="Guess the transit station from Street View. TTC, Worldwide, and Daily Challenge modes.">
+  <meta name="theme-color" content="#0f172a">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚇</text></svg>">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <style>
@@ -175,20 +184,6 @@
     #sv-pano .gmnoprint,
     #sv-pano a[href*="maps.google"] { display: none !important; }
 
-    .city-badge {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(8px);
-      padding: 5px 13px;
-      border-radius: 50px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: #06b6d4;
-      border: 1px solid rgba(6, 182, 212, 0.25);
-      pointer-events: none;
-    }
 
     /* ── Map Panel ── */
     .map-panel {
@@ -270,6 +265,20 @@
       align-items: flex-start;
       justify-content: space-between;
       margin-bottom: 18px;
+    }
+
+    .result-system {
+      font-size: 0.78rem;
+      color: #475569;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    .result-round {
+      font-size: 0.75rem;
+      color: #334155;
+      text-align: center;
+      margin-bottom: 4px;
     }
 
     .result-station-name {
@@ -403,6 +412,12 @@
       margin-top: 2px;
     }
 
+    .round-row-system {
+      font-size: 0.72rem;
+      color: #334155;
+      margin-top: 1px;
+    }
+
     .round-row-pts {
       font-weight: 700;
       font-size: 1rem;
@@ -500,6 +515,12 @@
       color: #6ee7b7;
     }
 
+    .start-hs {
+      font-size: 0.8rem;
+      color: #475569;
+      min-height: 1.2em;
+    }
+
     .start-divider {
       font-size: 0.72rem;
       color: #334155;
@@ -547,6 +568,7 @@
     <button class="mode-btn" id="mode-world" onclick="setMode('world')">Worldwide</button>
     <button class="mode-btn daily" id="mode-daily" onclick="setMode('daily')">Daily Challenge</button>
   </div>
+  <div class="start-hs" id="start-hs"></div>
   <div class="start-divider">Difficulty</div>
   <div class="difficulty-selector">
     <button class="diff-btn active" id="diff-hard" onclick="setDifficulty('hard')">Hard — locked in place</button>
@@ -570,7 +592,6 @@
         <div class="spinner"></div>
         Loading Street View...
       </div>
-      <div class="city-badge" id="city-badge">Toronto &middot; TTC</div>
     </div>
     <div class="map-panel">
       <div id="map"></div>
@@ -588,6 +609,7 @@
     <div class="result-top">
       <div>
         <div class="result-station-name" id="result-station-name"></div>
+        <div class="result-system" id="result-system"></div>
         <div class="result-distance" id="result-distance"></div>
       </div>
       <div class="result-score-block">
@@ -598,6 +620,7 @@
     <div class="score-bar-wrap">
       <div class="score-bar-fill" id="score-bar-fill" style="width:0%"></div>
     </div>
+    <div class="result-round" id="result-round"></div>
     <button class="btn-next" id="next-btn" onclick="nextRound()">Next Round</button>
   </div>
 </div>
@@ -613,19 +636,22 @@
   <div class="rounds-list" id="rounds-list"></div>
   <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
     <button class="btn-share" id="share-btn" onclick="shareResult()">Share Result</button>
+    <button class="btn-share" onclick="goToMenu()">Change Mode</button>
     <button class="btn-primary" onclick="startGame()">Play Again</button>
   </div>
 </div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
 <script>
 // ── Config ──
 const GOOGLE_API_KEY = 'AIzaSyBlzM9yC06XujCenKYVG0IRpEzn-hSDstk';
+const SITE_URL = 'https://transitguessr.app';
 
 // Load Maps JavaScript API dynamically
 (function () {
   const s = document.createElement('script');
-  s.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}`;
+  s.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}&loading=async`;
+  s.async = true;
   document.head.appendChild(s);
 })();
 
@@ -755,6 +781,7 @@ const STATIONS = [
 ];
 
 // ── State ──
+let svApiWaitCount = 0;
 let map, guessMarker, resultLayer;
 let currentRound = 0;
 let totalScore = 0;
@@ -770,13 +797,18 @@ let svService = null;
 let svPanorama = null;
 
 // ── Utilities ──
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
 // ── Daily Challenge ──
-const LAUNCH_DATE = new Date('2026-03-22T00:00:00');
+// Anchored to UTC so all players worldwide share the same day number.
+const LAUNCH_DATE_UTC = Date.UTC(2026, 2, 22); // March 22, 2026
 
 function getDayNumber() {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  return Math.max(1, Math.floor((today - LAUNCH_DATE) / 86400000) + 1);
+  const now = new Date();
+  const todayUTC = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  return Math.max(1, Math.floor((todayUTC - LAUNCH_DATE_UTC) / 86400000) + 1);
 }
 
 function seededShuffle(arr, seed) {
@@ -834,7 +866,7 @@ function shareResult() {
     const bar = '█'.repeat(Math.round(r.pts / 500)) + '░'.repeat(10 - Math.round(r.pts / 500));
     return `${i + 1}. ${r.station.name} — ${dist}\n   ${bar} ${r.pts.toLocaleString()}`;
   });
-  const text = `TransitGuessr [${modeLabel}]\n\n${lines.join('\n')}\n\nTotal: ${totalScore.toLocaleString()} / 25,000\ntransitguessr.app`;
+  const text = `TransitGuessr [${modeLabel}]\n\n${lines.join('\n')}\n\nTotal: ${totalScore.toLocaleString()} / 25,000\n${SITE_URL}`;
   navigator.clipboard.writeText(text)
     .then(() => {
       const btn = document.getElementById('share-btn');
@@ -849,8 +881,14 @@ function shareResult() {
 document.addEventListener('keydown', e => {
   if (e.key === 'Enter') {
     const overlay = document.getElementById('result-overlay');
+    const endScreen = document.getElementById('end-screen');
+    const startScreen = document.getElementById('start-screen');
     if (overlay.classList.contains('active')) {
       nextRound();
+    } else if (endScreen.classList.contains('active')) {
+      startGame();
+    } else if (startScreen.style.display !== 'none') {
+      startGame();
     } else if (!document.getElementById('guess-btn').disabled) {
       submitGuess();
     }
@@ -919,6 +957,8 @@ function setMode(mode) {
       ? `<strong>Daily Challenge #${day}</strong> &middot; Already played today &middot; ${prevScore?.toLocaleString()} / 25,000`
       : `<strong>Daily Challenge #${day}</strong> &middot; Same 5 stations for everyone today`;
   }
+  const hs = getHighScore();
+  document.getElementById('start-hs').textContent = hs > 0 ? `Your best: ${hs.toLocaleString()} / 25,000` : '';
 }
 
 function setDifficulty(diff) {
@@ -964,9 +1004,11 @@ function autoSubmit() {
     totalScore += 0;
     roundResults.push({ station, dist: null, pts: 0, timedOut: true });
     document.getElementById('result-station-name').textContent = station.name;
+    document.getElementById('result-system').textContent = `${station.city} · ${station.system}`;
     document.getElementById('result-distance').textContent = 'Time ran out — no guess placed';
     document.getElementById('result-pts').textContent = '0';
     document.getElementById('score-bar-fill').style.width = '0%';
+    document.getElementById('result-round').textContent = `Round ${currentRound + 1} of 5`;
     document.getElementById('next-btn').textContent = currentRound === 4 ? 'See Results' : 'Next Round';
     const actualLatLng = L.latLng(station.lat, station.lng);
     resultLayer.clearLayers();
@@ -1000,11 +1042,17 @@ function gradeLabel(score) {
 
 // ── Street View Panorama ──
 function loadStreetView(station) {
-  // Wait for Maps JS API to finish loading
+  // Wait for Maps JS API to finish loading (max ~4.5s before skipping)
   if (typeof google === 'undefined' || !google.maps) {
+    if (++svApiWaitCount > 30) {
+      svApiWaitCount = 0;
+      handleNoStreetView(station);
+      return;
+    }
     setTimeout(() => loadStreetView(station), 150);
     return;
   }
+  svApiWaitCount = 0;
 
   if (!svService) svService = new google.maps.StreetViewService();
 
@@ -1144,7 +1192,6 @@ function loadRound() {
   const station = roundStations[currentRound];
   document.getElementById('round-num').textContent = currentRound + 1;
   document.getElementById('total-score-display').textContent = totalScore.toLocaleString() + ' pts';
-  document.getElementById('city-badge').textContent = `${station.city} \u00B7 ${station.system}`;
 
   // Reset map view based on mode
   if (selectedMode === 'toronto') {
@@ -1201,9 +1248,11 @@ function submitGuess() {
     : `${dist.toFixed(2)} km away`;
 
   document.getElementById('result-station-name').textContent = station.name;
+  document.getElementById('result-system').textContent = `${station.city} · ${station.system}`;
   document.getElementById('result-distance').textContent = distText;
   document.getElementById('result-pts').textContent = pts.toLocaleString();
   document.getElementById('score-bar-fill').style.width = `${(pts / 5000) * 100}%`;
+  document.getElementById('result-round').textContent = `Round ${currentRound + 1} of 5`;
   document.getElementById('next-btn').textContent =
     currentRound === 4 ? 'See Results' : 'Next Round';
 
@@ -1217,6 +1266,12 @@ function nextRound() {
   } else {
     loadRound();
   }
+}
+
+function goToMenu() {
+  document.getElementById('end-screen').classList.remove('active');
+  document.getElementById('start-screen').style.display = 'flex';
+  setMode(selectedMode); // refresh meta text (picks up daily already-played state)
 }
 
 function showEndScreen() {
@@ -1248,7 +1303,8 @@ function showEndScreen() {
   document.getElementById('rounds-list').innerHTML = roundResults.map(r => `
     <div class="round-row">
       <div class="round-row-left">
-        <div class="round-row-name">${r.station.name}</div>
+        <div class="round-row-name">${escHtml(r.station.name)}</div>
+        <div class="round-row-system">${escHtml(r.station.city)} · ${escHtml(r.station.system)}</div>
         <div class="round-row-dist">${
           r.timedOut ? 'Time ran out'
           : r.dist < 1 ? Math.round(r.dist * 1000) + ' m away'
@@ -1259,6 +1315,9 @@ function showEndScreen() {
     </div>
   `).join('');
 }
+
+// Initialise start screen state on load
+setMode('toronto');
 </script>
 </body>
 </html>
