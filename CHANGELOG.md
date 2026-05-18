@@ -16,7 +16,6 @@ All notable changes to this project will be documented in this file.
 - **Architectural Refactor** — consolidated disparate global variables into a unified `game` state object for V1 stability.
 - **Dataset Extraction** — moved the station list out of `index.html` into `stations.js`.
 - **System Mode Coverage** — city/system modes now include multi-city datasets like TTC-to-Vaughan, SkyTrain suburbs, and Brooklyn subway stations.
-- **Repo Documentation Refresh** — rewrote the README, roadmap, and deployment guide to reflect the current private-repo workflow and launch concerns.
 - **Data Standardization** — removed the legacy `region` fields and standardized filtering on `city` and `system`.
 - **Runtime Key Loading** — Google Maps now loads from runtime config instead of a committed script tag.
 - **Tighter Scoring** — city-specific modes now require higher precision for maximum points (scale constant 8 -> 5).
