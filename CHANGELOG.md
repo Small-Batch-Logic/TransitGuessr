@@ -4,6 +4,33 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+- **Dependabot Configuration** — added weekly GitHub Actions dependency update checks via `.github/dependabot.yml`.
+- **PWA Service Worker** — added logic for offline shell caching and better installability.
+- **Lifetime Statistics** — the app now tracks the total number of stations you've correctly identified.
+- **View Photo Toggle** — new peek mode on the result overlay to see Street View context.
+
+### Changed
+- **Architectural Refactor** — consolidated disparate global variables into a unified `game` state object for V1 stability.
+- **Repo Documentation Refresh** — rewrote the README, roadmap, and deployment guide to reflect the current private-repo workflow and launch concerns.
+- **Data Standardization In Progress** — mode filtering now relies on `city` and `system`, though some legacy `region` fields still remain in the station dataset.
+- **Tighter Scoring** — city-specific modes now require higher precision for maximum points (scale constant 8 -> 5).
+- **Start Screen Overhaul** — premium grid-based city selector for better navigation.
+- **Accessibility** — improved color contrast for secondary text on the dark theme.
+- **Efficiency** — replaced high-frequency `.innerHTML` updates with `.textContent` for better security and performance.
+
+### Fixed
+- **Worldwide Score Scaling** — corrected the mode check so worldwide rounds use the intended global scoring curve.
+- **Daily High Score Display** — start-screen high scores now use the same key logic as end-screen records.
+- **Share Toast Feedback** — aligned the toast class name so clipboard confirmation appears correctly.
+- **Map State Cleanup** — removed remaining bare `map` and `guessLatLng` references in favor of the central `game` state.
+- **Station Skipping Restoration** — fixed a regression where the "seen stations" history was bypassed.
+- **Error Handling Restoration** — fixed `handleNoStreetView` mode-filtering after schema changes.
+- **Submission Safety** — implemented `isSubmitting` flag to prevent race conditions during timer timeouts.
+- **Storage Bloat** — capped `seenIds` history at 200 entries to prevent localStorage degradation.
+- **Map Clipping** — result map now respects a `minZoom` to prevent tiling on very distant guesses.
+- **Station Dataset** — expanded NYC, London, Paris, and Tokyo with 10+ additional stations.
+
 ## [1.2.0] - 2026-03-22
 
 ### Fixed
