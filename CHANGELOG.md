@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - **Dependabot Configuration** — added weekly GitHub Actions dependency update checks via `.github/dependabot.yml`.
 - **Runtime Config Template** — added `config.example.js` for local key setup without re-committing the real browser key.
+- **Installability Assets** — added a tracked manifest/service-worker/social-image bundle for basic app installability and share metadata support.
 - **PWA Service Worker** — added logic for offline shell caching and better installability.
 - **Lifetime Statistics** — the app now tracks the total number of stations you've correctly identified.
 - **View Photo Toggle** — new peek mode on the result overlay to see Street View context.
@@ -14,6 +15,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - **Architectural Refactor** — consolidated disparate global variables into a unified `game` state object for V1 stability.
 - **Dataset Extraction** — moved the station list out of `index.html` into `stations.js`.
+- **System Mode Coverage** — city/system modes now include multi-city datasets like TTC-to-Vaughan, SkyTrain suburbs, and Brooklyn subway stations.
 - **Repo Documentation Refresh** — rewrote the README, roadmap, and deployment guide to reflect the current private-repo workflow and launch concerns.
 - **Data Standardization** — removed the legacy `region` fields and standardized filtering on `city` and `system`.
 - **Runtime Key Loading** — Google Maps now loads from runtime config instead of a committed script tag.
@@ -27,6 +29,7 @@ All notable changes to this project will be documented in this file.
 - **Daily High Score Display** — start-screen high scores now use the same key logic as end-screen records.
 - **Share Toast Feedback** — aligned the toast class name so clipboard confirmation appears correctly.
 - **Map State Cleanup** — removed remaining bare `map` and `guessLatLng` references in favor of the central `game` state.
+- **Keyboard Action Races** — removed conflicting duplicate Enter-key handling and guarded game start against double-trigger races.
 - **Missing Runtime Config Handling** — the app now surfaces a clear setup message when no local Maps key is configured.
 - **Station Skipping Restoration** — fixed a regression where the "seen stations" history was bypassed.
 - **Error Handling Restoration** — fixed `handleNoStreetView` mode-filtering after schema changes.

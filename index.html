@@ -863,6 +863,7 @@ const SITE_URL = window.location.origin === 'null' ? 'https://transitguessr.app'
 window.TRANSITGUESSR_CONFIG = window.TRANSITGUESSR_CONFIG || {};
 const STATIONS = window.STATIONS || [];
 let googleMapsLoadPromise = null;
+let startGamePromise = null;
 
 function loadOptionalScript(src) {
   return new Promise((resolve) => {
@@ -897,7 +898,7 @@ const MODES = {
     name: 'Toronto', 
     city: 'Toronto', 
     desc: 'Master the red and white: All Line 1, 2, and 4 stations in the GTHA.', 
-    filter: s => s.city === 'Toronto' 
+    filter: s => ['Toronto', 'Vaughan'].includes(s.city)
   },
   montreal: { 
     name: 'Montréal', 
@@ -909,13 +910,13 @@ const MODES = {
     name: 'Vancouver', 
     city: 'Vancouver', 
     desc: 'The SkyTrain network: All Expo, Millennium, and Canada Line stations.', 
-    filter: s => s.city === 'Vancouver' 
+    filter: s => ['Vancouver', 'Burnaby', 'Surrey'].includes(s.city)
   },
   nyc: { 
     name: 'New York', 
     city: 'New York', 
     desc: 'The city that never sleeps: Iconic entrances across all five boroughs.', 
-    filter: s => s.city === 'New York' 
+    filter: s => ['New York', 'Brooklyn'].includes(s.city)
   },
   london: { 
     name: 'London', 
@@ -1121,24 +1122,6 @@ function copyFallback(text) {
     showToast('Result copied to clipboard!');
   });
 }
-
-// ── Keyboard Shortcuts ──
-document.addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    const overlay = document.getElementById('result-overlay');
-    const endScreen = document.getElementById('end-screen');
-    const startScreen = document.getElementById('start-screen');
-    if (overlay.classList.contains('active')) {
-      nextRound();
-    } else if (endScreen.classList.contains('active')) {
-      startGame();
-    } else if (startScreen.style.display !== 'none') {
-      startGame();
-    } else if (!document.getElementById('guess-btn').disabled) {
-      submitGuess();
-    }
-  }
-});
 
 // ── Seen Stations (localStorage) ──
 function getSeenIds() {
@@ -1354,6 +1337,9 @@ function handleNoStreetView(station) {
 
 // ── Game Flow ──
 async function startGame() {
+  if (startGamePromise) return startGamePromise;
+
+  startGamePromise = (async () => {
   game.reset();
   
   if (game.selectedMode === 'daily') {
@@ -1383,6 +1369,13 @@ async function startGame() {
     return;
   }
   loadStreetView();
+  })();
+
+  try {
+    await startGamePromise;
+  } finally {
+    startGamePromise = null;
+  }
 }
 
 function goToGame() {
