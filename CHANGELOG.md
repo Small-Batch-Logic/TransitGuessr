@@ -30,6 +30,9 @@ All notable changes to this project will be documented in this file.
 - **Map State Cleanup** — removed remaining bare `map` and `guessLatLng` references in favor of the central `game` state.
 - **Keyboard Action Races** — removed conflicting duplicate Enter-key handling and guarded game start against double-trigger races.
 - **Missing Runtime Config Handling** — the app now surfaces a clear setup message when no local Maps key is configured.
+- **Seen Station Collisions** — switched repeat-prevention to stable station IDs so duplicate names across cities no longer collide.
+- **Result Overlay Peek Mode** — corrected the selector mismatch so the "View Photo" peek state works.
+- **Street View Attribution** — removed CSS that hid Google attribution and links from the panorama container.
 - **Station Skipping Restoration** — fixed a regression where the "seen stations" history was bypassed.
 - **Error Handling Restoration** — fixed `handleNoStreetView` mode-filtering after schema changes.
 - **Submission Safety** — implemented `isSubmitting` flag to prevent race conditions during timer timeouts.

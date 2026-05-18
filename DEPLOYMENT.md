@@ -27,6 +27,19 @@ Runtime config files:
 - `config.example.js`: tracked template
 - `config.local.js`: ignored local/deploy-time file consumed by the app
 
+### Contributor key hygiene and pre-commit checks
+
+Use these checks before pushing:
+
+1. Confirm `config.local.js` is not staged:
+   `git --no-pager diff --name-only --cached | grep -E '^config\\.local\\.js$'`
+2. Scan staged diff for likely Google API keys:
+   `git --no-pager diff --cached | grep -E 'AIza[0-9A-Za-z_-]{20,}'`
+3. Check for direct key assignment outside local config:
+   `git --no-pager grep -n "googleMapsApiKey" -- . ':!config.example.js' ':!config.local.js'`
+
+All three commands should return no output in a clean, safe commit.
+
 ## 2. GitHub Pages Workflow
 
 The repo is configured for **GitHub Actions-based Pages deployment**, not branch-based Pages deployment.

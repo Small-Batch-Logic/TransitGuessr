@@ -876,6 +876,28 @@ function getMapsApiKey() {
   return window.TRANSITGUESSR_CONFIG?.googleMapsApiKey || '';
 }
 
+function slugifyStationPart(value) {
+  return String(value)
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function buildStationId(station) {
+  return [
+    slugifyStationPart(station.system),
+    slugifyStationPart(station.city),
+    slugifyStationPart(station.name)
+  ].join('__');
+}
+
+const NORMALIZED_STATIONS = STATIONS.map((station) => ({
+  ...station,
+  id: station.id || buildStationId(station)
+}));
+
 const MODES = {
   worldwide: { 
     name: 'Worldwide', 
@@ -1120,7 +1142,7 @@ function copyFallback(text) {
 
 // ── Seen Stations (localStorage) ──
 function getSeenIds() {
-  try { return JSON.parse(localStorage.getItem('transitguessr_seen') || '[]'); } catch { return []; }
+  try { return JSON.parse(localStorage.getItem('transitguessr_seen_ids') || '[]'); } catch { return []; }
 }
 function markSeen(ids) {
   try {
@@ -1128,7 +1150,7 @@ function markSeen(ids) {
     const unique = [...new Set([...seen, ...ids])];
     // Cap at 200 items to prevent localStorage bloat
     const capped = unique.slice(-200);
-    localStorage.setItem('transitguessr_seen', JSON.stringify(capped));
+    localStorage.setItem('transitguessr_seen_ids', JSON.stringify(capped));
   } catch {}
 }
 
@@ -1322,9 +1344,9 @@ function handleNoStreetView(station) {
   setPhotoLoadingState('No Street View here — skipping in 2s...');
   setTimeout(() => {
     const modeConfig = MODES[game.selectedMode];
-    const pool = modeConfig ? STATIONS.filter(modeConfig.filter) : STATIONS;
-    const usedNames = game.roundStations.map(s => s.name);
-    const fallbacks = shuffle(pool.filter(s => !usedNames.includes(s.name)));
+    const pool = modeConfig ? NORMALIZED_STATIONS.filter(modeConfig.filter) : NORMALIZED_STATIONS;
+    const usedIds = game.roundStations.map(s => s.id);
+    const fallbacks = shuffle(pool.filter(s => !usedIds.includes(s.id)));
     if (fallbacks.length > 0) game.roundStations[game.currentRound] = fallbacks[0];
     loadStreetView();
   }, 2000);
@@ -1338,18 +1360,18 @@ async function startGame() {
   game.reset();
   
   if (game.selectedMode === 'daily') {
-    game.roundStations = seededShuffle(STATIONS, getDayNumber()).slice(0, 5);
+    game.roundStations = seededShuffle(NORMALIZED_STATIONS, getDayNumber()).slice(0, 5);
   } else {
     const modeConfig = MODES[game.selectedMode];
-    const pool = modeConfig ? STATIONS.filter(modeConfig.filter) : STATIONS;
+    const pool = modeConfig ? NORMALIZED_STATIONS.filter(modeConfig.filter) : NORMALIZED_STATIONS;
     
     // Seen stations logic
     const seen = getSeenIds();
-    const unseen = pool.filter(s => !seen.includes(s.name));
+    const unseen = pool.filter(s => !seen.includes(s.id));
     const finalPool = unseen.length >= 5 ? unseen : pool;
     
     game.roundStations = shuffle(finalPool).slice(0, 5);
-    markSeen(game.roundStations.map(s => s.name));
+    markSeen(game.roundStations.map(s => s.id));
   }
 
   const badgeEl = document.getElementById('game-mode-badge');

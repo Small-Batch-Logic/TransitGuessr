@@ -14,15 +14,19 @@ TransitGuessr development plan.
 - [ ] **Analytics (Privacy-First)** — Simple pageview/game-end tracking (e.g., Plausible or Vercel Analytics).
 
 ## 🛠️ Technical Audit Focus
-- [ ] **Worldwide Scoring Bug** — `calcScore()` currently checks for `world` while the actual mode is `worldwide`, which distorts scoring.
-- [ ] **High Score Display Consistency** — Start-screen high score lookup bypasses the daily high-score key helper.
-- [ ] **UI State Cleanup** — Toast state uses `.show` in JS but `.active` in CSS; align naming and behavior.
-- [ ] **Global State Cleanup** — Remove implicit globals like `map` / `guessLatLng` and finish consolidating state into `game`.
-- [ ] **Dataset Cleanup** — `region` still exists in many station objects despite the docs claiming it was removed.
+- [x] **Worldwide Scoring Bug** — fixed mode check so `worldwide` and `daily` use global scale.
+- [x] **High Score Display Consistency** — start-screen high score uses daily-aware key helper.
+- [x] **UI State Cleanup** — toast state class alignment completed.
+- [x] **Global State Cleanup** — `map` / `guessLatLng` access consolidated to `game`.
+- [x] **Dataset Cleanup** — legacy `region` usage removed from station schema.
 - [ ] **Performance Audit** — Optimize asset loading (Leaflet vs Google Maps).
 - [ ] **Mobile UX Audit** — Ensure "100dvh" and map interactions are smooth on iOS/Android.
 - [ ] **Data Architecture** — Evaluate if the `STATIONS` array should move to a separate JSON file.
-- [ ] **Error Handling** — Robust fallbacks for failing Street View loads or API outages.
+- [x] **Error Handling** — fallback path restored for missing Street View / API loading failures.
+- [x] **Result Overlay Peek Bug** — selector mismatch fixed so "View Photo" peeks correctly.
+- [x] **Street View Attribution Compliance** — stopped hiding Google attribution/links in the pano container.
+- [ ] **Inline Handler Removal** — replace `onclick` attributes with JS event listeners.
+- [x] **Seen Station Identity** — repeat-protection now uses stable IDs instead of station names.
 
 ## 🌟 Future Features (Post-V1)
 

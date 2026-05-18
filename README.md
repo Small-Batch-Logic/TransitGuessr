@@ -16,6 +16,7 @@ TransitGuessr turns that into the game: recognize the city, the streetscape, and
 - **Street View Gameplay**: Google Street View panoramas open facing the station entrance.
 - **Difficulty Settings**: Hard locks movement; Easy allows limited exploration.
 - **Round-Based Scoring**: Five rounds, 60 seconds each, with local high-score tracking.
+- **Daily Consistency**: Daily challenge day numbering is UTC-based for globally consistent rounds.
 - **Result Sharing**: End-screen share text summarizes round performance.
 - **PWA Basics**: Manifest and service worker are included for installability experiments.
 
@@ -45,6 +46,22 @@ If you open `index.html` directly from disk, some browser features will behave d
 - `config.local.js`: local runtime config, ignored by git
 - `.github/workflows/deploy.yml`: Pages deployment, including runtime config generation
 
+## Architecture Snapshot
+
+- The app currently ships as a static SPA with markup, CSS, and game logic in `index.html`.
+- Station content is loaded from `stations.js`; there is no bundler/build pipeline.
+- Runtime key injection is handled via `config.local.js` (`window.TRANSITGUESSR_CONFIG`).
+- Service worker and manifest are present for installability experiments, not full offline gameplay.
+
+## Contributor Security Checklist
+
+1. Keep real browser keys only in `config.local.js` (never in `index.html`, `config.example.js`, or docs).
+2. Ensure `config.local.js` is never staged:
+   `git --no-pager diff --name-only --cached | grep -E '^config\\.local\\.js$'`
+3. Check staged changes for likely Google API keys:
+   `git --no-pager diff --cached | grep -E 'AIza[0-9A-Za-z_-]{20,}'`
+4. Keep Maps key restrictions enabled in Google Cloud (HTTP referrers + API restrictions) before deploy.
+
 ## Repo Notes
 
 - The project is currently private on GitHub.
@@ -53,11 +70,10 @@ If you open `index.html` directly from disk, some browser features will behave d
 - Planned follow-up work is in [ROADMAP.md](./ROADMAP.md).
 - Release history is in [CHANGELOG.md](./CHANGELOG.md).
 
-## Immediate Improvement Areas
+## Current Improvement Areas
 
-- Fix known mode/scoring regressions before expanding content further.
+- Replace inline `onclick` handlers with event listeners and semantic controls.
 - Continue separating app logic out of `index.html` as the UI gets more complex.
-- Keep runtime config and deployment config disciplined as the app moves toward a public release.
-- Tighten product copy so the transit-nerd / GeoGuessr inspiration is clearer on first read.
+- Add a minimal browser smoke test path (start game -> submit -> next round -> end screen).
 
 Created by [Ryan Hanna](https://github.com/ryanphanna) | [ryanisnota.pro](https://ryanisnota.pro)
