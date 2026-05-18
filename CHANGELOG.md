@@ -17,8 +17,11 @@ All notable changes to this project will be documented in this file.
 - **Dataset Extraction** — moved the station list out of `index.html` into `stations.js`.
 - **System Mode Coverage** — city/system modes now include multi-city datasets like TTC-to-Vaughan, SkyTrain suburbs, and Brooklyn subway stations.
 - **Data Standardization** — removed the legacy `region` fields and standardized filtering on `city` and `system`.
+- **Interaction Wiring** — replaced inline click handlers with JavaScript event listeners and semantic button controls.
 - **Runtime Key Loading** — Google Maps now loads from runtime config instead of a committed script tag.
+- **Session Feedback** — added live streak tracking, round reaction labels, and end-screen session summary cards.
 - **Tighter Scoring** — city-specific modes now require higher precision for maximum points (scale constant 8 -> 5).
+- **Station Name Reveal Rules** — station names now stay hidden unless the round earns 4,500+ points.
 - **Start Screen Overhaul** — premium grid-based city selector for better navigation.
 - **Accessibility** — improved color contrast for secondary text on the dark theme.
 - **Efficiency** — replaced high-frequency `.innerHTML` updates with `.textContent` for better security and performance.
@@ -33,6 +36,7 @@ All notable changes to this project will be documented in this file.
 - **Seen Station Collisions** — switched repeat-prevention to stable station IDs so duplicate names across cities no longer collide.
 - **Result Overlay Peek Mode** — corrected the selector mismatch so the "View Photo" peek state works.
 - **Street View Attribution** — removed CSS that hid Google attribution and links from the panorama container.
+- **Control Semantics** — mode and difficulty selectors now use actual buttons instead of click-only divs.
 - **Station Skipping Restoration** — fixed a regression where the "seen stations" history was bypassed.
 - **Error Handling Restoration** — fixed `handleNoStreetView` mode-filtering after schema changes.
 - **Submission Safety** — implemented `isSubmitting` flag to prevent race conditions during timer timeouts.
