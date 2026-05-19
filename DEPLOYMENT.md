@@ -22,6 +22,15 @@ Minimum hardening:
 5. Restrict the key to only the Maps APIs TransitGuessr actually needs.
 6. Test the site from each allowed origin before publishing it broadly.
 
+Example referrers for the current setup:
+
+- `http://localhost/*`
+- `http://127.0.0.1/*`
+- `https://small-batch-logic.github.io/*`
+- `https://transitguessr.app/*` if that custom domain is still active
+
+If the live GitHub Pages org/repo host changes, the Maps key must be updated to allow that exact hostname or Street View will fail and the app will sit on the loading spinner.
+
 Runtime config files:
 
 - `config.example.js`: tracked template

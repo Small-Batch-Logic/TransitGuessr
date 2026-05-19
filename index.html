@@ -1218,9 +1218,74 @@ function seededShuffle(arr, seed) {
 
 // ── High Score ──
 // ── Daily Played ──
+const DAILY_STREAK_KEY = 'transitguessr_daily_streak';
+
 function dailyPlayedKey() { return `transitguessr_daily_played_${getDayNumber()}`; }
 function hasDailyBeenPlayed() { try { return !!localStorage.getItem(dailyPlayedKey()); } catch { return false; } }
-function markDailyPlayed(score) { try { localStorage.setItem(dailyPlayedKey(), score); } catch {} }
+
+function getDailyPlayedScore() {
+  try {
+    const raw = localStorage.getItem(dailyPlayedKey());
+    if (raw == null) return null;
+    const score = parseInt(raw, 10);
+    return Number.isNaN(score) ? null : score;
+  } catch {
+    return null;
+  }
+}
+
+function getDailyStreak() {
+  try {
+    const raw = localStorage.getItem(DAILY_STREAK_KEY);
+    if (!raw) return 0;
+    const data = JSON.parse(raw);
+    if (!Number.isInteger(data?.day) || !Number.isInteger(data?.streak)) return 0;
+    const today = getDayNumber();
+    if (data.day === today || data.day === today - 1) return Math.max(0, data.streak);
+    return 0;
+  } catch {
+    return 0;
+  }
+}
+
+function updateDailyStreak() {
+  const today = getDayNumber();
+  let nextStreak = 1;
+
+  try {
+    const raw = localStorage.getItem(DAILY_STREAK_KEY);
+    if (raw) {
+      const data = JSON.parse(raw);
+      if (Number.isInteger(data?.day) && Number.isInteger(data?.streak)) {
+        if (data.day === today) return data.streak;
+        if (data.day === today - 1) nextStreak = Math.max(1, data.streak + 1);
+      }
+    }
+    localStorage.setItem(DAILY_STREAK_KEY, JSON.stringify({ day: today, streak: nextStreak }));
+  } catch {}
+
+  return nextStreak;
+}
+
+function markDailyPlayed(score) {
+  try {
+    localStorage.setItem(dailyPlayedKey(), score);
+    updateDailyStreak();
+  } catch {}
+}
+
+function getDailyModeDescription(baseDesc) {
+  const streak = getDailyStreak();
+  const streakText = streak > 0 ? ` • Streak: ${streak} day${streak === 1 ? '' : 's'} 🔥` : '';
+  if (hasDailyBeenPlayed()) {
+    const todayScore = getDailyPlayedScore();
+    if (todayScore != null) {
+      return `Today's run: ${todayScore.toLocaleString()} / 25,000${streakText}`;
+    }
+    return `Today's challenge already completed${streakText}`;
+  }
+  return `${baseDesc}${streakText}`;
+}
 
 function getHighScoreKey() {
   return game.selectedMode === 'daily'
@@ -1257,6 +1322,7 @@ function shareResult() {
   const modeLabel = game.selectedMode === 'toronto' ? 'Toronto TTC'
     : game.selectedMode === 'daily' ? `Daily Challenge #${getDayNumber()}`
     : MODES[game.selectedMode]?.name || 'Worldwide';
+  const streak = game.selectedMode === 'daily' ? getDailyStreak() : 0;
   
   const lines = game.roundResults.map((r, i) => {
     if (r.timedOut) return `${i + 1}: ⏰ Timed out`;
@@ -1264,7 +1330,8 @@ function shareResult() {
     return `${i + 1}: 📍 ${dist} (${r.pts} pts)`;
   });
 
-  const text = `TransitGuessr [${modeLabel}]\n\n${lines.join('\n')}\n\nTotal: ${game.totalScore.toLocaleString()} / 25,000\n${SITE_URL}`;
+  const streakLine = streak > 0 ? `Streak: ${streak} day${streak === 1 ? '' : 's'} 🔥\n` : '';
+  const text = `TransitGuessr [${modeLabel}]\n\n${lines.join('\n')}\n\n${streakLine}Total: ${game.totalScore.toLocaleString()} / 25,000\n${SITE_URL}`;
 
   if (navigator.share && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
     navigator.share({ text }).catch(() => copyFallback(text));
@@ -1336,7 +1403,9 @@ function setMode(mode) {
   // Update Dynamic Info Box
   const config = MODES[mode];
   document.getElementById('start-title').textContent = config.name;
-  document.getElementById('start-desc').textContent = config.desc;
+  document.getElementById('start-desc').textContent = mode === 'daily'
+    ? getDailyModeDescription(config.desc)
+    : config.desc;
   refreshHighScoreDisplay();
 
   // Update Badge in Game Header

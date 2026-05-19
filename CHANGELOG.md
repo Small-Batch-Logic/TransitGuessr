@@ -2,17 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [1.3.0] - 2026-05-18
 
 ### Added
+- **Repository Secret Key Setup** — added `GOOGLE_MAPS_API_KEY` repository secret to support secure Actions-based Pages deployment.
 - **Dependabot Configuration** — added weekly GitHub Actions dependency update checks via `.github/dependabot.yml`.
 - **Runtime Config Template** — added `config.example.js` for local key setup without re-committing the real browser key.
 - **Installability Assets** — added a tracked manifest/service-worker/social-image bundle for basic app installability and share metadata support.
 - **PWA Service Worker** — added logic for offline shell caching and better installability.
 - **Lifetime Statistics** — the app now tracks the total number of stations you've correctly identified.
 - **View Photo Toggle** — new peek mode on the result overlay to see Street View context.
+- **Smoke Test Coverage** — expanded Playwright smoke tests to run a full 5-round flow through the end screen.
 
 ### Changed
+- **API Key Referrer Restriction Hardening** — hardened the `TransitGuessr Browser Key 2` to restrict to local environments (`localhost`, `127.0.0.1`) and production domains (`transitguessr.app`, `useless-concoctions.github.io`).
+- **Old Key Decommissioning** — decommissioned the legacy `Maps` API key reversibly by restricting its origins to a dummy placeholder `https://disabled.invalid/*`.
+- **API Restriction Hardening** — restricted the active browser key only to Maps JavaScript API and Street View Static API.
 - **Architectural Refactor** — consolidated disparate global variables into a unified `game` state object for V1 stability.
 - **Dataset Extraction** — moved the station list out of `index.html` into `stations.js`.
 - **System Mode Coverage** — city/system modes now include multi-city datasets like TTC-to-Vaughan, SkyTrain suburbs, and Brooklyn subway stations.
@@ -22,6 +27,7 @@ All notable changes to this project will be documented in this file.
 - **Session Feedback** — added live streak tracking, round reaction labels, and end-screen session summary cards.
 - **Tighter Scoring** — city-specific modes now require higher precision for maximum points (scale constant 8 -> 5).
 - **Station Name Reveal Rules** — station names now stay hidden unless the round earns 4,500+ points.
+- **Daily Loop Polish** — daily mode now surfaces today's result and streak context directly in mode description and share output.
 - **Start Screen Overhaul** — premium grid-based city selector for better navigation.
 - **Accessibility** — improved color contrast for secondary text on the dark theme.
 - **Efficiency** — replaced high-frequency `.innerHTML` updates with `.textContent` for better security and performance.
@@ -37,6 +43,8 @@ All notable changes to this project will be documented in this file.
 - **Result Overlay Peek Mode** — corrected the selector mismatch so the "View Photo" peek state works.
 - **Street View Attribution** — removed CSS that hid Google attribution and links from the panorama container.
 - **Control Semantics** — mode and difficulty selectors now use actual buttons instead of click-only divs.
+- **Name Leakage In Summaries** — end-screen "closest hit", "biggest miss", and round rows now respect the 4,500-point reveal threshold.
+- **Timeout Reveal Consistency** — timed-out rounds no longer expose station names in the immediate result card.
 - **Station Skipping Restoration** — fixed a regression where the "seen stations" history was bypassed.
 - **Error Handling Restoration** — fixed `handleNoStreetView` mode-filtering after schema changes.
 - **Submission Safety** — implemented `isSubmitting` flag to prevent race conditions during timer timeouts.
