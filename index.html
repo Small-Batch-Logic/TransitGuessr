@@ -1517,7 +1517,11 @@ function loadStreetView() {
   if (!svService) svService = new google.maps.StreetViewService();
 
   svService.getPanorama(
-    { location: { lat: station.lat, lng: station.lng }, radius: 150 },
+    {
+      location: { lat: station.lat, lng: station.lng },
+      radius: 150,
+      sources: [google.maps.StreetViewSource.OUTDOOR]
+    },
     (data, status) => {
       if (status !== google.maps.StreetViewStatus.OK) {
         handleNoStreetView(station);
