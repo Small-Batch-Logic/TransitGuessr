@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Fixed
+- **Indoor Photosphere Filtering** — restricted Street View searches strictly to outdoor imagery to prevent user-contributed indoor photospheres (like businesses, dentist offices, and laboratories) from showing up as round panoramas.
+
 ## [1.3.0] - 2026-05-18
 
 ### Added
