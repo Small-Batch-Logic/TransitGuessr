@@ -2,7 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [1.4.0] - 2026-05-20
+
+### Changed
+- **Codebase Modularization** — extracted inline CSS styles and JavaScript game logic out of `index.html` into dedicated, standalone [style.css](file:///Users/ryan/Desktop/Dev/Coding/Long-Term/In%20Development/TransitGuessr/style.css) and [app.js](file:///Users/ryan/Desktop/Dev/Coding/Long-Term/In%20Development/TransitGuessr/app.js) assets, reducing index.html size from ~1,920 to ~220 lines.
+- **Linked Asset Integration** — refactored script loading sequence in `index.html` to defer execution of datasets and game scripts behind Leaflet dependencies.
+- **PWA Service Worker Update** — added the new `style.css` and `app.js` external assets to `sw.js` cache listing and bumped service worker cache version to `transitguessr-v3`.
 
 ### Fixed
 - **Indoor Photosphere Filtering** — restricted Street View searches strictly to outdoor imagery to prevent user-contributed indoor photospheres (like businesses, dentist offices, and laboratories) from showing up as round panoramas.
