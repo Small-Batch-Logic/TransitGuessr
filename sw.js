@@ -1,9 +1,11 @@
-const CACHE_NAME = 'transitguessr-v2';
+const CACHE_NAME = 'transitguessr-v3';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
   './stations.js',
+  './style.css',
+  './app.js',
   './og-image.png',
   'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
   'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
