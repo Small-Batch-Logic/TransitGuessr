@@ -409,7 +409,12 @@
       flex-shrink: 0;
     }
 
-    .btn-guess:disabled { opacity: 0.35; cursor: not-allowed; }
+    .btn-guess:disabled {
+      background: #334155;
+      color: #64748b;
+      cursor: not-allowed;
+      opacity: 1;
+    }
     .btn-guess:not(:disabled):hover { background: #2563eb; }
 
     /* ── Result Overlay ── */
@@ -1616,6 +1621,37 @@ async function startGame() {
   }
 }
 
+function setupRound() {
+  game.isSubmitting = false;
+  game.guessLatLng = null;
+  if (game.guessMarker) {
+    game.map.removeLayer(game.guessMarker);
+    game.guessMarker = null;
+  }
+  if (game.resultLayer) {
+    game.resultLayer.clearLayers();
+  }
+
+  const guessBtn = document.getElementById('guess-btn');
+  if (guessBtn) {
+    guessBtn.disabled = true;
+  }
+  const mapHint = document.getElementById('map-hint');
+  if (mapHint) {
+    mapHint.textContent = 'Click the map to place your pin';
+  }
+
+  // Reset map view based on mode
+  if (game.map) {
+    if (game.selectedMode === 'toronto') {
+      game.map.setView([43.72, -79.40], 11);
+    } else {
+      game.map.setView([30, 10], 2);
+    }
+    setTimeout(() => game.map.invalidateSize(), 50);
+  }
+}
+
 function goToGame() {
   document.getElementById('start-screen').style.display = 'none';
   document.getElementById('end-screen').classList.remove('active');
@@ -1624,24 +1660,7 @@ function goToGame() {
 
   if (!game.map) initMap();
 
-  game.guessLatLng = null;
-  if (game.guessMarker) {
-    game.map.removeLayer(game.guessMarker);
-    game.guessMarker = null;
-  }
-  game.resultLayer.clearLayers();
-
-  document.getElementById('guess-btn').disabled = true;
-  document.getElementById('map-hint').textContent = 'Click the map to place your pin';
-
-  // Reset map view based on mode
-  if (game.selectedMode === 'toronto') {
-    game.map.setView([43.72, -79.40], 11);
-  } else {
-    game.map.setView([30, 10], 2);
-  }
-  setTimeout(() => game.map.invalidateSize(), 50);
-
+  setupRound();
   startTimer();
 }
 
@@ -1650,6 +1669,7 @@ function initMap() {
     center: [43.72, -79.40],
     zoom: 11,
     zoomControl: true,
+    tap: false,
   });
 
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
@@ -1752,7 +1772,9 @@ function nextRound() {
   game.currentRound++;
   if (game.currentRound < 5) {
     document.getElementById('result-overlay').classList.remove('active');
+    setupRound();
     loadStreetView();
+    startTimer();
   } else {
     showEndScreen();
   }
