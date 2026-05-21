@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - **Indoor Photosphere Filtering** — restricted Street View searches strictly to outdoor imagery to prevent user-contributed indoor photospheres (like businesses, dentist offices, and laboratories) from showing up as round panoramas.
+- **Game State Reset on Round Transition** — corrected the game loop so that `isSubmitting` is properly reset to `false` when advancing rounds, resolving a bug where the "Confirm Guess" button and keyboard submit shortcuts were unresponsive in rounds 2–5.
+- **Round Transition Timer Restoration** — fixed a bug where the countdown timer was only initialized for the first round and remained stopped for subsequent rounds.
+- **Map Marker and Overlay Cleanup** — ensured that guess pins, actual location markers, and distance lines from previous rounds are properly cleared when starting a new round.
+- **Confirm Guess Button Disabled Appearance** — restyled the disabled "Confirm Guess" button to use a neutral slate-gray background (`#334155`) and muted text (`#64748b`) instead of translucent primary blue, making its inactive state visually distinct.
+- **Leaflet Mobile Tap Handling** — disabled Leaflet's default touch-handling tap simulator (`tap: false`) to resolve conflicts that caused click events to be ignored or behave inconsistently on touchscreens and mobile browsers.
+- **Smoke Test State Management** — removed the redundant manual `isSubmitting` state override from the Playwright test suite to align with corrected runtime game loop logic, and added direct map click and confirm button verification.
 
 ## [1.3.0] - 2026-05-18
 
