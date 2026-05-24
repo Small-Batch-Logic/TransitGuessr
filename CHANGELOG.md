@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [1.5.0] - 2026-05-24
 
 ### Changed
 - **Round Result Overlay Polish** — reworked the post-guess result sheet with a stronger score block, clearer station hierarchy, dedicated metric cards for miss distance and round progress, and a cleaner action row for the next-round flow.
