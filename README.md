@@ -35,13 +35,26 @@ No build step is required.
 2. Copy `config.example.js` to `config.local.js`.
 3. Put your browser-restricted Google Maps key in `config.local.js`.
 4. Open the served URL in a browser.
+5. Open `audit.html` when you want to curate Street View pano metadata instead of playing the game.
+
+## Street View Curation Workflow
+
+1. Open `audit.html` locally.
+2. Review a station, capture or adjust `svPanoId`, `svLat`, `svLng`, `svHeading`, `svPitch`, and `svStatus`.
+3. Copy the exported JSON patches from the audit tool into a local file such as `patches.json`.
+4. Apply them back into the dataset:
+   `npm run audit:apply -- patches.json`
+
+Normal gameplay now prefers curated stations when a mode has at least 5 curated entries available.
 
 If you open `index.html` directly from disk, some browser features will behave differently and `SITE_URL` falls back to the production domain.
 
 ## Project Structure
 
 - `index.html`: app shell, styles, and main game logic
+- `audit.html`: internal Street View curation workflow
 - `stations.js`: station dataset
+- `audit.js` / `audit.css`: audit workflow logic and styling
 - `config.example.js`: example local runtime config
 - `config.local.js`: local runtime config, ignored by git
 - `.github/workflows/deploy.yml`: Pages deployment, including runtime config generation
@@ -50,6 +63,7 @@ If you open `index.html` directly from disk, some browser features will behave d
 
 - The app currently ships as a static SPA with markup, CSS, and game logic in `index.html`.
 - Station content is loaded from `stations.js`; there is no bundler/build pipeline.
+- Street View quality control now has an internal audit workflow intended to capture curated pano IDs and entrance anchors.
 - Runtime key injection is handled via `config.local.js` (`window.TRANSITGUESSR_CONFIG`).
 - Service worker and manifest are present for installability experiments, not full offline gameplay.
 

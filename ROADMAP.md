@@ -33,5 +33,5 @@ TransitGuessr development plan.
 - [ ] **More Systems** — Sydney Trains, Seoul Metro, Mexico City Metro, São Paulo Metrô, Madrid Metro.
 - [ ] **More Stations** — Expand existing systems beyond the current 8–10 per city.
 - [ ] **Leaderboard** — Global daily and all-time boards (requires backend).
-- [ ] **Street View Validation Tool** — Internal utility for auditing panorama availability.
+- [x] **Street View Validation Tool** — Added a dedicated `audit.html` workflow for stepping through stations, previewing panoramas, capturing curated pano metadata, and exporting JSON patches for `stations.js`.
 - [ ] **Fallback Imagery** — Curated static photos for stations with low-quality Street View.

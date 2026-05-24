@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Changed
+- **Round Result Overlay Polish** — reworked the post-guess result sheet with a stronger score block, clearer station hierarchy, dedicated metric cards for miss distance and round progress, and a cleaner action row for the next-round flow.
+- **Streak Copy Clarification** — replaced vague streak language like `Heat check` and `stop heater` with plain labels such as `On a streak` and `2-round streak`.
+- **End Screen Layout Restructure** — converted the results page from a vertically centered stack into a top-aligned summary-and-breakdown layout so desktop sessions are less likely to require scrolling just to reach the round history and action buttons.
+- **Street View Curation Workflow** — added a dedicated `audit.html` workflow for reviewing stations, previewing panoramas, capturing curated pano IDs and entrance anchors, and exporting JSON patches for the station dataset.
+- **Audit Patch Apply Utility** — added `npm run audit:apply -- patches.json` to merge exported audit patches back into `stations.js` without manual copy-paste editing.
+- **Shared Station Helper Extraction** — moved station ID normalization, Street View anchor helpers, and curated-pool selection logic into shared `station-utils.js` so the game and audit tool use the same data rules.
+- **Audit Workflow Throughput** — added progress stats, curated-only export, patch download, and next-pending navigation to make station curation faster in practice.
+
+### Fixed
+- **Street View False Positive Reduction** — tightened panorama selection to search closer to each station anchor, reject panoramas that drift too far from the intended location, and re-aim the camera toward the station when the returned pano is nearby but offset.
+- **Uncurated Station Pano Filtering** — stations without dedicated Street View entrance anchors now use stricter distance thresholds and a basic metadata sanity check before a panorama is accepted, reducing cases where generic street or business imagery appears instead of transit context.
+- **Curated Pano Runtime Support** — gameplay now respects `svPanoId`, `svHeading`, `svPitch`, and `svStatus: "skip"` so curated Street View metadata directly controls round selection and camera framing.
+- **Curated Pool Preference** — gameplay now prefers curated stations for a mode once enough curated entries exist, reducing reliance on low-confidence Street View rounds.
+- **Timed-Out Result Card Cleanup** — timeout rounds now use a dedicated visual state instead of sharing the same emphatic score treatment as successful guesses.
+
 ## [1.4.0] - 2026-05-20
 
 ### Changed

@@ -2,6 +2,7 @@
 const SITE_URL = window.location.origin === 'null' ? 'https://transitguessr.app' : window.location.origin;
 window.TRANSITGUESSR_CONFIG = window.TRANSITGUESSR_CONFIG || {};
 const STATIONS = window.STATIONS || [];
+const StationUtils = window.TransitGuessrStationUtils;
 let googleMapsLoadPromise = null;
 let startGamePromise = null;
 
@@ -21,27 +22,7 @@ function getMapsApiKey() {
   return window.TRANSITGUESSR_CONFIG?.googleMapsApiKey || '';
 }
 
-function slugifyStationPart(value) {
-  return String(value)
-    .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-}
-
-function buildStationId(station) {
-  return [
-    slugifyStationPart(station.system),
-    slugifyStationPart(station.city),
-    slugifyStationPart(station.name)
-  ].join('__');
-}
-
-const NORMALIZED_STATIONS = STATIONS.map((station) => ({
-  ...station,
-  id: station.id || buildStationId(station)
-}));
+const NORMALIZED_STATIONS = StationUtils.normalizeStations(STATIONS);
 
 const MODES = {
   worldwide: { 
@@ -182,8 +163,8 @@ function formatDistance(distKm) {
 
 function updateStreakDisplay() {
   const streakEl = document.getElementById('streak-display');
-  if (game.hotStreak > 1) streakEl.textContent = `${game.hotStreak} stop heater`;
-  else if (game.hotStreak === 1) streakEl.textContent = 'Heat check';
+  if (game.hotStreak > 1) streakEl.textContent = `${game.hotStreak}-round streak`;
+  else if (game.hotStreak === 1) streakEl.textContent = 'On a streak';
   else streakEl.textContent = 'No streak';
 }
 
@@ -191,6 +172,25 @@ function setReactionChip({ label, tone }) {
   const chip = document.getElementById('reaction-chip');
   chip.textContent = label;
   chip.className = `reaction-chip ${tone}`;
+}
+
+function setResultOverlayState({ timedOut = false, points = 0 } = {}) {
+  const overlay = document.getElementById('result-overlay');
+  const kicker = document.getElementById('result-kicker');
+  const scoreWrap = document.querySelector('.score-bar-wrap');
+
+  overlay.classList.toggle('timed-out', timedOut);
+  overlay.classList.toggle('perfect-hit', points >= 5000);
+  kicker.textContent = timedOut ? 'Round Timed Out' : 'Round Result';
+  if (scoreWrap) {
+    scoreWrap.setAttribute('aria-hidden', timedOut ? 'true' : 'false');
+  }
+}
+
+function showResultOverlay() {
+  const overlay = document.getElementById('result-overlay');
+  overlay.classList.add('active');
+  overlay.classList.remove('peek');
 }
 
 function setPhotoLoadingState(message, showSpinner = false) {
@@ -414,6 +414,67 @@ function haversineKm(lat1, lng1, lat2, lng2) {
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
+function bearingBetween(lat1, lng1, lat2, lng2) {
+  const phi1 = lat1 * Math.PI / 180;
+  const phi2 = lat2 * Math.PI / 180;
+  const lambda1 = lng1 * Math.PI / 180;
+  const lambda2 = lng2 * Math.PI / 180;
+  const y = Math.sin(lambda2 - lambda1) * Math.cos(phi2);
+  const x = Math.cos(phi1) * Math.sin(phi2)
+    - Math.sin(phi1) * Math.cos(phi2) * Math.cos(lambda2 - lambda1);
+  return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+}
+
+function getStreetViewSearchPlan(station) {
+  const hasCuratedAnchor = StationUtils.hasCuratedStreetViewAnchor(station);
+  const radius = station.svRadius ?? (hasCuratedAnchor ? 32 : 20);
+  const maxPanoDistance = station.svMaxDistance ?? (hasCuratedAnchor ? 48 : 28);
+  return {
+    anchor: StationUtils.getStreetViewAnchor(station),
+    searchRadii: [
+      radius,
+      radius + (hasCuratedAnchor ? 16 : 10),
+      radius + (hasCuratedAnchor ? 32 : 20)
+    ],
+    maxPanoDistance
+  };
+}
+
+function isStreetViewCandidateUsable(station, data) {
+  const anchor = StationUtils.getStreetViewAnchor(station);
+  const panoLatLng = data?.location?.latLng;
+  if (!panoLatLng) return false;
+  const panoDistanceMeters = haversineKm(anchor.lat, anchor.lng, panoLatLng.lat(), panoLatLng.lng()) * 1000;
+  return panoDistanceMeters <= getStreetViewSearchPlan(station).maxPanoDistance;
+}
+
+function getStreetViewHeading(station, panoLatLng) {
+  const anchor = StationUtils.getStreetViewAnchor(station);
+  const panoDistanceMeters = haversineKm(anchor.lat, anchor.lng, panoLatLng.lat(), panoLatLng.lng()) * 1000;
+  if ((station.svHeading != null || station.heading != null) && panoDistanceMeters <= 20) {
+    return StationUtils.getStreetViewPov(station).heading;
+  }
+  return bearingBetween(panoLatLng.lat(), panoLatLng.lng(), anchor.lat, anchor.lng);
+}
+
+function isStreetViewMatchTransitLike(station, data) {
+  const description = String(data?.location?.description || '').toLowerCase();
+  const stationTokens = String(station.name)
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter((token) => token.length >= 4 && !['station', 'street'].includes(token));
+  if (stationTokens.length === 0) return true;
+  return stationTokens.some((token) => description.includes(token));
+}
+
+function isStreetViewCandidateHighConfidence(station, data) {
+  if (!isStreetViewCandidateUsable(station, data)) return false;
+  if (StationUtils.hasCuratedStreetViewAnchor(station)) return true;
+  return isStreetViewMatchTransitLike(station, data);
+}
+
 function calcScore(distKm) {
   // Cities/Systems use 5km scale; Worldwide/Daily use 2000km
   const scale = ['worldwide', 'daily'].includes(game.selectedMode) ? 2000 : 5;
@@ -502,12 +563,12 @@ function autoSubmit() {
     document.getElementById('result-pts').textContent = '0';
     document.getElementById('score-bar-fill').style.width = '0%';
     setReactionChip(reactionForGuess(null, 0, true));
+    setResultOverlayState({ timedOut: true, points: 0 });
     updateStreakDisplay();
     document.getElementById('result-round').textContent = `Round ${game.currentRound + 1} of 5`;
     document.getElementById('next-btn').textContent = game.currentRound === 4 ? 'See Results' : 'Next Round';
 
-    document.getElementById('result-overlay').classList.add('active');
-    document.getElementById('result-overlay').classList.remove('peek');
+    showResultOverlay();
   }
 }
 
@@ -533,6 +594,8 @@ function gradeLabel(score) {
 // ── Street View Panorama ──
 function loadStreetView() {
   const station = game.roundStations[game.currentRound];
+  const { anchor, searchRadii } = getStreetViewSearchPlan(station);
+  const pov = StationUtils.getStreetViewPov(station);
   
   setPhotoLoadingState('Loading Street View...', true);
   document.getElementById('round-num').textContent = game.currentRound + 1;
@@ -551,49 +614,75 @@ function loadStreetView() {
   game.svApiWaitCount = 0;
 
   if (!svService) svService = new google.maps.StreetViewService();
+  const ensurePanorama = () => {
+    const panoEl = document.getElementById('sv-pano');
+    const canMove = game.difficulty === 'easy';
 
-  svService.getPanorama(
-    {
-      location: { lat: station.lat, lng: station.lng },
-      radius: 150,
-      sources: [google.maps.StreetViewSource.OUTDOOR]
-    },
-    (data, status) => {
-      if (status !== google.maps.StreetViewStatus.OK) {
-        handleNoStreetView(station);
+    if (!svPanorama) {
+      svPanorama = new google.maps.StreetViewPanorama(panoEl, {
+        addressControl: false,
+        showRoadLabels: false,
+        zoomControl: canMove,
+        fullscreenControl: false,
+        motionTrackingControl: false,
+        panControl: false,
+        linksControl: canMove,
+        clickToGo: canMove,
+        enableCloseButton: false,
+      });
+    } else {
+      svPanorama.setOptions({
+        linksControl: canMove,
+        clickToGo: canMove,
+        zoomControl: canMove,
+      });
+    }
+  };
+
+  const applyPanoramaData = (data) => {
+    ensurePanorama();
+    svPanorama.setPano(data.location.pano);
+    svPanorama.setPov({
+      heading: station.svPanoId ? pov.heading : getStreetViewHeading(station, data.location.latLng),
+      pitch: pov.pitch
+    });
+    document.getElementById('photo-loading').style.display = 'none';
+  };
+
+  const tryPanorama = (index) => {
+    if (index >= searchRadii.length) {
+      handleNoStreetView(station);
+      return;
+    }
+
+    svService.getPanorama(
+      {
+        location: anchor,
+        radius: searchRadii[index],
+        sources: [google.maps.StreetViewSource.OUTDOOR]
+      },
+      (data, status) => {
+        if (status !== google.maps.StreetViewStatus.OK || !isStreetViewCandidateHighConfidence(station, data)) {
+          tryPanorama(index + 1);
+          return;
+        }
+        applyPanoramaData(data);
+      }
+    );
+  };
+
+  if (station.svPanoId) {
+    svService.getPanorama({ pano: station.svPanoId }, (data, status) => {
+      if (status === google.maps.StreetViewStatus.OK) {
+        applyPanoramaData(data);
         return;
       }
+      tryPanorama(0);
+    });
+    return;
+  }
 
-      const panoEl = document.getElementById('sv-pano');
-
-      const canMove = game.difficulty === 'easy';
-
-      if (!svPanorama) {
-        svPanorama = new google.maps.StreetViewPanorama(panoEl, {
-          addressControl: false,
-          showRoadLabels: false,
-          zoomControl: canMove,
-          fullscreenControl: false,
-          motionTrackingControl: false,
-          panControl: false,
-          linksControl: canMove,
-          clickToGo: canMove,
-          enableCloseButton: false,
-        });
-      } else {
-        // Update movement options for current difficulty
-        svPanorama.setOptions({
-          linksControl: canMove,
-          clickToGo: canMove,
-          zoomControl: canMove,
-        });
-      }
-
-      svPanorama.setPano(data.location.pano);
-      svPanorama.setPov({ heading: station.heading ?? 0, pitch: 0 });
-      document.getElementById('photo-loading').style.display = 'none';
-    }
-  );
+  tryPanorama(0);
 }
 
 function handleNoStreetView(station) {
@@ -601,7 +690,7 @@ function handleNoStreetView(station) {
   setPhotoLoadingState('No Street View here — skipping in 2s...');
   setTimeout(() => {
     const modeConfig = MODES[game.selectedMode];
-    const pool = modeConfig ? NORMALIZED_STATIONS.filter(modeConfig.filter) : NORMALIZED_STATIONS;
+    const pool = StationUtils.selectStationPool(modeConfig ? NORMALIZED_STATIONS.filter(modeConfig.filter) : NORMALIZED_STATIONS, 1);
     const usedIds = game.roundStations.map(s => s.id);
     const fallbacks = shuffle(pool.filter(s => !usedIds.includes(s.id)));
     if (fallbacks.length > 0) game.roundStations[game.currentRound] = fallbacks[0];
@@ -617,10 +706,10 @@ async function startGame() {
   game.reset();
   
   if (game.selectedMode === 'daily') {
-    game.roundStations = seededShuffle(NORMALIZED_STATIONS, getDayNumber()).slice(0, 5);
+    game.roundStations = seededShuffle(StationUtils.selectStationPool(NORMALIZED_STATIONS), getDayNumber()).slice(0, 5);
   } else {
     const modeConfig = MODES[game.selectedMode];
-    const pool = modeConfig ? NORMALIZED_STATIONS.filter(modeConfig.filter) : NORMALIZED_STATIONS;
+    const pool = StationUtils.selectStationPool(modeConfig ? NORMALIZED_STATIONS.filter(modeConfig.filter) : NORMALIZED_STATIONS);
     
     // Seen stations logic
     const seen = getSeenIds();
@@ -783,13 +872,13 @@ function submitGuess() {
   document.getElementById('result-pts').textContent = pts.toLocaleString();
   document.getElementById('score-bar-fill').style.width = `${(pts / 5000) * 100}%`;
   setReactionChip(reactionForGuess(dist, pts));
+  setResultOverlayState({ timedOut: false, points: pts });
   updateStreakDisplay();
   document.getElementById('result-round').textContent = `Round ${game.currentRound + 1} of 5`;
   document.getElementById('next-btn').textContent =
     game.currentRound === 4 ? 'See Results' : 'Next Round';
 
-  document.getElementById('result-overlay').classList.add('active');
-  document.getElementById('result-overlay').classList.remove('peek');
+  showResultOverlay();
 
   // Focus action button for keyboard flow
   setTimeout(() => document.getElementById('next-btn').focus(), 300);

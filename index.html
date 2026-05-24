@@ -167,11 +167,11 @@
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
       View Photo
     </button>
+    <div class="result-kicker" id="result-kicker">Round Result</div>
     <div class="result-header">
-      <div>
+      <div class="result-copy">
         <div class="result-station-name" id="result-station-name"></div>
         <div class="result-system" id="result-system"></div>
-        <div class="result-distance" id="result-distance"></div>
       </div>
       <div class="result-score-block">
         <div class="result-pts" id="result-pts"></div>
@@ -181,40 +181,63 @@
     <div class="score-bar-wrap">
       <div class="score-bar-fill" id="score-bar-fill" style="width:0%"></div>
     </div>
-    <div class="reaction-chip" id="reaction-chip">Finding the line...</div>
-    <div class="result-round" id="result-round"></div>
-    <button type="button" class="btn-next" id="next-btn">Next Round</button>
+    <div class="result-metrics">
+      <div class="result-metric-card">
+        <div class="result-metric-label">Miss Distance</div>
+        <div class="result-distance" id="result-distance"></div>
+      </div>
+      <div class="result-metric-card">
+        <div class="result-metric-label">Progress</div>
+        <div class="result-round" id="result-round"></div>
+      </div>
+    </div>
+    <div class="result-footer">
+      <div class="reaction-chip" id="reaction-chip">Finding the line...</div>
+      <button type="button" class="btn-next" id="next-btn">Next Round</button>
+    </div>
   </div>
 </div>
 
 <!-- End Screen -->
 <div id="end-screen">
-  <div class="logo">TransitGuessr</div>
-  <span class="new-record" id="new-record-badge">New Record</span>
-  <div class="final-score" id="final-score"></div>
-  <div class="final-label">out of 25,000</div>
-  <div class="high-score-label" id="high-score-label"></div>
-  <div class="final-grade" id="final-grade"></div>
-  <div class="session-summary" id="session-summary">
-    <div class="summary-card">
-      <div class="summary-label">Closest Hit</div>
-      <div class="summary-value" id="closest-hit">-</div>
-      <div class="summary-subtle" id="closest-hit-meta"></div>
+  <div class="end-hero">
+    <div class="logo">TransitGuessr</div>
+    <span class="new-record" id="new-record-badge">New Record</span>
+    <div class="final-score" id="final-score"></div>
+    <div class="final-label">out of 25,000</div>
+    <div class="high-score-label" id="high-score-label"></div>
+    <div class="final-grade" id="final-grade"></div>
+  </div>
+
+  <div class="end-grid">
+    <div class="end-overview">
+      <div class="session-summary" id="session-summary">
+        <div class="summary-card">
+          <div class="summary-label">Closest Hit</div>
+          <div class="summary-value" id="closest-hit">-</div>
+          <div class="summary-subtle" id="closest-hit-meta"></div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">Average Miss</div>
+          <div class="summary-value" id="average-miss">-</div>
+          <div class="summary-subtle" id="average-miss-meta"></div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">Biggest Miss</div>
+          <div class="summary-value" id="biggest-miss">-</div>
+          <div class="summary-subtle" id="biggest-miss-meta"></div>
+        </div>
+      </div>
+      <div class="lifetime-stats" id="lifetime-stats"></div>
     </div>
-    <div class="summary-card">
-      <div class="summary-label">Average Miss</div>
-      <div class="summary-value" id="average-miss">-</div>
-      <div class="summary-subtle" id="average-miss-meta"></div>
-    </div>
-    <div class="summary-card">
-      <div class="summary-label">Biggest Miss</div>
-      <div class="summary-value" id="biggest-miss">-</div>
-      <div class="summary-subtle" id="biggest-miss-meta"></div>
+
+    <div class="end-rounds-panel">
+      <div class="end-panel-title">Round Breakdown</div>
+      <div class="rounds-list" id="rounds-list"></div>
     </div>
   </div>
-  <div class="rounds-list" id="rounds-list"></div>
-  <div class="lifetime-stats" id="lifetime-stats"></div>
-  <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+
+  <div class="end-actions">
     <button type="button" class="btn-share" id="share-btn">Share Result</button>
     <button type="button" class="btn-share" id="menu-btn">Change Mode</button>
     <button type="button" class="btn-primary" id="replay-btn">Play Again</button>
@@ -223,6 +246,7 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
 <script src="stations.js" defer></script>
+<script src="station-utils.js" defer></script>
 <script src="app.js" defer></script>
 </body>
 </html>

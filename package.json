@@ -2,6 +2,7 @@
   "name": "transitguessr",
   "private": true,
   "scripts": {
+    "audit:apply": "node scripts/apply-audit-patches.js",
     "test:smoke": "playwright test"
   },
   "devDependencies": {
