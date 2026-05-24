@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [1.6.0] - 2026-05-24
 
 ### Added
 - **Vite Build System** — migrated the project from a vanilla script-based setup to Vite. This introduces Hot Module Replacement (HMR) for faster development and a production-ready bundling pipeline.
