@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+- **Vite Build System** — migrated the project from a vanilla script-based setup to Vite. This introduces Hot Module Replacement (HMR) for faster development and a production-ready bundling pipeline.
+- **ES Module Support** — refactored the codebase to use standard `import`/`export` syntax, removing global namespace pollution and improving code maintainability.
+
+### Changed
+- **Dynamic UI Generation** — replaced hardcoded regional city buttons in `index.html` with a dynamic renderer in `app.js`. New cities can now be added by simply updating the `MODES` configuration.
+- **JSON Station Data** — migrated the station dataset from `stations.js` to `stations.json`, enabling native JSON imports and preparing for potential lazy-loading of city-specific data.
+- **Project Restructuring** — moved core application assets (`app.js`, `style.css`, etc.) into a dedicated `src/` directory to align with modern frontend project structures.
+- **Playwright Test Modernization** — updated the smoke test suite to run against the Vite production preview and added a synchronization check for game state initialization.
+
 ## [1.5.0] - 2026-05-24
 
 ### Changed

@@ -3,9 +3,13 @@
   "private": true,
   "scripts": {
     "audit:apply": "node scripts/apply-audit-patches.js",
-    "test:smoke": "playwright test"
+    "test:smoke": "playwright test",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
   },
   "devDependencies": {
-    "@playwright/test": "^1.54.2"
+    "@playwright/test": "^1.54.2",
+    "vite": "^8.0.14"
   }
 }

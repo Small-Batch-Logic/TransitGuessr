@@ -17,16 +17,18 @@ test('can complete all rounds and reach end screen', async ({ page }) => {
   await expect(page.locator('#game-screen')).toHaveClass(/active/);
   await expect(page.locator('#map')).toBeVisible();
 
+  await page.waitForFunction(() => window.game !== undefined);
+
   for (let round = 0; round < 5; round++) {
     const state = await page.evaluate(() => {
-      const station = game.roundStations[game.currentRound];
-      game.guessLatLng = { lat: station.lat, lng: station.lng };
-      submitGuess();
-      const roundResultsCount = game.roundResults.length;
-      nextRound();
+      const station = window.game.roundStations[window.game.currentRound];
+      window.game.guessLatLng = { lat: station.lat, lng: station.lng };
+      window.submitGuess();
+      const roundResultsCount = window.game.roundResults.length;
+      window.nextRound();
       return {
         roundResultsCount,
-        gameRound: game.currentRound,
+        gameRound: window.game.currentRound,
         endActive: document.getElementById('end-screen').classList.contains('active')
       };
     });
