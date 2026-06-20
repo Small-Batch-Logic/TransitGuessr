@@ -31,13 +31,17 @@ const MODES = {
     name: 'Worldwide', 
     city: 'Global', 
     desc: 'Test your knowledge across major transit systems globally.', 
-    filter: () => true 
+    filter: () => true,
+    color: 'var(--world)',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`
   },
   daily: { 
     name: 'Daily Challenge', 
     city: 'Global', 
     desc: 'The same 5 stations for everyone in the world. New challenge every day.', 
-    filter: () => true 
+    filter: () => true,
+    color: 'var(--daily)',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`
   },
   toronto: { 
     name: 'Toronto', 
@@ -186,7 +190,6 @@ function formatDistance(distKm) {
 function updateStreakDisplay() {
   const streakEl = document.getElementById('streak-display');
   if (game.hotStreak > 1) streakEl.textContent = `${game.hotStreak}-round streak`;
-  else if (game.hotStreak === 1) streakEl.textContent = 'On a streak';
   else streakEl.textContent = 'No streak';
 }
 
@@ -359,8 +362,41 @@ function saveHighScore(score) {
   try { localStorage.setItem(getHighScoreKey(), score); } catch {}
 }
 
+function getHighScoreForMode(mode) {
+  try {
+    const key = mode === 'daily'
+      ? `transitguessr_hs_daily_${getDayNumber()}`
+      : `transitguessr_hs_${mode}`;
+    return parseInt(localStorage.getItem(key) || '0');
+  } catch { return 0; }
+}
+
+function updateStartScreenStats() {
+  // Daily Challenge card stats
+  const dailyStatusEl = document.getElementById('daily-status-text');
+  if (dailyStatusEl) {
+    const streak = getDailyStreak();
+    const streakText = streak > 0 ? ` • Streak: ${streak} day${streak === 1 ? '' : 's'} 🔥` : '';
+    if (hasDailyBeenPlayed()) {
+      const todayScore = getDailyPlayedScore();
+      dailyStatusEl.textContent = todayScore != null
+        ? `Today's score: ${todayScore.toLocaleString()}/25,000${streakText}`
+        : `Today's run complete${streakText}`;
+    } else {
+      dailyStatusEl.textContent = streak > 0 ? `Daily Challenge ready!${streakText}` : 'Play today\'s challenge map!';
+    }
+  }
+
+  // Worldwide card stats
+  const worldwideStatusEl = document.getElementById('worldwide-status-text');
+  if (worldwideStatusEl) {
+    const hs = getHighScoreForMode('worldwide');
+    worldwideStatusEl.textContent = hs > 0 ? `High Score: ${hs.toLocaleString()}` : 'Practice mode • Random stations';
+  }
+}
+
 function refreshHighScoreDisplay() {
-  document.getElementById('start-hs').textContent = `High Score: ${getHighScore().toLocaleString()}`;
+  updateStartScreenStats();
 }
 
 // ── Score Count-Up ──
@@ -492,9 +528,7 @@ function isStreetViewMatchTransitLike(station, data) {
 }
 
 function isStreetViewCandidateHighConfidence(station, data) {
-  if (!isStreetViewCandidateUsable(station, data)) return false;
-  if (StationUtils.hasCuratedStreetViewAnchor(station)) return true;
-  return isStreetViewMatchTransitLike(station, data);
+  return isStreetViewCandidateUsable(station, data);
 }
 
 function calcScore(distKm) {
@@ -514,31 +548,12 @@ function setMode(mode) {
   game.selectedMode = mode;
   localStorage.setItem('transitguessr_last_mode', mode);
 
-  // Update Grid UI
-  document.querySelectorAll('.mode-card').forEach(el => el.classList.remove('selected'));
-  const activeCard = document.getElementById(`mode-${mode}`);
-  if (activeCard) activeCard.classList.add('selected');
-
-  // Update Dynamic Info Box
-  const config = MODES[mode];
-  document.getElementById('start-title').textContent = config.name;
-  document.getElementById('start-desc').textContent = mode === 'daily'
-    ? getDailyModeDescription(config.desc)
-    : config.desc;
-  refreshHighScoreDisplay();
-
   // Update Badge in Game Header
-  document.getElementById('game-mode-badge').textContent = config.name;
-}
-
-function setDifficulty(diff) {
-  game.difficulty = diff;
-  const container = document.getElementById('diff-container');
-  if (container) container.setAttribute('data-active', diff);
-  
-  document.querySelectorAll('.diff-tab').forEach(el => el.classList.remove('active'));
-  const tab = document.getElementById(`diff-${diff}`);
-  if (tab) tab.classList.add('active');
+  const config = MODES[mode];
+  const badgeEl = document.getElementById('game-mode-badge');
+  if (badgeEl) {
+    badgeEl.textContent = mode === 'daily' ? `Daily #${getDayNumber()}` : config.name;
+  }
 }
 
 // ── Timer ──
@@ -816,7 +831,12 @@ function initMap() {
     tap: false,
   });
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const url = isDark
+    ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+    : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+
+  game.tileLayer = L.tileLayer(url, {
     attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors &copy; <a href="https://carto.com">CARTO</a>',
     subdomains: 'abcd',
     maxZoom: 19,
@@ -929,19 +949,86 @@ window.nextRound = nextRound;
 function goToMenu() {
   document.getElementById('end-screen').classList.remove('active');
   document.getElementById('start-screen').style.display = 'flex';
-  setMode(game.selectedMode); // refresh meta text (picks up daily already-played state)
+  const citySearch = document.getElementById('city-search');
+  if (citySearch) {
+    citySearch.value = '';
+    citySearch.dispatchEvent(new Event('input'));
+  }
+  updateStartScreenStats();
 }
 
 function initializeControls() {
-  document.querySelectorAll('.mode-card[data-mode]').forEach((button) => {
-    button.addEventListener('click', () => setMode(button.dataset.mode));
-  });
+  // Bind click for Daily Challenge play button
+  const playDailyBtn = document.getElementById('btn-play-daily');
+  if (playDailyBtn) {
+    playDailyBtn.addEventListener('click', () => {
+      setMode('daily');
+      startGame();
+    });
+  }
 
-  document.querySelectorAll('.diff-tab[data-difficulty]').forEach((button) => {
-    button.addEventListener('click', () => setDifficulty(button.dataset.difficulty));
-  });
+  // Bind click for Worldwide play button
+  const playWorldwideBtn = document.getElementById('btn-play-worldwide');
+  if (playWorldwideBtn) {
+    playWorldwideBtn.addEventListener('click', () => {
+      setMode('worldwide');
+      startGame();
+    });
+  }
 
-  document.getElementById('start-btn').addEventListener('click', startGame);
+  // Bind clicks for the regional city grid (starts game instantly)
+  const cityGrid = document.getElementById('city-grid');
+  if (cityGrid) {
+    cityGrid.addEventListener('click', (e) => {
+      const card = e.target.closest('.mode-card');
+      if (card && card.dataset.mode) {
+        setMode(card.dataset.mode);
+        startGame();
+      }
+    });
+  }
+
+  // Bind city search input
+  const citySearch = document.getElementById('city-search');
+  if (citySearch) {
+    citySearch.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      const cards = cityGrid ? cityGrid.querySelectorAll('.mode-card') : [];
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const nameEl = card.querySelector('.card-name');
+        const name = nameEl ? nameEl.textContent.toLowerCase() : '';
+        if (name.includes(query)) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Handle "No cities found" feedback
+      let noResultsEl = document.getElementById('no-cities-feedback');
+      if (visibleCount === 0) {
+        if (!noResultsEl && cityGrid) {
+          noResultsEl = document.createElement('div');
+          noResultsEl.id = 'no-cities-feedback';
+          noResultsEl.style.gridColumn = '1 / -1';
+          noResultsEl.style.textAlign = 'center';
+          noResultsEl.style.padding = '20px 10px';
+          noResultsEl.style.fontSize = '0.85rem';
+          noResultsEl.style.color = 'var(--text-dim)';
+          noResultsEl.textContent = 'No cities match your search';
+          cityGrid.appendChild(noResultsEl);
+        }
+      } else {
+        if (noResultsEl) {
+          noResultsEl.remove();
+        }
+      }
+    });
+  }
+
   document.getElementById('guess-btn').addEventListener('click', submitGuess);
   document.getElementById('peek-btn').addEventListener('click', togglePeek);
   document.getElementById('next-btn').addEventListener('click', nextRound);
@@ -1057,6 +1144,32 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+function updateMapTheme() {
+  if (!game.map || !game.tileLayer) return;
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const url = isDark
+    ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+    : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+  game.tileLayer.setUrl(url);
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('transitguessr_theme', next);
+  updateMapTheme();
+}
+
+function initTheme() {
+  const saved = localStorage.getItem('transitguessr_theme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+  const toggleBtn = document.getElementById('theme-toggle');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', toggleTheme);
+  }
+}
+
 function renderCityGrid() {
   const grid = document.getElementById('city-grid');
   if (!grid) return;
@@ -1075,14 +1188,15 @@ function renderCityGrid() {
 
 // Initialization: Detect mode from URL or LocalStorage
 (function init() {
+  initTheme();
   renderCityGrid();
   initializeControls();
   const urlParams = new URLSearchParams(window.location.search);
   const lastMode = localStorage.getItem('transitguessr_last_mode');
   const initialMode = urlParams.get('mode') || lastMode || 'worldwide';
   setMode(MODES[initialMode] ? initialMode : 'worldwide');
-  setDifficulty('hard');
   updateStreakDisplay();
+  updateStartScreenStats();
   setReactionChip({ label: 'Finding the line...', tone: '' });
   if (!STATIONS.length) console.warn('TransitGuessr: stations.js did not load.');
 })();

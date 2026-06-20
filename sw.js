@@ -1,11 +1,8 @@
-const CACHE_NAME = 'transitguessr-v3';
+const CACHE_NAME = 'transitguessr-v4';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
-  './stations.js',
-  './style.css',
-  './app.js',
   './og-image.png',
   'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
   'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
@@ -26,7 +23,24 @@ self.addEventListener('activate', (e) => {
 });
 
 self.addEventListener('fetch', (e) => {
+  // Only intercept HTTP/HTTPS requests (avoid chrome-extension:// etc.)
+  if (!e.request.url.startsWith('http')) return;
+
   e.respondWith(
-    caches.match(e.request).then((res) => res || fetch(e.request))
+    fetch(e.request)
+      .then((response) => {
+        // If the request was successful, update the cache and return
+        if (response && response.status === 200 && response.type === 'basic') {
+          const responseToCache = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(e.request, responseToCache);
+          });
+        }
+        return response;
+      })
+      .catch(() => {
+        // Fallback to cache if network is unavailable
+        return caches.match(e.request);
+      })
   );
 });

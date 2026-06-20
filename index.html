@@ -26,60 +26,89 @@
 
 <div id="toast">Copied to clipboard!</div>
 <div id="start-screen">
+  <button type="button" id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
+    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
   <div class="logo-header">
     <div class="logo">transitguessr</div>
-    <div class="tagline">The ultimate spatial awareness test for transit nerds.</div>
+    <div class="tagline">The ultimate guessing game for transit nerds.</div>
   </div>
-  
-  <div class="start-island">
-    <div class="start-meta-box">
-      <div>
-        <div class="start-title" id="start-title">Worldwide</div>
-        <div class="start-desc" id="start-desc">Test your knowledge across major transit systems globally.</div>
-      </div>
-      <div class="start-hs-badge" id="start-hs">High Score: 0</div>
-    </div>
 
-    <div class="card-meta" style="margin: 4px 0;">Event Challenge</div>
-    <div class="mode-grid" style="grid-template-columns: 1fr; margin: 4px 0 16px 0;">
-      <!-- Daily -->
-      <button type="button" class="mode-card" id="mode-daily" data-mode="daily" style="--system-color: var(--daily); height: 50px;">
-        <div class="card-icon" style="width: 32px; height: 32px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <div>
-          <div class="card-meta">24H Event</div>
-          <div class="card-name" style="font-size: 0.95rem;">Daily Challenge</div>
-        </div>
-      </button>
-    </div>
 
-    <div style="display: flex; gap: 16px; margin-bottom: 20px;">
-      <div style="flex: 1;">
-        <div class="card-meta">Global</div>
-        <button type="button" class="mode-card" id="mode-worldwide" data-mode="worldwide" style="--system-color: var(--world); height: 50px;">
-          <div class="card-icon" style="width: 32px; height: 32px;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </div>
-          <div><div class="card-name" style="font-size: 0.95rem;">Worldwide</div></div>
-        </button>
-      </div>
-      <div style="flex: 2;">
-        <div class="card-meta">Regional Cities</div>
-        <div class="mode-grid" id="city-grid" style="grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); margin-top: 0; gap: 8px;">
-          <!-- Generated dynamically by app.js -->
+  <div class="start-main-grid">
+    <!-- Daily Challenge Card -->
+    <div class="play-card daily-play-card">
+      <div class="play-card-header">
+        <span class="play-card-badge">24H Event</span>
+        <div class="play-card-icon" style="color: var(--daily);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
       </div>
+      <h2 class="play-card-title">Daily Challenge</h2>
+      <p class="play-card-desc">The same 5 stations for everyone in the world. New challenge every day.</p>
+      <div class="play-card-status" id="daily-status-text">Loading stats...</div>
+      <button type="button" class="btn-play-mode" id="btn-play-daily" data-mode="daily">PLAY DAILY</button>
     </div>
 
-    <div class="card-meta" style="margin-bottom: 8px; font-size: 0.65rem;">Navigation Difficulty</div>
-    <div class="control-row">
-      <div class="difficulty-segmented" id="diff-container" data-active="hard">
-        <div class="diff-slider"></div>
-        <button type="button" class="diff-tab active" id="diff-hard" data-difficulty="hard">HARD (Locked)</button>
-        <button type="button" class="diff-tab" id="diff-easy" data-difficulty="easy">EASY (Move)</button>
+    <!-- Worldwide Card -->
+    <div class="play-card worldwide-play-card">
+      <div class="play-card-header">
+        <span class="play-card-badge">Practice Map</span>
+        <div class="play-card-icon" style="color: var(--world);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
       </div>
-      <button type="button" class="btn-primary" id="start-btn">START SESSION</button>
+      <h2 class="play-card-title">Worldwide</h2>
+      <p class="play-card-desc">Practice across all major transit systems globally with random stations.</p>
+      <div class="play-card-status" id="worldwide-status-text">High Score: 0</div>
+      <button type="button" class="btn-play-mode" id="btn-play-worldwide" data-mode="worldwide">PLAY PRACTICE</button>
+    </div>
+
+    <!-- Regional Cities Card -->
+    <div class="cities-card">
+      <h2 class="cities-title">Explore City Maps</h2>
+      <p class="cities-desc">Select a specific city to start playing its map instantly.</p>
+      
+      <div class="search-wrapper">
+        <input type="text" id="city-search" placeholder="Search cities..." autocomplete="off" aria-label="Search cities">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </div>
+
+      <div class="city-grid" id="city-grid">
+        <!-- Generated dynamically by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- How to Play Section -->
+  <div class="how-to-play-card">
+    <h3 class="htp-title">How to Play</h3>
+    <div class="htp-steps">
+      <div class="htp-step">
+        <div class="htp-num">1</div>
+        <div class="htp-text">
+          <strong>Inspect Street View</strong>
+          <span>Look around for station signage, system logos, architecture, and language clues.</span>
+        </div>
+      </div>
+      <div class="htp-step">
+        <div class="htp-num">2</div>
+        <div class="htp-text">
+          <strong>Pin the Map</strong>
+          <span>Pan and zoom the street map on the right to place your marker at the station entrance.</span>
+        </div>
+      </div>
+      <div class="htp-step">
+        <div class="htp-num">3</div>
+        <div class="htp-text">
+          <strong>Score Points</strong>
+          <span>Submit your guess. Get up to 5,000 points per round based on proximity. Play 5 rounds!</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

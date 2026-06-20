@@ -3,8 +3,8 @@ const { test, expect } = require('@playwright/test');
 test('loads the start screen and can enter the game shell', async ({ page }) => {
   await page.goto('/');
 
-  await expect(page.getByText('The ultimate spatial awareness test for transit nerds.')).toBeVisible();
-  await page.getByRole('button', { name: 'START SESSION' }).click();
+  await expect(page.getByText('The ultimate guessing game for transit nerds.')).toBeVisible();
+  await page.getByRole('button', { name: 'PLAY PRACTICE' }).click();
 
   await expect(page.locator('#game-screen')).toHaveClass(/active/);
   await expect(page.locator('#photo-loading')).toBeVisible();
@@ -12,7 +12,7 @@ test('loads the start screen and can enter the game shell', async ({ page }) => 
 
 test('can complete all rounds and reach end screen', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'START SESSION' }).click();
+  await page.getByRole('button', { name: 'PLAY PRACTICE' }).click();
 
   await expect(page.locator('#game-screen')).toHaveClass(/active/);
   await expect(page.locator('#map')).toBeVisible();
@@ -41,7 +41,7 @@ test('can complete all rounds and reach end screen', async ({ page }) => {
 
 test('can click the map and click confirm guess', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'START SESSION' }).click();
+  await page.getByRole('button', { name: 'PLAY PRACTICE' }).click();
 
   await expect(page.locator('#game-screen')).toHaveClass(/active/);
   await expect(page.locator('#map')).toBeVisible();

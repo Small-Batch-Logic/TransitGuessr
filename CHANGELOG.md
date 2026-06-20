@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+- **City Map Search** — added a real-time instant search input to filter the regional city maps grid.
+- **Scroll Fade Effect** — added a smooth gradient scroll fade mask at the bottom of the regional city maps grid for premium styling.
+
+### Changed
+- **Logo Contrast Fix** — changed the start and end screen logo title text color from static white to use the theme-aware `var(--text)` variable, resolving visibility issues in light mode.
+- **Contrast Rework for Reactions** — migrated reaction chip background, border, and text properties to CSS variables, ensuring high-contrast legibility in both light and dark modes.
+- **Streak Display Logic Rework** — adjusted hot streak display logic so that a streak is only shown for 2 or more consecutive successful rounds.
+- **Play Again Action Accent** — styled the `.btn-primary` replay button on the end screen to match the custom premium design of the other action buttons instead of browser default.
+- **Service Worker Update Strategy** — switched the service worker fetch handler to a Network-First strategy, preventing cache-locking of assets during local development.
+
+### Removed
+- **Difficulty Selector** — completely removed the navigation difficulty selector container, associated styles, media query overrides, and event listeners.
+
+
 ## [1.6.0] - 2026-05-24
 
 ### Added
