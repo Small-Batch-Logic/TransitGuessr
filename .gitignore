@@ -4,3 +4,4 @@ config.local.js
 handoff.md
 node_modules/
 test-results/
+dist/

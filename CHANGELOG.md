@@ -7,6 +7,8 @@ All notable changes to this project will be documented in this file.
 ### Added
 - **City Map Search** — added a real-time instant search input to filter the regional city maps grid.
 - **Scroll Fade Effect** — added a smooth gradient scroll fade mask at the bottom of the regional city maps grid for premium styling.
+- **Deploy Build Automation** — integrated Node.js setup, dependency installation (`npm ci`), and Vite production bundling (`npm run build`) directly inside the GitHub Actions deployment workflow.
+- **Mathematical Utility Module** — extracted math/shuffling helpers to a clean, dedicated `src/utils.js` module.
 
 ### Changed
 - **Logo Contrast Fix** — changed the start and end screen logo title text color from static white to use the theme-aware `var(--text)` variable, resolving visibility issues in light mode.
@@ -14,9 +16,12 @@ All notable changes to this project will be documented in this file.
 - **Streak Display Logic Rework** — adjusted hot streak display logic so that a streak is only shown for 2 or more consecutive successful rounds.
 - **Play Again Action Accent** — styled the `.btn-primary` replay button on the end screen to match the custom premium design of the other action buttons instead of browser default.
 - **Service Worker Update Strategy** — switched the service worker fetch handler to a Network-First strategy, preventing cache-locking of assets during local development.
+- **Production Asset Serving** — updated the GitHub Actions deployment to upload and serve the compiled `dist/` folder directly rather than the raw repository root, delivering minified/optimized assets in production.
+- **State File Cleanup** — refactored `src/app.js` to import mathematical and escaping utilities from `./utils.js` instead of keeping them inline.
 
 ### Removed
 - **Difficulty Selector** — completely removed the navigation difficulty selector container, associated styles, media query overrides, and event listeners.
+- **Compiled Assets Tracking** — untracked the `dist/` directory from Git and added it to `.gitignore` to prevent repository clutter and manual build-and-commit overhead.
 
 
 ## [1.6.0] - 2026-05-24
