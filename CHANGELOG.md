@@ -5,14 +5,15 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
-- **1-Click Quick Curation Mode** — introduced a fast verification mode in the audit tool that hides advanced details by default, allowing quick "Yes, I see it" (capturing view, marking curated, saving, and auto-advancing) or "No, skip it" operations.
+- **Rebuilt Station Curation Tool** — fully redesigned the audit tool (`audit.html`/`audit.js`/`audit.css`) to match the actual game UI layout. Replaced the complex sidebar, search/filter controls, and technical metadata forms with a clean, full-screen review queue showing one station's Street View panorama at a time, a progress counter, and simple Yes/No buttons.
+- **Keyboard Curation Shortcuts** — added keyboard support (`y` for Yes, `n` for No) in the curation review queue for rapid data validation.
 - **Exposed Curation Link** — placed a clean round document-check button next to the theme toggle on the homepage for easy navigation to the audit tool.
 - **Daily Challenge System Diversity** — refactored Daily Challenge generation to pick stations from 5 distinct transit systems, guaranteeing geographic variety for all players daily.
 - **Quit Game Feature** — added a theme-aware "Quit" button to the active game header, allowing players to abort a running game and return safely to the start screen.
 - **Game Header Spacing Polish** — restructured the active gameplay header into three clean, aligned blocks (Left: Quit & Round, Center: Game Mode, Right: Streak & Score) with an exact centering grid layout.
-- **Theme-Aware Audit Interface** — linked the global `src/style.css` stylesheet in `audit.html` and stripped duplicated resets, typography, and variable overrides from `audit.css`. The audit tool now inherits theme variables directly and adjusts its Leaflet map tiles, sidebar backgrounds, and active items dynamically for light and dark modes.
 
 ### Changed
+- **Matched Curation Back Button** — styled the "Back to game" exit button on the curation screen to match the in-game "Quit" button layout and visual style exactly, including the same exit door SVG icon, hover state, and transparent compact design.
 - **Dependency Upgrades** — bumped `vite` to `8.0.16` and updated GitHub Actions (`checkout@v6`, `configure-pages@v6`, `upload-pages-artifact@v5`, `deploy-pages@v5`) in the deployment workflow to resolve Dependabot alerts.
 - **Premium Start Screen Redesign** — reorganized the layout into a clean 2-column console dashboard, stacking play modes horizontally on the left to align with the City Explorer on the right and eliminating the generic developer template layout.
 - **Minimalist Dot Grid Background** — replaced the graph-paper pattern with a precise CSS dot matrix pattern (`24px` grid) for a clean, human-crafted engineering aesthetic.
@@ -20,11 +21,11 @@ All notable changes to this project will be documented in this file.
 - **Responsive Layout Fixes** — enabled vertical scrolling container behavior on the start screen to prevent height cropping, and introduced tablet/phone breakpoints to stack columns and adapt card flex directions on narrow viewports.
 
 ### Fixed
-- **Audit Station Fetching Fix** — resolved a regression from the station dataset migration by loading stations dynamically via async fetch of `src/stations.json` instead of expecting a deleted `stations.js` script tag, fixing the blank screen and enabling automatic station selection on page load.
-- **Curation Button Layout Polish** — added nowrap and flex-shrink rules to curation action buttons and links, preventing the 'Back to game' navigation button and quick action controls from wrapping into awkward multiline stacks on narrow screens.
+- **Audit Station Fetching Fix** — resolved a regression from the station dataset migration by loading stations dynamically via async fetch of `src/stations.json` and automatically loading the first unreviewed station on page load.
 - **Tagline Test Assertion** — updated the Playwright smoke test expectation to align with the new branding tagline.
 
 ### Removed
+- **Curation Sidebar and Forms** — removed the sidebar, status selectors, search filter, JSON export preview, and advanced fields toggle from the curation page.
 - **How to Play Card** — removed the bulky steps card from the start screen to reclaim vertical space, delivering a clean single-viewport interface.
 
 ## [1.7.0] - 2026-06-21
