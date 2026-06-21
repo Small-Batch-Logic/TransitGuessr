@@ -87,7 +87,7 @@ body {
 .audit-sidebar {
   padding: 20px;
   border-right: 1px solid var(--border);
-  background: rgba(2, 6, 23, 0.75);
+  background: var(--panel-2);
   backdrop-filter: blur(18px);
   display: flex;
   flex-direction: column;
@@ -130,7 +130,7 @@ body {
   appearance: none;
   border: 1px solid var(--border);
   border-radius: 12px;
-  background: rgba(15, 23, 42, 0.62);
+  background: var(--card-item-bg);
   color: var(--text);
   font: inherit;
   text-decoration: none;
@@ -142,7 +142,8 @@ body {
 .audit-link:hover,
 .ghost-btn:hover,
 .primary-btn:hover {
-  border-color: rgba(96, 165, 250, 0.65);
+  border-color: var(--accent);
+  background: var(--card-item-hover);
   transform: translateY(-1px);
 }
 
@@ -206,7 +207,7 @@ body {
   width: 100%;
   border: 1px solid var(--border);
   border-radius: 12px;
-  background: rgba(15, 23, 42, 0.82);
+  background: var(--panel-solid);
   color: var(--text);
   padding: 11px 12px;
   font: inherit;
@@ -234,7 +235,7 @@ body {
 .audit-progress-card {
   border: 1px solid var(--border);
   border-radius: 18px;
-  background: rgba(15, 23, 42, 0.62);
+  background: var(--card-bg);
   padding: 14px;
   display: flex;
   flex-direction: column;
@@ -261,9 +262,9 @@ body {
 }
 
 .audit-progress-stat {
-  border: 1px solid rgba(51, 65, 85, 0.75);
+  border: 1px solid var(--card-item-border);
   border-radius: 14px;
-  background: rgba(2, 6, 23, 0.38);
+  background: var(--card-item-bg);
   padding: 10px 12px;
   display: flex;
   flex-direction: column;
@@ -288,8 +289,8 @@ body {
   height: 10px;
   border-radius: 999px;
   overflow: hidden;
-  background: rgba(2, 6, 23, 0.7);
-  border: 1px solid rgba(51, 65, 85, 0.75);
+  background: var(--panel-solid);
+  border: 1px solid var(--border);
 }
 
 .audit-progress-bar-fill {
@@ -342,17 +343,31 @@ body {
 .station-item {
   width: 100%;
   text-align: left;
-  border: 1px solid var(--border);
+  border: 1px solid var(--card-item-border);
   border-radius: 14px;
-  background: rgba(15, 23, 42, 0.62);
+  background: var(--card-item-bg);
   color: var(--text);
   padding: 12px 14px;
   cursor: pointer;
+  transition: all 0.2s;
+}
+
+.station-item:hover {
+  background: var(--card-item-hover);
+  border-color: var(--border);
+  transform: translateY(-1px);
 }
 
 .station-item.active {
-  border-color: rgba(56, 189, 248, 0.7);
-  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.22) inset;
+  background: var(--text) !important;
+  color: var(--bg) !important;
+  border-color: var(--text) !important;
+}
+
+.station-item.active .station-meta,
+.station-item.active .audit-subprogress-value {
+  color: var(--bg) !important;
+  opacity: 0.8;
 }
 
 .station-item-top {
@@ -383,10 +398,10 @@ body {
   white-space: nowrap;
 }
 
-.status-pill.pending { background: rgba(100, 116, 139, 0.18); color: #cbd5e1; }
-.status-pill.curated { background: rgba(52, 211, 153, 0.18); color: #86efac; }
-.status-pill.needs-review { background: rgba(245, 158, 11, 0.18); color: #fcd34d; }
-.status-pill.skip { background: rgba(251, 113, 133, 0.18); color: #fda4af; }
+.status-pill.pending { background: rgba(148, 163, 184, 0.15); color: var(--text-dim); }
+.status-pill.curated { background: rgba(16, 185, 129, 0.15); color: var(--success); }
+.status-pill.needs-review { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+.status-pill.skip { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
 
 .audit-main {
   padding: 20px;
@@ -401,7 +416,7 @@ body {
   border-radius: 24px;
   background: var(--panel);
   backdrop-filter: blur(18px);
-  box-shadow: 0 18px 48px rgba(2, 6, 23, 0.35);
+  box-shadow: var(--card-shadow);
 }
 
 .audit-stage {
@@ -434,7 +449,7 @@ body {
   position: relative;
   overflow: hidden;
   border-radius: 18px;
-  border: 1px solid rgba(51, 65, 85, 0.75);
+  border: 1px solid var(--border);
   background: var(--panel-solid);
 }
 
@@ -456,7 +471,7 @@ body {
   justify-content: center;
   color: var(--text-dim);
   font-weight: 600;
-  background: rgba(15, 23, 42, 0.82);
+  background: var(--panel);
 }
 
 .audit-detail-grid {
@@ -524,8 +539,8 @@ body {
   gap: 4px;
   padding: 11px 12px;
   border-radius: 14px;
-  background: rgba(15, 23, 42, 0.75);
-  border: 1px solid rgba(51, 65, 85, 0.75);
+  background: var(--panel-2);
+  border: 1px solid var(--border);
 }
 
 .readout-list span {
@@ -545,9 +560,9 @@ body {
   margin: 0;
   padding: 14px;
   border-radius: 16px;
-  background: rgba(2, 6, 23, 0.9);
-  border: 1px solid rgba(51, 65, 85, 0.75);
-  color: #bfdbfe;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--text);
   font-size: 0.78rem;
   line-height: 1.45;
   overflow: auto;
