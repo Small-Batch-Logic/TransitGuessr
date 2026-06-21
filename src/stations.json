@@ -1095,7 +1095,13 @@
     "city": "New York",
     "lat": 40.733,
     "lng": -74.0029,
-    "heading": 0
+    "heading": 0,
+    "svPanoId": "Kt09YJsaZ57-wxpiHAu-eA",
+    "svLat": 40.73302,
+    "svLng": -74.003108,
+    "svHeading": 15.1,
+    "svPitch": -9.3,
+    "svStatus": "skip"
   },
   {
     "name": "W 4th St-Wash Sq",
@@ -1103,7 +1109,13 @@
     "city": "New York",
     "lat": 40.7323,
     "lng": -74.0005,
-    "heading": 180
+    "heading": 180,
+    "svPanoId": "NyYEcBmFsPk28l61ozz6fQ",
+    "svLat": 40.732347,
+    "svLng": -74.000514,
+    "svHeading": 217.2,
+    "svPitch": -4.7,
+    "svStatus": "skip"
   },
   {
     "name": "59 St-Columbus Circle",
@@ -1111,7 +1123,13 @@
     "city": "New York",
     "lat": 40.7682,
     "lng": -73.9819,
-    "heading": 90
+    "heading": 90,
+    "svPanoId": "1TLdBVaiNzDb3zqSCeOvWg",
+    "svLat": 40.768195,
+    "svLng": -73.981933,
+    "svHeading": 53.6,
+    "svPitch": 2.1,
+    "svStatus": "skip"
   },
   {
     "name": "Westminster",
@@ -1119,7 +1137,13 @@
     "city": "London",
     "lat": 51.5014,
     "lng": -0.1249,
-    "heading": 180
+    "heading": 180,
+    "svPanoId": "edmezcC7juW97piPNBovbg",
+    "svLat": 51.501379,
+    "svLng": -0.124847,
+    "svHeading": 131,
+    "svPitch": -0.6,
+    "svStatus": "curated"
   },
   {
     "name": "Green Park",
@@ -1127,7 +1151,14 @@
     "city": "London",
     "lat": 51.5069,
     "lng": -0.1428,
-    "heading": 90
+    "heading": 90,
+    "svStatus": "curated",
+    "svLat": 51.506906,
+    "svLng": -0.142776,
+    "svHeading": 248.5,
+    "svPitch": -4.8,
+    "svPanoId": "gAtfZ9szsEvvZf_Nyle-QQ",
+    "svEnvironment": "outdoor"
   },
   {
     "name": "South Kensington",
@@ -1135,7 +1166,14 @@
     "city": "London",
     "lat": 51.4941,
     "lng": -0.1738,
-    "heading": 0
+    "heading": 0,
+    "svStatus": "curated",
+    "svLat": 51.494076,
+    "svLng": -0.173761,
+    "svHeading": 89.3,
+    "svPitch": -7,
+    "svPanoId": "TCMM2_tXV3lDGbIFjdtU3Q",
+    "svEnvironment": "indoor"
   },
   {
     "name": "Harajuku Station",
@@ -1143,7 +1181,14 @@
     "city": "Tokyo",
     "lat": 35.6702,
     "lng": 139.7027,
-    "heading": 90
+    "heading": 90,
+    "svStatus": "curated",
+    "svLat": 35.670129,
+    "svLng": 139.702722,
+    "svHeading": 265.5,
+    "svPitch": -5.2,
+    "svPanoId": "kqxfKxklOCuWli6PAxAG3Q",
+    "svEnvironment": "outdoor"
   },
   {
     "name": "Omotesando Station",
@@ -1151,7 +1196,13 @@
     "city": "Tokyo",
     "lat": 35.6652,
     "lng": 139.7113,
-    "heading": 0
+    "heading": 0,
+    "svStatus": "skip",
+    "svLat": 35.665033,
+    "svLng": 139.711616,
+    "svHeading": 108.6,
+    "svPitch": 11.5,
+    "svPanoId": "35Kx_PECkLZXx55dBp80iw"
   },
   {
     "name": "Charles de Gaulle-Étoile",
@@ -1159,7 +1210,13 @@
     "city": "Paris",
     "lat": 48.8739,
     "lng": 2.295,
-    "heading": 90
+    "heading": 90,
+    "svStatus": "skip",
+    "svLat": 48.874129,
+    "svLng": 2.295053,
+    "svHeading": 153.1,
+    "svPitch": 3.1,
+    "svPanoId": "CGO-PDm1VsJ8GGryp_Jj9w"
   },
   {
     "name": "Franklin D. Roosevelt",
@@ -1167,6 +1224,12 @@
     "city": "Paris",
     "lat": 48.8693,
     "lng": 2.3093,
-    "heading": 180
+    "heading": 180,
+    "svStatus": "skip",
+    "svLat": 48.869279,
+    "svLng": 2.309319,
+    "svHeading": 137.2,
+    "svPitch": 4.1,
+    "svPanoId": "2WN3f27pRvkQEIBNBtml0A"
   }
 ]

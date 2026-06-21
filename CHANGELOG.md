@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- **Svelte 5 Migration** — converted from vanilla HTML/JS to Svelte 5 with Vite; shared `GameHeader` component now used across game and audit screens; audit tool merged into the main SPA (no more separate `audit.html`).
+- **GTFS Station Import Pipeline** — added `scripts/extract-gtfs.py` to extract rapid transit stations from GTFS feeds; populated `src/queries.json` with 2,362 candidates across 23 cities (Toronto, Montreal, Vancouver, New York, Boston, Philadelphia, Baltimore, Chicago, Minneapolis, Atlanta, Dallas, San Francisco, Los Angeles, San Diego, Phoenix, Portland, Seattle, Denver, Sacramento, Salt Lake City, Cleveland, Miami, Houston).
+- **Split Data Architecture** — separated station data into `queries.json` (unreviewed GTFS candidates) and `stations.json` (decided entries); audit tool now reads from `queries.json` and moves each decision into `stations.json`.
+- **Indoors/Outdoors Tagging** — replaced Yes/No audit buttons with three-way decision: Indoors, Outdoors, No; decisions write `svEnvironment: "indoor" | "outdoor"` alongside `svStatus`.
+- **Audit Session Stats** — header now shows This Session / Best / Curated / Remaining counts.
+- **Roadmap** — added `ROADMAP.md` hub linking to `docs/FEATURES.md` and `docs/DATA.md`.
+
+### Changed
+- **Audit Tool Direct File Writing** — curation tool now uses the File System Access API to pick and write `stations.json` directly; Yes/No decisions are written to the file immediately with no localStorage drafts or export step required.
+- **Audit Tool Navigation** — station queue now cycles through all non-skipped stations; skipped stations are permanently excluded from the review queue once marked.
+- **Audit Tool Simplified** — removed the export patches button and all pending/draft tracking infrastructure.
+
+### Added
 - **Rebuilt Station Curation Tool** — fully redesigned the audit tool (`audit.html`/`audit.js`/`audit.css`) to match the actual game UI layout. Replaced the complex sidebar, search/filter controls, and technical metadata forms with a clean, full-screen review queue showing one station's Street View panorama at a time, a progress counter, and simple Yes/No buttons.
 - **Keyboard Curation Shortcuts** — added keyboard support (`y` for Yes, `n` for No) in the curation review queue for rapid data validation.
 - **Exposed Curation Link** — placed a clean round document-check button next to the theme toggle on the homepage for easy navigation to the audit tool.
