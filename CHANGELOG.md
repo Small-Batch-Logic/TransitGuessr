@@ -6,6 +6,13 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - **Dependency Upgrades** — bumped `vite` to `8.0.16` and updated GitHub Actions (`checkout@v6`, `configure-pages@v6`, `upload-pages-artifact@v5`, `deploy-pages@v5`) in the deployment workflow to resolve Dependabot alerts.
+- **Premium Start Screen Redesign** — stacked the logo vertically with an custom SVG subway train icon and gradient text styling to eliminate the generic developer template feel.
+- **Ambient Glowing Background** — replaced the raw graph-paper background pattern with smooth, organic glowing radial gradients for a high-fidelity look in both light and dark themes.
+- **Scrollbar and Hover Polish** — removed the clipping fade mask from the city grid to fix the cut-off scrollbar track bug, added custom rounded scrollbars, and customized city card hover states with transit system brand colors.
+- **Responsive Layout Fixes** — realigned the start screen container from the top and enabled scrollable container behavior to prevent content cropping on small heights, and added a tablet/laptop breakpoint (`max-width: 960px`) to stack grid columns and prevent text squeezing.
+
+### Fixed
+- **Tagline Test Assertion** — updated the Playwright smoke test expectation to align with the new branding tagline.
 
 ## [1.7.0] - 2026-06-21
 

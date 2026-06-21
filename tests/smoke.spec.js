@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 test('loads the start screen and can enter the game shell', async ({ page }) => {
   await page.goto('/');
 
-  await expect(page.getByText('The ultimate guessing game for transit nerds.')).toBeVisible();
+  await expect(page.getByText('The interactive guessing game for transit nerds.')).toBeVisible();
   await page.getByRole('button', { name: 'PLAY PRACTICE' }).click();
 
   await expect(page.locator('#game-screen')).toHaveClass(/active/);
