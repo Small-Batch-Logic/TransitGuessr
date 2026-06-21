@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
-- **1-Click Quick Curation Mode** — introduced a fast verification mode in the audit tool that hides advanced details by default, allowing quick "Confirm Station" (capturing view, marking curated, saving, and auto-advancing) or "Flag to Skip" operations.
+- **1-Click Quick Curation Mode** — introduced a fast verification mode in the audit tool that hides advanced details by default, allowing quick "Yes, I see it" (capturing view, marking curated, saving, and auto-advancing) or "No, skip it" operations.
 - **Exposed Curation Link** — placed a clean round document-check button next to the theme toggle on the homepage for easy navigation to the audit tool.
 - **Daily Challenge System Diversity** — refactored Daily Challenge generation to pick stations from 5 distinct transit systems, guaranteeing geographic variety for all players daily.
 - **Quit Game Feature** — added a theme-aware "Quit" button to the active game header, allowing players to abort a running game and return safely to the start screen.
@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file.
 - **Responsive Layout Fixes** — enabled vertical scrolling container behavior on the start screen to prevent height cropping, and introduced tablet/phone breakpoints to stack columns and adapt card flex directions on narrow viewports.
 
 ### Fixed
+- **Curation Button Layout Polish** — added nowrap and flex-shrink rules to curation action buttons and links, preventing the 'Back to game' navigation button and quick action controls from wrapping into awkward multiline stacks on narrow screens.
 - **Tagline Test Assertion** — updated the Playwright smoke test expectation to align with the new branding tagline.
 
 ### Removed

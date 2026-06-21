@@ -31,7 +31,13 @@
       </div>
 
       <div class="audit-filter-bar">
-        <input id="station-search" type="search" placeholder="Search stations, cities, systems">
+        <div class="search-wrapper">
+          <input id="station-search" type="search" placeholder="Search stations, cities, systems">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </div>
         <select id="status-filter">
           <option value="all">All statuses</option>
           <option value="pending">Pending</option>
@@ -91,8 +97,8 @@
             <p id="station-status-line">No station selected.</p>
           </div>
           <div class="audit-stage-actions">
-            <button type="button" class="quick-btn verify-btn" id="quick-verify-btn">Confirm Station</button>
-            <button type="button" class="quick-btn skip-btn" id="quick-skip-btn">Flag to Skip</button>
+            <button type="button" class="quick-btn verify-btn" id="quick-verify-btn">Yes, I see it</button>
+            <button type="button" class="quick-btn skip-btn" id="quick-skip-btn">No, skip it</button>
             <span class="actions-divider">|</span>
             <button type="button" class="ghost-btn" id="load-pano-btn">Find pano</button>
             <button type="button" class="ghost-btn" id="capture-pov-btn">Capture current view</button>
