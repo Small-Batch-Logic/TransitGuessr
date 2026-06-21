@@ -12,6 +12,9 @@ All notable changes to this project will be documented in this file.
 - **Audit Session Stats** — header now shows This Session / Best / Curated / Remaining counts.
 - **Roadmap** — added `ROADMAP.md` hub linking to `docs/FEATURES.md` and `docs/DATA.md`.
 - **Street View Preloading** — while the result card is showing between rounds, the next station's Street View pano is fetched in the background so the next round loads instantly.
+- **Audit Auto-Skip** — when no Street View can be found for a candidate after exhausting all search radii and sources, the station is automatically marked as skipped and the queue advances.
+- **Audit Randomized Queue** — candidate queue is now shuffled on load for geographic variety across sessions.
+- **Audit Progressive Search** — pano lookup now tries five progressively broader searches (50m outdoor → 100m outdoor → 200m outdoor → 50m all → 150m all) before giving up.
 
 ### Changed
 - **Audit Tool Direct File Writing** — curation tool now uses the File System Access API to pick and write `stations.json` directly; Yes/No decisions are written to the file immediately with no localStorage drafts or export step required.

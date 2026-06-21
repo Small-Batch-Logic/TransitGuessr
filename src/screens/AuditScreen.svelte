@@ -189,27 +189,46 @@
     const lng = station.svLng ?? station.lng;
     const heading = station.svHeading ?? station.heading ?? 0;
     const pitch = station.svPitch ?? 0;
-    const radius = station.svRadius ?? 40;
     const panoId = station.svPanoId;
 
     setAnchorMarker(lat, lng);
     setLoading('Loading Street View…');
 
-    const onResult = (data, status) => {
-      if (status !== google.maps.StreetViewStatus.OK) {
-        setLoading('No Street View found near this station.');
-        return;
-      }
+    const apply = (data) => {
       panorama.setPano(data.location.pano);
       panorama.setPov({ heading, pitch });
       hideLoading();
     };
 
     if (panoId) {
-      svService.getPanorama({ pano: panoId }, onResult);
-    } else {
-      svService.getPanorama({ location: { lat, lng }, radius, source: google.maps.StreetViewSource.OUTDOOR }, onResult);
+      svService.getPanorama({ pano: panoId }, (data, status) => {
+        if (status === google.maps.StreetViewStatus.OK) apply(data);
+        else setLoading('Saved pano not found.');
+      });
+      return;
     }
+
+    // Try progressively larger radii, then fall back to all sources
+    const location = { lat, lng };
+    const attempts = [
+      { location, radius: 50,  source: google.maps.StreetViewSource.OUTDOOR },
+      { location, radius: 100, source: google.maps.StreetViewSource.OUTDOOR },
+      { location, radius: 200, source: google.maps.StreetViewSource.OUTDOOR },
+      { location, radius: 50,  source: google.maps.StreetViewSource.DEFAULT },
+      { location, radius: 150, source: google.maps.StreetViewSource.DEFAULT },
+    ];
+
+    const tryNext = (i) => {
+      if (i >= attempts.length) {
+        handleNo();
+        return;
+      }
+      svService.getPanorama(attempts[i], (data, status) => {
+        if (status === google.maps.StreetViewStatus.OK) apply(data);
+        else tryNext(i + 1);
+      });
+    };
+    tryNext(0);
   }
 
   // ── Station Navigation ──
@@ -324,7 +343,7 @@
         loadGoogleMaps(),
       ]);
 
-      queries = queriesResult;
+      queries = queriesResult.sort(() => Math.random() - 0.5);
       stations = stationsResult;
       updateHeader();
 
