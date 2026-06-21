@@ -47,32 +47,42 @@
 
 
   <div class="start-main-grid">
-    <!-- Daily Challenge Card -->
-    <div class="play-card daily-play-card">
-      <div class="play-card-header">
-        <span class="play-card-badge"><span class="badge-dot"></span>24H Event</span>
-        <div class="play-card-icon" style="color: var(--daily);">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    <div class="modes-column">
+      <!-- Daily Challenge Card -->
+      <div class="play-card daily-play-card horizontal-mode">
+        <div class="mode-info">
+          <div class="play-card-header">
+            <span class="play-card-badge"><span class="badge-dot"></span>24H Event</span>
+            <div class="play-card-icon" style="color: var(--daily);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+          </div>
+          <h2 class="play-card-title">Daily Challenge</h2>
+          <p class="play-card-desc">The same 5 stations for everyone in the world. New challenge every day.</p>
+          <div class="play-card-status" id="daily-status-text">Loading stats...</div>
+        </div>
+        <div class="mode-action">
+          <button type="button" class="btn-play-mode" id="btn-play-daily" data-mode="daily">PLAY DAILY</button>
         </div>
       </div>
-      <h2 class="play-card-title">Daily Challenge</h2>
-      <p class="play-card-desc">The same 5 stations for everyone in the world. New challenge every day.</p>
-      <div class="play-card-status" id="daily-status-text">Loading stats...</div>
-      <button type="button" class="btn-play-mode" id="btn-play-daily" data-mode="daily">PLAY DAILY</button>
-    </div>
 
-    <!-- Worldwide Card -->
-    <div class="play-card worldwide-play-card">
-      <div class="play-card-header">
-        <span class="play-card-badge">Practice Map</span>
-        <div class="play-card-icon" style="color: var(--world);">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <!-- Worldwide Card -->
+      <div class="play-card worldwide-play-card horizontal-mode">
+        <div class="mode-info">
+          <div class="play-card-header">
+            <span class="play-card-badge">Practice Map</span>
+            <div class="play-card-icon" style="color: var(--world);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+          </div>
+          <h2 class="play-card-title">Worldwide</h2>
+          <p class="play-card-desc">Practice across all major transit systems globally with random stations.</p>
+          <div class="play-card-status" id="worldwide-status-text">High Score: 0</div>
+        </div>
+        <div class="mode-action">
+          <button type="button" class="btn-play-mode" id="btn-play-worldwide" data-mode="worldwide">PLAY PRACTICE</button>
         </div>
       </div>
-      <h2 class="play-card-title">Worldwide</h2>
-      <p class="play-card-desc">Practice across all major transit systems globally with random stations.</p>
-      <div class="play-card-status" id="worldwide-status-text">High Score: 0</div>
-      <button type="button" class="btn-play-mode" id="btn-play-worldwide" data-mode="worldwide">PLAY PRACTICE</button>
     </div>
 
     <!-- Regional Cities Card -->
