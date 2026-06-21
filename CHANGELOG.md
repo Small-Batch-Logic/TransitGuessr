@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - **Indoors/Outdoors Tagging** — replaced Yes/No audit buttons with three-way decision: Indoors, Outdoors, No; decisions write `svEnvironment: "indoor" | "outdoor"` alongside `svStatus`.
 - **Audit Session Stats** — header now shows This Session / Best / Curated / Remaining counts.
 - **Roadmap** — added `ROADMAP.md` hub linking to `docs/FEATURES.md` and `docs/DATA.md`.
+- **Street View Preloading** — while the result card is showing between rounds, the next station's Street View pano is fetched in the background so the next round loads instantly.
 
 ### Changed
 - **Audit Tool Direct File Writing** — curation tool now uses the File System Access API to pick and write `stations.json` directly; Yes/No decisions are written to the file immediately with no localStorage drafts or export step required.

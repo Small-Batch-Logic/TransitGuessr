@@ -62,6 +62,7 @@
   let googleMapsLoadPromise = null;
   let configLoadPromise = null;
   let startGamePromise = null;
+  let preloadedPanoData = null; // { stationId, pano, latLng }
 
   const LAUNCH_DATE_UTC = Date.UTC(2026, 2, 22);
 
@@ -385,6 +386,21 @@
       );
     };
 
+    // Use preloaded data if available for this station
+    if (preloadedPanoData?.stationId === station.id) {
+      const cached = preloadedPanoData;
+      preloadedPanoData = null;
+      ensurePanorama();
+      svPanorama.setPano(cached.pano);
+      svPanorama.setPov({
+        heading: station.svPanoId ? pov.heading : getStreetViewHeading(station, cached.latLng),
+        pitch: pov.pitch
+      });
+      photoLoadingVisible = false;
+      return;
+    }
+    preloadedPanoData = null;
+
     if (station.svPanoId) {
       svService.getPanorama({ pano: station.svPanoId }, (data, status) => {
         if (status === google.maps.StreetViewStatus.OK) { applyPanoramaData(data); return; }
@@ -406,6 +422,41 @@
       if (fallbacks.length > 0) roundStations[currentRound] = fallbacks[0];
       loadStreetView();
     }, 2000);
+  }
+
+  function preloadNextStation() {
+    const nextStation = roundStations[currentRound + 1];
+    if (!nextStation || !svService) return;
+    preloadedPanoData = null;
+
+    const anchor = { lat: nextStation.svLat ?? nextStation.lat, lng: nextStation.svLng ?? nextStation.lng };
+    const searchRadii = [40, 80, 150];
+
+    const store = (data) => {
+      preloadedPanoData = { stationId: nextStation.id, pano: data.location.pano, latLng: data.location.latLng };
+    };
+
+    if (nextStation.svPanoId) {
+      svService.getPanorama({ pano: nextStation.svPanoId }, (data, status) => {
+        if (status === google.maps.StreetViewStatus.OK) store(data);
+      });
+      return;
+    }
+
+    const tryNext = (i) => {
+      if (i >= searchRadii.length) return;
+      svService.getPanorama(
+        { location: anchor, radius: searchRadii[i], sources: [google.maps.StreetViewSource.OUTDOOR] },
+        (data, status) => {
+          if (status === google.maps.StreetViewStatus.OK && isStreetViewCandidateUsable(nextStation, data)) {
+            store(data);
+          } else {
+            tryNext(i + 1);
+          }
+        }
+      );
+    };
+    tryNext(0);
   }
 
   // ── Game Flow ──
@@ -515,6 +566,7 @@
     updateStreak();
     resultActive = true;
     resultPeeking = false;
+    preloadNextStation();
   }
 
   function updateStreak() {
@@ -546,6 +598,7 @@
     resultNextLabel = currentRound === 4 ? 'See Results' : 'Next Round';
     resultActive = true;
     resultPeeking = false;
+    preloadNextStation();
   }
 
   function nextRound() {
