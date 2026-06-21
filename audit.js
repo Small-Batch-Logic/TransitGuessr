@@ -43,7 +43,7 @@ function saveDrafts() {
 }
 
 function getStatus(station) {
-  return state.drafts[station.id]?.svStatus || 'pending';
+  return state.drafts[station.id]?.svStatus || station.svStatus || 'pending';
 }
 
 // ── UI ─────────────────────────────────────────────────────────────────────
@@ -119,11 +119,17 @@ function loadGoogleMaps() {
   if (!key) return Promise.resolve(false);
   if (window.google?.maps?.StreetViewService) return Promise.resolve(true);
   return new Promise((resolve) => {
+    window.__initAuditMap = () => {
+      resolve(true);
+      delete window.__initAuditMap;
+    };
     const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(key)}&loading=async`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(key)}&callback=__initAuditMap&loading=async`;
     script.async = true;
-    script.onload = () => resolve(true);
-    script.onerror = () => resolve(false);
+    script.onerror = () => {
+      resolve(false);
+      delete window.__initAuditMap;
+    };
     document.head.appendChild(script);
   });
 }

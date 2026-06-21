@@ -1180,6 +1180,33 @@ function renderCityGrid() {
   grid.innerHTML = html;
 }
 
+function initDailyCountdown() {
+  const el = document.getElementById('daily-countdown-text');
+  if (!el) return;
+  const update = () => {
+    const now = new Date();
+    const formatter = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/New_York',
+      hour: 'numeric', minute: 'numeric', second: 'numeric',
+      hour12: false
+    });
+    const parts = formatter.formatToParts(now);
+    const dict = {};
+    for (let p of parts) dict[p.type] = p.value;
+    const h = parseInt(dict.hour, 10) % 24;
+    const m = parseInt(dict.minute, 10);
+    const s = parseInt(dict.second, 10);
+    
+    const remH = 23 - h;
+    const remM = 59 - m;
+    const remS = 59 - s;
+    const pad = (n) => n.toString().padStart(2, '0');
+    el.textContent = `Ends in ${remH}h ${pad(remM)}m ${pad(remS)}s`;
+  };
+  update();
+  setInterval(update, 1000);
+}
+
 // Initialization: Detect mode from URL or LocalStorage
 (function init() {
   initTheme();
@@ -1191,6 +1218,7 @@ function renderCityGrid() {
   setMode(MODES[initialMode] ? initialMode : 'worldwide');
   updateStreakDisplay();
   updateStartScreenStats();
+  initDailyCountdown();
   setReactionChip({ label: 'Finding the line...', tone: '' });
   if (!STATIONS.length) console.warn('TransitGuessr: stations.js did not load.');
 })();

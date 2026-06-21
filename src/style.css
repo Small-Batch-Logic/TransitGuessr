@@ -432,7 +432,7 @@ body {
   gap: 8px;
   overflow-y: auto;
   max-height: 220px;
-  padding-right: 6px;
+  padding: 4px 6px 4px 4px;
 }
 
 .search-wrapper {
