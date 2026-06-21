@@ -10,6 +10,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="audit.css">
+  <script>
+    const savedTheme = localStorage.getItem('transitguessr_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  </script>
 </head>
 <body>
   <div id="toast">Copied to clipboard</div>
@@ -18,9 +22,9 @@
     <aside class="audit-sidebar">
       <div class="audit-sidebar-head">
         <div>
-          <div class="audit-eyebrow">Internal Tool</div>
+          <div class="audit-eyebrow">Curation Dashboard</div>
           <h1>Street View Audit</h1>
-          <p>Curate entrance-specific pano metadata instead of relying on nearby search.</p>
+          <p>Review and verify Street View locations for each transit station.</p>
         </div>
         <a class="audit-link" href="./index.html">Back to game</a>
       </div>
@@ -86,9 +90,13 @@
             <p id="station-status-line">No station selected.</p>
           </div>
           <div class="audit-stage-actions">
+            <button type="button" class="quick-btn verify-btn" id="quick-verify-btn">Confirm Station</button>
+            <button type="button" class="quick-btn skip-btn" id="quick-skip-btn">Flag to Skip</button>
+            <span class="actions-divider">|</span>
             <button type="button" class="ghost-btn" id="load-pano-btn">Find pano</button>
             <button type="button" class="ghost-btn" id="capture-pov-btn">Capture current view</button>
             <button type="button" class="ghost-btn" id="copy-station-btn">Copy station patch</button>
+            <button type="button" class="ghost-btn" id="toggle-advanced-btn">Show Advanced Fields</button>
           </div>
         </div>
 

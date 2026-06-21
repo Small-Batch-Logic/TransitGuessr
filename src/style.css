@@ -554,11 +554,20 @@ body {
   letter-spacing: -0.01em;
 }
 
-/* Theme Toggle Button */
-.theme-toggle-btn {
+/* Top Actions Row */
+.top-actions-row {
   position: absolute;
   top: 24px;
   right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 100;
+}
+
+/* Theme Toggle Button & Audit Button */
+.theme-toggle-btn,
+.audit-mode-btn {
   background: var(--island);
   border: 1px solid var(--border);
   color: var(--text);
@@ -571,19 +580,22 @@ body {
   justify-content: center;
   transition: all 0.2s;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  z-index: 100;
+  text-decoration: none;
 }
 
-:root[data-theme="dark"] .theme-toggle-btn {
+:root[data-theme="dark"] .theme-toggle-btn,
+:root[data-theme="dark"] .audit-mode-btn {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
-.theme-toggle-btn:hover {
+.theme-toggle-btn:hover,
+.audit-mode-btn:hover {
   transform: scale(1.05);
   background: var(--card-item-hover);
 }
 
-.theme-toggle-btn svg {
+.theme-toggle-btn svg,
+.audit-mode-btn svg {
   width: 20px;
   height: 20px;
 }
@@ -607,13 +619,63 @@ body {
 
 .game-header {
   background: var(--island);
-  padding: 10px 20px;
+  padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
-  height: 48px;
+  height: 56px;
+}
+
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.header-right {
+  justify-content: flex-end;
+}
+
+.header-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-divider {
+  color: var(--border);
+  font-weight: 300;
+}
+
+.btn-quit {
+  appearance: none;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  border-radius: 10px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.btn-quit:hover {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+.btn-quit svg {
+  width: 14px;
+  height: 14px;
 }
 
 .game-mode-badge {
@@ -1308,11 +1370,22 @@ body {
 }
 
 @media (max-width: 640px) {
-  .theme-toggle-btn {
+  .top-actions-row {
     top: 16px;
     right: 16px;
+    gap: 8px;
+  }
+
+  .theme-toggle-btn,
+  .audit-mode-btn {
     width: 36px;
     height: 36px;
+  }
+
+  .theme-toggle-btn svg,
+  .audit-mode-btn svg {
+    width: 18px;
+    height: 18px;
   }
 
   .play-card, .cities-card {

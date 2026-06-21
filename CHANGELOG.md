@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+- **1-Click Quick Curation Mode** — introduced a fast verification mode in the audit tool that hides advanced details by default, allowing quick "Confirm Station" (capturing view, marking curated, saving, and auto-advancing) or "Flag to Skip" operations.
+- **Exposed Curation Link** — placed a clean round document-check button next to the theme toggle on the homepage for easy navigation to the audit tool.
+- **Daily Challenge System Diversity** — refactored Daily Challenge generation to pick stations from 5 distinct transit systems, guaranteeing geographic variety for all players daily.
+- **Quit Game Feature** — added a theme-aware "Quit" button to the active game header, allowing players to abort a running game and return safely to the start screen.
+- **Game Header Spacing Polish** — restructured the active gameplay header into three clean, aligned blocks (Left: Quit & Round, Center: Game Mode, Right: Streak & Score) with an exact centering grid layout.
+- **Theme-Aware Audit Interface** — aligned the audit tool's color variables, dot grid background, and Leaflet map tile styles with the main game, making it support both light and dark mode automatically based on user theme preference.
+
 ### Changed
 - **Dependency Upgrades** — bumped `vite` to `8.0.16` and updated GitHub Actions (`checkout@v6`, `configure-pages@v6`, `upload-pages-artifact@v5`, `deploy-pages@v5`) in the deployment workflow to resolve Dependabot alerts.
 - **Premium Start Screen Redesign** — reorganized the layout into a clean 2-column console dashboard, stacking play modes horizontally on the left to align with the City Explorer on the right and eliminating the generic developer template layout.

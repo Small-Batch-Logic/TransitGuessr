@@ -701,7 +701,27 @@ async function startGame() {
   game.reset();
   
   if (game.selectedMode === 'daily') {
-    game.roundStations = seededShuffle(StationUtils.selectStationPool(NORMALIZED_STATIONS), getDayNumber()).slice(0, 5);
+    const pool = StationUtils.selectStationPool(NORMALIZED_STATIONS);
+    const bySystem = {};
+    pool.forEach(station => {
+      const system = station.system;
+      if (!bySystem[system]) bySystem[system] = [];
+      bySystem[system].push(station);
+    });
+
+    const systems = Object.keys(bySystem).sort();
+    const shuffledSystems = seededShuffle([...systems], getDayNumber());
+    const selectedSystems = shuffledSystems.slice(0, 5);
+
+    const chosenStations = [];
+    selectedSystems.forEach((system, idx) => {
+      const stationsInSystem = bySystem[system].sort((a, b) => a.id.localeCompare(b.id));
+      const systemSeed = getDayNumber() + idx;
+      const shuffledStations = seededShuffle([...stationsInSystem], systemSeed);
+      chosenStations.push(shuffledStations[0]);
+    });
+
+    game.roundStations = chosenStations;
   } else {
     const modeConfig = MODES[game.selectedMode];
     const pool = StationUtils.selectStationPool(modeConfig ? NORMALIZED_STATIONS.filter(modeConfig.filter) : NORMALIZED_STATIONS);
@@ -915,7 +935,23 @@ function goToMenu() {
   updateStartScreenStats();
 }
 
+function quitGame() {
+  if (confirm('Are you sure you want to quit the current game? Your progress will be lost.')) {
+    stopTimer();
+    document.getElementById('game-screen').classList.remove('active');
+    document.getElementById('result-overlay').classList.remove('active');
+    document.getElementById('start-screen').style.display = 'flex';
+    updateStartScreenStats();
+    startGamePromise = null;
+  }
+}
+
 function initializeControls() {
+  const quitGameBtn = document.getElementById('quit-game-btn');
+  if (quitGameBtn) {
+    quitGameBtn.addEventListener('click', quitGame);
+  }
+
   // Bind click for Daily Challenge play button
   const playDailyBtn = document.getElementById('btn-play-daily');
   if (playDailyBtn) {

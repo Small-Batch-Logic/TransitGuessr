@@ -304,7 +304,12 @@ function initializeMap() {
     attributionControl: true
   }).setView([43.65, -79.38], 15);
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const tileUrl = isDark
+    ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+    : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+
+  L.tileLayer(tileUrl, {
     subdomains: 'abcd',
     maxZoom: 20,
     attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
@@ -528,6 +533,61 @@ function goToNextPendingStation() {
   if (nextStation) selectStation(nextStation.id);
 }
 
+function handleQuickVerify() {
+  captureCurrentView();
+  const panoId = document.getElementById('field-svPanoId').value;
+  if (!panoId) return;
+
+  const pendingStations = state.filteredStations.filter((station) => getStatus(station) === 'pending');
+  let nextStation = null;
+  if (pendingStations.length > 1) {
+    const currentIndex = pendingStations.findIndex((station) => station.id === state.selectedId);
+    nextStation = pendingStations[(currentIndex + 1) % pendingStations.length];
+  }
+
+  saveCurrentDraft();
+
+  if (nextStation) {
+    selectStation(nextStation.id);
+  } else {
+    const remainingPending = state.filteredStations.filter((station) => getStatus(station) === 'pending');
+    if (remainingPending.length > 0) {
+      selectStation(remainingPending[0].id);
+    }
+  }
+}
+
+function handleQuickSkip() {
+  writeField('field-svStatus', 'skip');
+
+  const pendingStations = state.filteredStations.filter((station) => getStatus(station) === 'pending');
+  let nextStation = null;
+  if (pendingStations.length > 1) {
+    const currentIndex = pendingStations.findIndex((station) => station.id === state.selectedId);
+    nextStation = pendingStations[(currentIndex + 1) % pendingStations.length];
+  }
+
+  saveCurrentDraft();
+
+  if (nextStation) {
+    selectStation(nextStation.id);
+  } else {
+    const remainingPending = state.filteredStations.filter((station) => getStatus(station) === 'pending');
+    if (remainingPending.length > 0) {
+      selectStation(remainingPending[0].id);
+    }
+  }
+}
+
+function toggleAdvancedMode() {
+  const shell = document.querySelector('.audit-shell');
+  const btn = document.getElementById('toggle-advanced-btn');
+  if (!shell || !btn) return;
+  const isNowActive = shell.classList.toggle('show-advanced');
+  btn.textContent = isNowActive ? 'Hide Advanced Fields' : 'Show Advanced Fields';
+  localStorage.setItem('transitguessr_audit_show_advanced', isNowActive ? 'true' : 'false');
+}
+
 function bindEvents() {
   document.getElementById('station-search').addEventListener('input', renderStationList);
   document.getElementById('status-filter').addEventListener('change', renderStationList);
@@ -540,6 +600,9 @@ function bindEvents() {
   document.getElementById('copy-curated-btn').addEventListener('click', copyCuratedPatches);
   document.getElementById('download-patches-btn').addEventListener('click', downloadDraftPatches);
   document.getElementById('next-pending-btn').addEventListener('click', goToNextPendingStation);
+  document.getElementById('quick-verify-btn').addEventListener('click', handleQuickVerify);
+  document.getElementById('quick-skip-btn').addEventListener('click', handleQuickSkip);
+  document.getElementById('toggle-advanced-btn').addEventListener('click', toggleAdvancedMode);
   document.getElementById('use-map-anchor-btn').addEventListener('click', () => {
     if (!state.anchorMarker) return;
     const latLng = state.anchorMarker.getLatLng();
@@ -562,6 +625,13 @@ async function initializeAudit() {
   initializeMap();
   bindEvents();
   renderStationList();
+
+  const showAdvancedPref = localStorage.getItem('transitguessr_audit_show_advanced') === 'true';
+  if (showAdvancedPref) {
+    document.querySelector('.audit-shell')?.classList.add('show-advanced');
+    const btn = document.getElementById('toggle-advanced-btn');
+    if (btn) btn.textContent = 'Hide Advanced Fields';
+  }
 
   state.mapsReady = await loadOptionalGoogleMaps();
   if (!state.mapsReady) {
