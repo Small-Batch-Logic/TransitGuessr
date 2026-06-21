@@ -1,580 +1,68 @@
-:root {
-  --panel: var(--card-bg);
-  --panel-2: var(--island);
-  --panel-solid: var(--bg);
-}
+/* audit.css — only audit-specific overrides. Everything else inherits from src/style.css */
 
-.audit-shell {
-  display: grid;
-  grid-template-columns: 360px minmax(0, 1fr);
-  min-height: 100dvh;
-}
-
-.audit-sidebar {
-  padding: 20px;
-  border-right: 1px solid var(--border);
-  background: var(--panel-2);
-  backdrop-filter: blur(18px);
+#audit-screen {
   display: flex;
+  height: 100dvh;
   flex-direction: column;
-  gap: 14px;
 }
 
-.audit-sidebar-head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.audit-eyebrow,
-.audit-kicker {
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 800;
-}
-
-.audit-sidebar h1,
-.audit-stage-head h2 {
-  margin: 6px 0 8px;
-  font-size: 1.6rem;
-  letter-spacing: -0.04em;
-}
-
-.audit-sidebar p,
-.audit-stage-head p {
-  margin: 0;
-  color: var(--text-dim);
-  line-height: 1.45;
-}
-
-.ghost-btn,
-.primary-btn {
-  appearance: none;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--card-item-bg);
+/* Station name in header right */
+.audit-station-name {
+  font-size: 0.88rem;
+  font-weight: 700;
   color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+
+/* Progress bar — reuse timer-bar-fill but green instead of blue */
+.audit-progress-fill {
+  background: linear-gradient(90deg, #10b981, #06b6d4);
+  transition: width 0.4s ease;
+}
+
+/* Street View pano fills photo-panel (mirrors #sv-pano) */
+#audit-pano {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Leaflet map fills map-panel (mirrors #map) */
+#audit-map { flex: 1; }
+
+/* Yes / No action buttons in map-footer */
+.audit-yes-btn,
+.audit-no-btn {
+  appearance: none;
+  border-radius: 8px;
   font: inherit;
-  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
   cursor: pointer;
-  padding: 11px 14px;
-  transition: border-color 0.15s ease, transform 0.15s ease, background 0.15s ease;
+  padding: 9px 22px;
+  transition: background 0.15s, opacity 0.15s;
   white-space: nowrap;
   flex-shrink: 0;
 }
 
-.ghost-btn:hover,
-.primary-btn:hover {
-  border-color: var(--accent);
-  background: var(--card-item-hover);
-  transform: translateY(-1px);
+.audit-yes-btn {
+  background: #10b981;
+  color: #fff;
+  border: none;
 }
+.audit-yes-btn:hover { background: #059669; }
 
-.primary-btn {
-  background: linear-gradient(135deg, var(--accent-2), var(--accent));
-  color: #02111f;
-  font-weight: 800;
-  border: 0;
-}
-
-.quick-btn {
-  appearance: none;
-  border-radius: 12px;
-  font: inherit;
-  font-weight: 800;
-  cursor: pointer;
-  padding: 11px 18px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 0;
-  transition: opacity 0.15s ease, transform 0.15s ease;
-  white-space: nowrap;
-}
-
-.quick-btn:hover {
-  transform: translateY(-1px);
-  opacity: 0.9;
-}
-
-.verify-btn {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
-}
-
-.skip-btn {
-  background: linear-gradient(135deg, #f43f5e, #e11d48);
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(244, 63, 94, 0.25);
-}
-
-.actions-divider {
-  display: inline-block;
-  color: var(--border);
-  margin: 0 4px;
-  align-self: center;
-  font-weight: 300;
-}
-
-.audit-filter-bar {
-  display: grid;
-  grid-template-columns: 1fr 135px;
-  gap: 10px;
-}
-
-.audit-filter-bar select,
-.field-grid input,
-.field-grid select,
-.notes-field textarea {
-  width: 100%;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--panel-solid);
-  color: var(--text);
-  padding: 11px 12px;
-  font: inherit;
-  font-size: 0.85rem;
-  font-weight: 500;
-  outline: none;
-  transition: all 0.2s ease;
-}
-
-.audit-filter-bar select:focus,
-.field-grid input:focus,
-.field-grid select:focus,
-.notes-field textarea:focus {
-  border-color: var(--accent);
-  background: var(--island);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-}
-
-.audit-meta-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.audit-meta-actions {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-
-.audit-count {
-  color: var(--text-dim);
-  font-size: 0.86rem;
-}
-
-.audit-progress-card {
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  background: var(--card-bg);
-  padding: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.audit-progress-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.ghost-btn-small {
-  padding: 8px 10px;
-  border-radius: 10px;
-  font-size: 0.8rem;
-}
-
-.audit-progress-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.audit-progress-stat {
-  border: 1px solid var(--card-item-border);
-  border-radius: 14px;
+.audit-no-btn {
   background: var(--card-item-bg);
-  padding: 10px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.audit-progress-stat span {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
   color: var(--text-dim);
-  font-weight: 800;
-}
-
-.audit-progress-stat strong {
-  font-size: 1.2rem;
-  letter-spacing: -0.03em;
-}
-
-.audit-progress-bar {
-  width: 100%;
-  height: 10px;
-  border-radius: 999px;
-  overflow: hidden;
-  background: var(--panel-solid);
   border: 1px solid var(--border);
 }
-
-.audit-progress-bar-fill {
-  height: 100%;
-  width: 0;
-  background: linear-gradient(90deg, var(--accent-2), var(--success));
-  border-radius: 999px;
-  transition: width 0.2s ease;
-}
-
-.audit-progress-caption {
-  font-size: 0.82rem;
-  color: var(--text-dim);
-}
-
-.audit-subprogress {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.audit-subprogress-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 10px;
-  align-items: center;
-  font-size: 0.8rem;
-}
-
-.audit-subprogress-label {
-  color: var(--text);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.audit-subprogress-value {
-  color: var(--text-dim);
-}
-
-.station-list {
-  min-height: 0;
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding-right: 4px;
-}
-
-.station-item {
-  width: 100%;
-  text-align: left;
-  border: 1px solid var(--card-item-border);
-  border-radius: 14px;
-  background: var(--card-item-bg);
-  color: var(--text);
-  padding: 12px 14px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.station-item:hover {
-  background: var(--card-item-hover);
-  border-color: var(--border);
-  transform: translateY(-1px);
-}
-
-.station-item.active {
-  background: var(--text) !important;
-  color: var(--bg) !important;
-  border-color: var(--text) !important;
-}
-
-.station-item.active .station-meta,
-.station-item.active .audit-subprogress-value {
-  color: var(--bg) !important;
-  opacity: 0.8;
-}
-
-.station-item-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.station-name {
-  font-size: 0.95rem;
-  font-weight: 700;
-}
-
-.station-meta {
-  margin-top: 4px;
-  color: var(--text-dim);
-  font-size: 0.78rem;
-}
-
-.status-pill {
-  padding: 5px 8px;
-  border-radius: 999px;
-  font-size: 0.68rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  white-space: nowrap;
-}
-
-.status-pill.pending { background: rgba(148, 163, 184, 0.15); color: var(--text-dim); }
-.status-pill.curated { background: rgba(16, 185, 129, 0.15); color: var(--success); }
-.status-pill.needs-review { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
-.status-pill.skip { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
-
-.audit-main {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.audit-stage,
-.audit-card {
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  background: var(--panel);
-  backdrop-filter: blur(18px);
-  box-shadow: var(--card-shadow);
-}
-
-.audit-stage {
-  padding: 18px;
-}
-
-.audit-stage-head {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  align-items: flex-start;
-  margin-bottom: 16px;
-}
-
-.audit-stage-actions,
-.audit-card-actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.audit-stage-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) 340px;
-  gap: 16px;
-}
-
-.audit-pano-wrap,
-.audit-map-wrap {
-  position: relative;
-  overflow: hidden;
-  border-radius: 18px;
-  border: 1px solid var(--border);
-  background: var(--panel-solid);
-}
-
-#audit-pano {
-  width: 100%;
-  height: 540px;
-}
-
-#audit-map {
-  width: 100%;
-  height: 540px;
-}
-
-.audit-loading {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-dim);
-  font-weight: 600;
-  background: var(--panel);
-}
-
-.audit-detail-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
-  gap: 18px;
-}
-
-.audit-card {
-  padding: 18px;
-}
-
-.audit-card-title {
-  font-size: 0.84rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--text-dim);
-  font-weight: 800;
-  margin-bottom: 14px;
-}
-
-.audit-card-title-tight {
-  margin-top: 18px;
-}
-
-.audit-card-actions-tight {
-  margin-top: 12px;
-}
-
-.field-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.field-grid label,
-.notes-field {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.field-grid span,
-.notes-field span {
-  color: var(--text-dim);
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.notes-field {
-  margin-top: 12px;
-}
-
-.readout-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.readout-list div {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 11px 12px;
-  border-radius: 14px;
-  background: var(--panel-2);
-  border: 1px solid var(--border);
-}
-
-.readout-list span {
-  font-size: 0.72rem;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 800;
-}
-
-.readout-list strong {
-  font-size: 0.92rem;
-  line-height: 1.4;
-}
-
-.export-preview {
-  margin: 0;
-  padding: 14px;
-  border-radius: 16px;
-  background: var(--panel-2);
-  border: 1px solid var(--border);
-  color: var(--text);
-  font-size: 0.78rem;
-  line-height: 1.45;
-  overflow: auto;
-  max-height: 280px;
-}
-
-@media (max-width: 1200px) {
-  .audit-shell,
-  .audit-stage-grid,
-  .audit-detail-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .audit-sidebar {
-    border-right: 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  #audit-pano,
-  #audit-map {
-    height: 420px;
-  }
-}
-
-@media (max-width: 720px) {
-  .audit-main,
-  .audit-sidebar {
-    padding: 16px;
-  }
-
-  .audit-filter-bar,
-  .field-grid,
-  .audit-stage-head {
-    grid-template-columns: 1fr;
-    flex-direction: column;
-  }
-
-  .audit-progress-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .audit-stage-actions,
-  .audit-card-actions {
-    width: 100%;
-  }
-
-  .actions-divider {
-    display: none;
-  }
-
-  .audit-stage-actions button,
-  .audit-card-actions button,
-  .audit-meta-actions button,
-  .ghost-btn,
-  .primary-btn {
-    width: 100%;
-  }
-
-  #audit-pano,
-  #audit-map {
-    height: 320px;
-  }
-}
-
-/* Simple/Advanced Curation Mode Toggles */
-.audit-shell:not(.show-advanced) .actions-divider,
-.audit-shell:not(.show-advanced) #load-pano-btn,
-.audit-shell:not(.show-advanced) #capture-pov-btn,
-.audit-shell:not(.show-advanced) #copy-station-btn,
-.audit-shell:not(.show-advanced) .audit-meta-row,
-.audit-shell:not(.show-advanced) .audit-progress-stat:nth-child(3),
-.audit-shell:not(.show-advanced) .audit-progress-stat:nth-child(4),
-.audit-shell:not(.show-advanced) .audit-subprogress,
-.audit-shell:not(.show-advanced) .audit-detail-grid {
-  display: none !important;
+.audit-no-btn:hover {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
 }

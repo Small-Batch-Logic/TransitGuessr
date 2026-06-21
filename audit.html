@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TransitGuessr Street View Audit</title>
+  <title>TransitGuessr · Station Curation</title>
   <meta name="theme-color" content="#0f172a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,192 +17,59 @@
   </script>
 </head>
 <body>
-  <div id="toast">Copied to clipboard</div>
+  <div id="toast"></div>
 
-  <div class="audit-shell">
-    <aside class="audit-sidebar">
-      <div class="audit-sidebar-head">
-        <div>
-          <div class="audit-eyebrow">Curation Dashboard</div>
-          <h1>Street View Audit</h1>
-          <p>Review and verify Street View locations for each transit station.</p>
-        </div>
+  <div id="audit-screen">
+
+    <div class="game-header">
+      <div class="header-left">
         <a class="btn-quit" href="./index.html">
           <svg class="quit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
             <polyline points="16 17 21 12 16 7"></polyline>
             <line x1="21" y1="12" x2="9" y2="12"></line>
           </svg>
-          <span>Back to game</span>
+          <span>Back</span>
         </a>
+        <span class="header-divider">|</span>
+        <div class="round-info" id="audit-progress">Loading…</div>
+      </div>
+      <div class="header-center">
+        <div class="game-mode-badge">Station Curation</div>
+      </div>
+      <div class="header-right">
+        <div class="round-info" id="audit-station-system"></div>
+        <div class="audit-station-name" id="audit-station-name">Loading…</div>
+      </div>
+    </div>
+
+    <div class="timer-bar-wrap">
+      <div class="timer-bar-fill audit-progress-fill" id="audit-progress-bar"></div>
+    </div>
+
+    <div class="game-body">
+
+      <div class="photo-panel">
+        <div id="audit-pano"></div>
+        <div class="photo-loading" id="audit-loading">
+          <div class="spinner"></div>
+          Loading Street View…
+        </div>
       </div>
 
-      <div class="audit-filter-bar">
-        <div class="search-wrapper">
-          <input id="station-search" type="search" placeholder="Search stations, cities, systems">
-          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-        </div>
-        <select id="status-filter">
-          <option value="all">All statuses</option>
-          <option value="pending">Pending</option>
-          <option value="curated">Curated</option>
-          <option value="needs-review">Needs review</option>
-          <option value="skip">Skip</option>
-        </select>
-      </div>
-
-      <div class="audit-meta-row">
-        <div class="audit-count" id="station-count"></div>
-        <div class="audit-meta-actions">
-          <button type="button" class="ghost-btn" id="copy-curated-btn">Copy curated only</button>
-          <button type="button" class="ghost-btn" id="copy-all-btn">Copy all patches</button>
+      <div class="map-panel">
+        <div id="audit-map"></div>
+        <div class="map-footer">
+          <div class="map-hint">Does Street View clearly show the station entrance?</div>
+          <button type="button" class="audit-no-btn" id="quick-skip-btn">No</button>
+          <button type="button" class="audit-yes-btn" id="quick-verify-btn">Yes, I see it</button>
         </div>
       </div>
 
-      <div class="audit-progress-card">
-        <div class="audit-progress-head">
-          <div class="audit-card-title">Progress</div>
-          <button type="button" class="ghost-btn ghost-btn-small" id="next-pending-btn">Next pending</button>
-        </div>
-        <div class="audit-progress-grid">
-          <div class="audit-progress-stat">
-            <span>Curated</span>
-            <strong id="progress-curated">0</strong>
-          </div>
-          <div class="audit-progress-stat">
-            <span>Pending</span>
-            <strong id="progress-pending">0</strong>
-          </div>
-          <div class="audit-progress-stat">
-            <span>Needs review</span>
-            <strong id="progress-review">0</strong>
-          </div>
-          <div class="audit-progress-stat">
-            <span>Skipped</span>
-            <strong id="progress-skip">0</strong>
-          </div>
-        </div>
-        <div class="audit-progress-bar" aria-hidden="true">
-          <div class="audit-progress-bar-fill" id="progress-bar-fill"></div>
-        </div>
-        <div class="audit-progress-caption" id="progress-caption"></div>
-        <div class="audit-subprogress" id="subprogress-list"></div>
-      </div>
-
-      <div class="station-list" id="station-list"></div>
-    </aside>
-
-    <main class="audit-main">
-      <section class="audit-stage">
-        <div class="audit-stage-head">
-          <div>
-            <div class="audit-kicker" id="station-city-system">Station</div>
-            <h2 id="station-name">Select a station</h2>
-            <p id="station-status-line">No station selected.</p>
-          </div>
-          <div class="audit-stage-actions">
-            <button type="button" class="quick-btn verify-btn" id="quick-verify-btn">Yes, I see it</button>
-            <button type="button" class="quick-btn skip-btn" id="quick-skip-btn">No, skip it</button>
-            <span class="actions-divider">|</span>
-            <button type="button" class="ghost-btn" id="load-pano-btn">Find pano</button>
-            <button type="button" class="ghost-btn" id="capture-pov-btn">Capture current view</button>
-            <button type="button" class="ghost-btn" id="copy-station-btn">Copy station patch</button>
-            <button type="button" class="ghost-btn" id="toggle-advanced-btn">Show Advanced Fields</button>
-          </div>
-        </div>
-
-        <div class="audit-stage-grid">
-          <div class="audit-pano-wrap">
-            <div id="audit-pano"></div>
-            <div class="audit-loading" id="audit-loading">Loading Street View…</div>
-          </div>
-          <div class="audit-map-wrap">
-            <div id="audit-map"></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="audit-detail-grid">
-        <div class="audit-card">
-          <div class="audit-card-title">Curated Metadata</div>
-          <div class="field-grid">
-            <label>
-              <span>Status</span>
-              <select id="field-svStatus">
-                <option value="pending">pending</option>
-                <option value="curated">curated</option>
-                <option value="needs-review">needs-review</option>
-                <option value="skip">skip</option>
-              </select>
-            </label>
-            <label>
-              <span>Confidence</span>
-              <select id="field-svConfidence">
-                <option value="curated">curated</option>
-                <option value="heuristic">heuristic</option>
-                <option value="needs-review">needs-review</option>
-              </select>
-            </label>
-            <label>
-              <span>Pano ID</span>
-              <input id="field-svPanoId" type="text" placeholder="Google pano ID">
-            </label>
-            <label>
-              <span>Heading</span>
-              <input id="field-svHeading" type="number" step="0.1">
-            </label>
-            <label>
-              <span>Pitch</span>
-              <input id="field-svPitch" type="number" step="0.1">
-            </label>
-            <label>
-              <span>Radius</span>
-              <input id="field-svRadius" type="number" step="1">
-            </label>
-            <label>
-              <span>Anchor Lat</span>
-              <input id="field-svLat" type="number" step="0.000001">
-            </label>
-            <label>
-              <span>Anchor Lng</span>
-              <input id="field-svLng" type="number" step="0.000001">
-            </label>
-          </div>
-          <label class="notes-field">
-            <span>Notes</span>
-            <textarea id="field-svNotes" rows="4" placeholder="Entrance notes, weak pano warnings, anything worth remembering"></textarea>
-          </label>
-          <div class="audit-card-actions">
-            <button type="button" class="primary-btn" id="save-draft-btn">Save draft</button>
-            <button type="button" class="ghost-btn" id="reset-draft-btn">Reset draft</button>
-            <button type="button" class="ghost-btn" id="use-map-anchor-btn">Use map marker</button>
-          </div>
-        </div>
-
-        <div class="audit-card">
-          <div class="audit-card-title">Current Pano</div>
-          <div class="readout-list">
-            <div><span>Description</span><strong id="readout-description">-</strong></div>
-            <div><span>Pano ID</span><strong id="readout-pano-id">-</strong></div>
-            <div><span>Pano position</span><strong id="readout-position">-</strong></div>
-            <div><span>Distance from anchor</span><strong id="readout-distance">-</strong></div>
-            <div><span>POV</span><strong id="readout-pov">-</strong></div>
-          </div>
-          <div class="audit-card-title audit-card-title-tight">Export Preview</div>
-          <pre id="export-preview" class="export-preview"></pre>
-          <div class="audit-card-actions audit-card-actions-tight">
-            <button type="button" class="ghost-btn" id="download-patches-btn">Download patches.json</button>
-          </div>
-        </div>
-      </section>
-    </main>
+    </div>
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
-  <script src="station-utils.js" defer></script>
   <script src="config.local.js" defer></script>
   <script src="audit.js" defer></script>
 </body>
