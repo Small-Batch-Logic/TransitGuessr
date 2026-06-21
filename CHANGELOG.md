@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
 - **Daily Challenge System Diversity** — refactored Daily Challenge generation to pick stations from 5 distinct transit systems, guaranteeing geographic variety for all players daily.
 - **Quit Game Feature** — added a theme-aware "Quit" button to the active game header, allowing players to abort a running game and return safely to the start screen.
 - **Game Header Spacing Polish** — restructured the active gameplay header into three clean, aligned blocks (Left: Quit & Round, Center: Game Mode, Right: Streak & Score) with an exact centering grid layout.
-- **Theme-Aware Audit Interface** — aligned the audit tool's color variables, dot grid background, and Leaflet map tile styles with the main game, making it support both light and dark mode automatically based on user theme preference.
+- **Theme-Aware Audit Interface** — linked the global `src/style.css` stylesheet in `audit.html` and stripped duplicated resets, typography, and variable overrides from `audit.css`. The audit tool now inherits theme variables directly and adjusts its Leaflet map tiles, sidebar backgrounds, and active items dynamically for light and dark modes.
 
 ### Changed
 - **Dependency Upgrades** — bumped `vite` to `8.0.16` and updated GitHub Actions (`checkout@v6`, `configure-pages@v6`, `upload-pages-artifact@v5`, `deploy-pages@v5`) in the deployment workflow to resolve Dependabot alerts.
