@@ -615,12 +615,20 @@ function bindEvents() {
     .forEach((id) => document.getElementById(id).addEventListener('input', updateExportPreview));
 }
 
-function initializeStations() {
-  state.stations = StationUtils.normalizeStations(window.STATIONS || []);
+async function initializeStations() {
+  try {
+    const response = await fetch('./src/stations.json');
+    if (!response.ok) throw new Error('Failed to fetch stations.json');
+    const stations = await response.json();
+    state.stations = StationUtils.normalizeStations(stations || []);
+  } catch (error) {
+    console.error('Error fetching stations.json:', error);
+    state.stations = StationUtils.normalizeStations(window.STATIONS || []);
+  }
 }
 
 async function initializeAudit() {
-  initializeStations();
+  await initializeStations();
   loadDrafts();
   initializeMap();
   bindEvents();

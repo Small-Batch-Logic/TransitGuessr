@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file.
 - **Responsive Layout Fixes** — enabled vertical scrolling container behavior on the start screen to prevent height cropping, and introduced tablet/phone breakpoints to stack columns and adapt card flex directions on narrow viewports.
 
 ### Fixed
+- **Audit Station Fetching Fix** — resolved a regression from the station dataset migration by loading stations dynamically via async fetch of `src/stations.json` instead of expecting a deleted `stations.js` script tag, fixing the blank screen and enabling automatic station selection on page load.
 - **Curation Button Layout Polish** — added nowrap and flex-shrink rules to curation action buttons and links, preventing the 'Back to game' navigation button and quick action controls from wrapping into awkward multiline stacks on narrow screens.
 - **Tagline Test Assertion** — updated the Playwright smoke test expectation to align with the new branding tagline.
 
