@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [1.7.0] - 2026-06-21
 
 ### Added
 - **City Map Search** — added a real-time instant search input to filter the regional city maps grid.
