@@ -6,13 +6,16 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - **Dependency Upgrades** — bumped `vite` to `8.0.16` and updated GitHub Actions (`checkout@v6`, `configure-pages@v6`, `upload-pages-artifact@v5`, `deploy-pages@v5`) in the deployment workflow to resolve Dependabot alerts.
-- **Premium Start Screen Redesign** — stacked the logo vertically with an custom SVG subway train icon and gradient text styling to eliminate the generic developer template feel.
-- **Ambient Glowing Background** — replaced the raw graph-paper background pattern with smooth, organic glowing radial gradients for a high-fidelity look in both light and dark themes.
-- **Scrollbar and Hover Polish** — removed the clipping fade mask from the city grid to fix the cut-off scrollbar track bug, added custom rounded scrollbars, and customized city card hover states with transit system brand colors.
-- **Responsive Layout Fixes** — realigned the start screen container from the top and enabled scrollable container behavior to prevent content cropping on small heights, and added a tablet/laptop breakpoint (`max-width: 960px`) to stack grid columns and prevent text squeezing.
+- **Premium Start Screen Redesign** — reorganized the layout into a clean 2-column console dashboard, stacking play modes horizontally on the left to align with the City Explorer on the right and eliminating the generic developer template layout.
+- **Minimalist Dot Grid Background** — replaced the graph-paper pattern with a precise CSS dot matrix pattern (`24px` grid) for a clean, human-crafted engineering aesthetic.
+- **Scrollbar and Hover Polish** — removed the clipping fade mask from the city grid to fix the scrollbar track bug, added custom rounded scrollbars, and customized city card hover states with transit system brand colors.
+- **Responsive Layout Fixes** — enabled vertical scrolling container behavior on the start screen to prevent height cropping, and introduced tablet/phone breakpoints to stack columns and adapt card flex directions on narrow viewports.
 
 ### Fixed
 - **Tagline Test Assertion** — updated the Playwright smoke test expectation to align with the new branding tagline.
+
+### Removed
+- **How to Play Card** — removed the bulky steps card from the start screen to reclaim vertical space, delivering a clean single-viewport interface.
 
 ## [1.7.0] - 2026-06-21
 
