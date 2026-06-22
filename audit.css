@@ -67,6 +67,21 @@
   color: #ef4444;
 }
 
+/* Keyboard shortcut hints on audit buttons */
+.audit-env-btn kbd,
+.audit-no-btn kbd {
+  display: inline-block;
+  margin-left: 5px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-family: inherit;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.18);
+  color: inherit;
+  opacity: 0.75;
+}
+
 /* Export Patches Button */
 .btn-export {
   appearance: none;

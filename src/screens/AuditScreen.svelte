@@ -451,9 +451,9 @@
       <div id="audit-map" bind:this={mapEl}></div>
       <div class="map-footer">
         <div class="map-hint">Does Street View clearly show the station entrance?</div>
-        <button type="button" class="audit-no-btn" onclick={handleNo}>No</button>
-        <button type="button" class="audit-env-btn" onclick={handleIndoors}>Indoors</button>
-        <button type="button" class="audit-env-btn" onclick={handleOutdoors}>Outdoors</button>
+        <button type="button" class="audit-no-btn" onclick={handleNo}>No <kbd>N</kbd></button>
+        <button type="button" class="audit-env-btn" onclick={handleIndoors}>Indoors <kbd>I</kbd></button>
+        <button type="button" class="audit-env-btn" onclick={handleOutdoors}>Outdoors <kbd>O</kbd></button>
       </div>
     </div>
   </div>
