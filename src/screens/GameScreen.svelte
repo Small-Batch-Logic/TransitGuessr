@@ -392,8 +392,9 @@
     }
     preloadedPanoData = null;
 
-    if (station.svPanoId) {
-      svService.getPanorama({ pano: station.svPanoId }, (data, status) => {
+    const realPanoId = station.svPanoId && station.svPanoId !== 'legacy' ? station.svPanoId : null;
+    if (realPanoId) {
+      svService.getPanorama({ pano: realPanoId }, (data, status) => {
         if (status === google.maps.StreetViewStatus.OK) { applyPanoramaData(data); return; }
         tryPanorama(0);
       });
@@ -427,8 +428,9 @@
       preloadedPanoData = { stationId: nextStation.id, pano: data.location.pano, latLng: data.location.latLng };
     };
 
-    if (nextStation.svPanoId) {
-      svService.getPanorama({ pano: nextStation.svPanoId }, (data, status) => {
+    const nextPanoId = nextStation.svPanoId && nextStation.svPanoId !== 'legacy' ? nextStation.svPanoId : null;
+    if (nextPanoId) {
+      svService.getPanorama({ pano: nextPanoId }, (data, status) => {
         if (status === google.maps.StreetViewStatus.OK) store(data);
       });
       return;
