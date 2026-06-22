@@ -44,6 +44,6 @@
   <GameScreen onGameEnd={handleGameEnd} />
 {:else if $currentScreen === 'end'}
   <EndScreen {gameResult} />
-{:else if $currentScreen === 'audit'}
+{:else if $currentScreen === 'audit' && import.meta.env.DEV}
   <AuditScreen />
 {/if}
