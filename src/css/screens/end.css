@@ -3,14 +3,22 @@
   height: 100dvh;
   flex-direction: column;
   align-items: center;
+}
+
+#end-screen.active { display: flex; }
+
+.end-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: flex-start;
   padding: 18px 24px max(24px, env(safe-area-inset-bottom));
   gap: 16px;
   text-align: center;
   overflow: hidden;
+  width: 100%;
 }
-
-#end-screen.active { display: flex; }
 
 .end-hero {
   display: flex;

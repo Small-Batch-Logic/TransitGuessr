@@ -8,9 +8,12 @@ All notable changes to this project will be documented in this file.
 - **`Modal.svelte` shared component** — generic backdrop + dialog shell with icon/title/subtitle/cancel slots; used by AuditScreen mode picker (and available for future dialogs).
 - **`PhotoLoading.svelte` shared component** — shared Street View loading overlay (spinner + message + optional error state); replaces duplicate inline divs in GameScreen and AuditScreen.
 - **Full-page difficulty selector** — clicking a city no longer opens a modal; navigates to a dedicated full-page difficulty screen with the city name, icon, and two large choice tiles.
+- **Consistent header across all screens** — StartScreen and EndScreen now use the shared `GameHeader` component; logo always appears in the same position regardless of screen.
 
 ### Changed
 - **Toast unified** — AuditScreen's local toast state removed; all screens now use the `toastMsg` store and the single `#toast` element in App.svelte.
+- **Audit button labelled** — "Audit" text label added to the icon button in the start screen header; was icon-only and unclear.
+- **Logo text non-selectable** — added `user-select: none` to the wordmark so clicking/dragging the logo text doesn't highlight it.
 - **Difficulty descriptions** — "Forgiving scoring curve" → "A few km off still scores well"; "Precision required" → "Points drop fast with distance".
 - **City icon fixes** — Toronto: replaced rectangular logo-style icon with a stroke-circle T; NYC: fixed `stroke="black"` → `stroke="white"`; London: removed hardcoded `#0019a8` fill on the bar; Chicago: replaced `<text>` element with path-based L letterform; Berlin: replaced `<text>` element + hardcoded `#003591` with a path-based U letterform.
 

@@ -1,13 +1,15 @@
 <script>
-  let { mode, onTitleClick, center, right } = $props();
+  let { mode = '', onTitleClick, center, right } = $props();
 </script>
 
 <div class="game-header">
   <div class="header-left">
     <div class="header-wordmark">
       <button class="header-site-title header-title-btn" onclick={onTitleClick}>transitguessr</button>
-      <span class="header-mode-sep">·</span>
-      <span class="game-mode-badge">{mode}</span>
+      {#if mode}
+        <span class="header-mode-sep">·</span>
+        <span class="game-mode-badge">{mode}</span>
+      {/if}
     </div>
   </div>
   <div class="header-center">{@render center?.()}</div>

@@ -1,5 +1,6 @@
 <script>
   import { currentScreen, selectedMode, toastMsg } from '../stores.js';
+  import GameHeader from '../components/GameHeader.svelte';
   import { MODES, SITE_URL, STATION_NAME_REVEAL_SCORE } from '../config.js';
   import { escHtml } from '../utils.js';
   import { getDailyStreak } from '../daily.js';
@@ -135,8 +136,20 @@
 </script>
 
 <div id="end-screen" class="active">
+  <GameHeader onTitleClick={goToMenu}>
+    {#snippet right()}
+      <button type="button" class="btn-quit" onclick={goToMenu}>
+        <svg class="quit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+        <span>Home</span>
+      </button>
+    {/snippet}
+  </GameHeader>
+  <div class="end-body">
   <div class="end-hero">
-    <div class="logo">TransitGuessr</div>
     <span class="new-record" class:show={isNewRecord}>New Record</span>
     <div class="final-score">{displayedScore.toLocaleString()}</div>
     <div class="final-label">out of 25,000</div>
@@ -212,5 +225,6 @@
     <button type="button" class="btn-share" onclick={shareResult}>Share Result</button>
     <button type="button" class="btn-share" onclick={goToMenu}>Change Mode</button>
     <button type="button" class="btn-primary" onclick={playAgain}>Play Again</button>
+  </div>
   </div>
 </div>

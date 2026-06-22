@@ -1,40 +1,22 @@
 #start-screen {
-  padding: 48px 24px;
-  max-width: 1000px;
-  margin: 0 auto;
-  text-align: center;
   height: 100dvh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   overflow-y: auto;
   width: 100%;
 }
 
-.navbar-logo {
-  font-size: 1.3rem;
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  background: linear-gradient(135deg, var(--logo-start) 0%, var(--logo-end) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.navbar-logo .logo-svg {
-  width: 22px;
-  height: 22px;
-  stroke: var(--logo-start);
-  fill: none;
-}
-
-.navbar-actions {
+.start-content {
+  flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  padding: 32px 24px;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .start-main-grid {
@@ -321,10 +303,3 @@
   line-height: 1.4;
 }
 
-.top-actions-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 32px;
-  width: 100%;
-}
