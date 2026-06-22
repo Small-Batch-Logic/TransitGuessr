@@ -144,10 +144,10 @@
   <div class="start-main-grid">
     <div class="modes-column">
       <!-- Daily Challenge Card -->
-      <div class="play-card daily-play-card horizontal-mode">
+      <div class="play-card daily-play-card horizontal-mode play-card--coming-soon">
         <div class="mode-info">
           <div class="play-card-header">
-            <span class="play-card-badge"><span class="badge-dot"></span><span>{countdownText}</span></span>
+            <span class="play-card-badge">Coming Soon</span>
             <div class="play-card-icon" style="color: var(--daily);">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </div>

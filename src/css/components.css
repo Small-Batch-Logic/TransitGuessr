@@ -58,6 +58,13 @@
   box-shadow: 0 15px 35px -10px rgba(16, 185, 129, 0.15);
 }
 
+.play-card--coming-soon {
+  opacity: 0.45;
+  pointer-events: none;
+  user-select: none;
+  filter: saturate(0.4);
+}
+
 .worldwide-play-card:hover {
   transform: translateY(-3px);
   border-color: rgba(99, 102, 241, 0.4);
