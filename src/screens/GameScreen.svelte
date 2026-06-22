@@ -197,7 +197,7 @@
 
   // ── Reactions ──
   function reactionForGuess(distKm, pts, timedOut = false) {
-    if (timedOut) return { label: 'Timer cooked you', tone: 'rough' };
+    if (timedOut) return { label: "Time's up", tone: 'rough' };
     if (pts >= 4700 || distKm < 0.2) return { label: 'Station sniper', tone: 'hot' };
     if (pts >= 3600 || distKm < 2) return { label: 'Dialed in', tone: 'good' };
     if (pts >= 2200 || distKm < 12) return { label: 'Same neighborhood', tone: 'good' };
@@ -895,8 +895,17 @@
       </div>
     </div>
     <div class="result-footer">
-      <div class="reaction-chip {reactionTone}">{reactionLabel}</div>
+      {#if !resultTimedOut}
+        <div class="reaction-chip {reactionTone}">{reactionLabel}</div>
+      {:else}
+        <button type="button" class="btn-quit-game" onclick={() => { currentScreen.set('start'); }}>Quit</button>
+      {/if}
       <button type="button" class="btn-next" onclick={nextRound}>{resultNextLabel}</button>
+    </div>
+    <div class="result-quit-row">
+      {#if !resultTimedOut}
+        <button type="button" class="btn-quit-game" onclick={() => { currentScreen.set('start'); }}>Quit game</button>
+      {/if}
     </div>
   </div>
 </div>
