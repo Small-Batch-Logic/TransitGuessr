@@ -45,9 +45,16 @@
 
   let highScoreLabel = $derived(
     isNewRecord
-      ? `Previous best: ${previousBest.toLocaleString()}`
+      ? previousBest === 0 ? 'First game!' : `Previous best: ${previousBest.toLocaleString()}`
       : `Best: ${Math.max(previousBest, totalScore).toLocaleString()} / 25,000`
   );
+
+  function scoreColor(pts) {
+    if (pts >= 4500) return 'score-excellent';
+    if (pts >= 3000) return 'score-good';
+    if (pts >= 1000) return 'score-ok';
+    return 'score-miss';
+  }
 
   let finalGrade = $derived(gradeLabel(totalScore, mode));
 
@@ -141,46 +148,47 @@
     <div class="end-overview">
       <div class="session-summary">
         <div class="summary-card">
-          <div class="summary-label">Closest Hit</div>
-          <div class="summary-value">{closest ? formatDistance(closest.dist) : 'No pin'}</div>
+          <div class="summary-label">Closest hit</div>
+          <div class="summary-value">{closest ? formatDistance(closest.dist) : '—'}</div>
           <div class="summary-subtle">
             {#if closest}
-              {shouldRevealStationName(closest.pts) ? closest.station.name : `Station hidden (${STATION_NAME_REVEAL_SCORE.toLocaleString()}+ to reveal)`} • {closest.pts.toLocaleString()} pts
+              {shouldRevealStationName(closest.pts) ? closest.station.name : 'Station hidden'} · {closest.pts.toLocaleString()} pts
             {:else}
               No completed guesses
             {/if}
           </div>
         </div>
         <div class="summary-card">
-          <div class="summary-label">Average Miss</div>
-          <div class="summary-value">{averageDist == null ? 'No pin' : formatDistance(averageDist)}</div>
+          <div class="summary-label">Average miss</div>
+          <div class="summary-value">{averageDist == null ? '—' : formatDistance(averageDist)}</div>
           <div class="summary-subtle">
-            {completedRounds.length ? `${completedRounds.length} scored rounds` : 'All rounds timed out'}
+            {completedRounds.length ? `${completedRounds.length} scored round${completedRounds.length === 1 ? '' : 's'}` : 'All rounds timed out'}
           </div>
         </div>
         <div class="summary-card">
-          <div class="summary-label">Biggest Miss</div>
-          <div class="summary-value">{biggest ? formatDistance(biggest.dist) : 'No pin'}</div>
+          <div class="summary-label">Biggest miss</div>
+          <div class="summary-value">{biggest ? formatDistance(biggest.dist) : '—'}</div>
           <div class="summary-subtle">
             {#if biggest}
-              {shouldRevealStationName(biggest.pts) ? biggest.station.name : `Station hidden (${STATION_NAME_REVEAL_SCORE.toLocaleString()}+ to reveal)`} • {biggest.pts.toLocaleString()} pts
+              {shouldRevealStationName(biggest.pts) ? biggest.station.name : 'Station hidden'} · {biggest.pts.toLocaleString()} pts
             {:else}
               No completed guesses
             {/if}
           </div>
         </div>
       </div>
-      <div class="lifetime-stats">Total stations identified: <strong>{totalGuessed}</strong></div>
+      <div class="lifetime-stats">Stations identified: <strong>{totalGuessed}</strong></div>
     </div>
 
     <div class="end-rounds-panel">
-      <div class="end-panel-title">Round Breakdown</div>
+      <div class="end-panel-title">Round breakdown</div>
       <div class="rounds-list">
-        {#each roundResults as r}
+        {#each roundResults as r, i}
           <div class="round-row">
+            <div class="round-num">R{i + 1}</div>
             <div class="round-row-left">
               <div class="round-row-name">
-                {shouldRevealStationName(r.pts) ? r.station.name : `Station hidden (${STATION_NAME_REVEAL_SCORE.toLocaleString()}+ to reveal)`}
+                {shouldRevealStationName(r.pts) ? r.station.name : 'Station hidden'}
               </div>
               <div class="round-row-system">{r.station.city} · {r.station.system}</div>
               <div class="round-row-dist">
@@ -193,7 +201,7 @@
                 {/if}
               </div>
             </div>
-            <div class="round-row-pts">+{r.pts.toLocaleString()}</div>
+            <div class="round-row-pts {scoreColor(r.pts)}">+{r.pts.toLocaleString()}</div>
           </div>
         {/each}
       </div>
