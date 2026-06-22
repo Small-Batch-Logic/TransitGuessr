@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- **Audit Mode Picker** — audit screen now opens with a mode selector; Screen mode is the existing screening queue (N/I/O decisions); Details mode browses approved stations and lets you tag them (underground, elevated, island platform, snowy, heritage, art, etc.) for use in future themed daily challenges.
 - **Svelte 5 Migration** — converted from vanilla HTML/JS to Svelte 5 with Vite; shared `GameHeader` component now used across game and audit screens; audit tool merged into the main SPA (no more separate `audit.html`).
 - **GTFS Station Import Pipeline** — added `scripts/extract-gtfs.py` to extract rapid transit stations from GTFS feeds; populated `src/queries.json` with 2,362 candidates across 23 cities (Toronto, Montreal, Vancouver, New York, Boston, Philadelphia, Baltimore, Chicago, Minneapolis, Atlanta, Dallas, San Francisco, Los Angeles, San Diego, Phoenix, Portland, Seattle, Denver, Sacramento, Salt Lake City, Cleveland, Miami, Houston).
 - **Split Data Architecture** — separated station data into `queries.json` (unreviewed GTFS candidates) and `stations.json` (decided entries); audit tool now reads from `queries.json` and moves each decision into `stations.json`.

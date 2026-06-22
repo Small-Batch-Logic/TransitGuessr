@@ -31,6 +31,30 @@
   let panoEl = $state(null);
   let mapEl = $state(null);
 
+  // Audit mode
+  let auditMode = $state(null); // null = picker, 'screen', 'details'
+
+  // Details mode
+  let detailStations = $state([]);
+  let detailIdx = $state(0);
+  let detailTags = $state(new Set());
+  let detailSaving = $state(false);
+
+  const AUDIT_TAGS = [
+    { key: 'underground',     label: 'Underground' },
+    { key: 'elevated',        label: 'Elevated' },
+    { key: 'island-platform', label: 'Island Platform' },
+    { key: 'side-platform',   label: 'Side Platform' },
+    { key: 'snowy',           label: 'Snowy' },
+    { key: 'heritage',        label: 'Heritage' },
+    { key: 'art',             label: 'Notable Art' },
+    { key: 'modern',          label: 'Modern' },
+    { key: 'coastal',         label: 'Coastal' },
+    { key: 'vaulted',         label: 'Vaulted Ceiling' },
+    { key: 'brutalist',       label: 'Brutalist' },
+    { key: 'tram',            label: 'Tram/LRT' },
+  ];
+
   let leafletMap = null;
   let anchorMarker = null;
   let svService = null;
@@ -368,19 +392,41 @@
     currentScreen.set('start');
   }
 
+  // ── Details mode ──
+  function loadDetailStation(idx) {
+    if (idx < 0 || idx >= detailStations.length) return;
+    const station = detailStations[idx];
+    detailIdx = idx;
+    detailTags = new Set(station.tags || []);
+    auditStationName = station.name;
+    auditStationSystem = `${station.city} · ${station.system}`;
+    loadPano(station);
+  }
+
+  function toggleTag(key) {
+    const next = new Set(detailTags);
+    if (next.has(key)) next.delete(key);
+    else next.add(key);
+    detailTags = next;
+  }
+
+  async function saveDetailAndAdvance(dir) {
+    const station = detailStations[detailIdx];
+    if (!station) return;
+    detailSaving = true;
+    const updated = { ...station, tags: [...detailTags].sort() };
+    detailStations = detailStations.map((s, i) => i === detailIdx ? updated : s);
+    const allStations = stations.map(s => s.id === station.id ? { ...s, tags: [...detailTags].sort() } : s);
+    stations = allStations;
+    await saveFile('/api/save-stations', allStations.map(({ id: _id, ...s }) => s));
+    detailSaving = false;
+    showToast('Saved');
+    const next = detailIdx + dir;
+    if (next >= 0 && next < detailStations.length) loadDetailStation(next);
+  }
+
   onMount(() => {
     window.TRANSITGUESSR_CONFIG = window.TRANSITGUESSR_CONFIG || {};
-
-    const tryInitMap = () => {
-      if (typeof L !== 'undefined') {
-        initializeMap();
-        init();
-      } else {
-        setTimeout(tryInitMap, 50);
-      }
-    };
-    tryInitMap();
-
     window.addEventListener('keydown', onKeydown);
     return () => {
       window.removeEventListener('keydown', onKeydown);
@@ -398,33 +444,38 @@
     });
   }
 
-  async function init() {
+  async function startMode(mode) {
+    auditMode = mode;
+    setLoading('Loading…');
     try {
       await loadOptionalScript('./config.local.js');
       const [queriesResult, stationsResult, mapsReadyResult] = await Promise.all([
-        loadQueries(),
+        mode === 'screen' ? loadQueries() : Promise.resolve([]),
         loadExistingStations(),
         loadGoogleMaps(),
       ]);
 
-      queries = queriesResult.sort(() => Math.random() - 0.5);
       stations = stationsResult;
-      updateHeader();
 
       if (!mapsReadyResult) {
-        showErrorScreen('Google Maps API failed to load. Please verify your API key in config.local.js and ensure billing/Street View API is enabled.');
+        showErrorScreen('Google Maps API failed to load. Check your API key in config.local.js.');
         return;
       }
-
       mapsReady = true;
       initializePanorama();
 
-      const first = queries[0];
-      if (first) {
-        selectStation(first);
+      if (mode === 'screen') {
+        queries = queriesResult.sort(() => Math.random() - 0.5);
+        updateHeader();
+        const first = queries[0];
+        if (first) selectStation(first);
+        else { setLoading('No stations to review.'); loadingSpinner = false; }
+
       } else {
-        setLoading('No stations to review.');
-        loadingSpinner = false;
+        detailStations = stationsResult.filter(s => s.svStatus === 'curated');
+        auditProgressHtml = `${detailStations.length} curated stations`;
+        if (detailStations.length) loadDetailStation(0);
+        else { setLoading('No curated stations yet.'); loadingSpinner = false; }
       }
     } catch (err) {
       console.error('audit init failed:', err);
@@ -436,6 +487,32 @@
 
 <div id="audit-screen">
   <div id="toast" class:active={toastActive}>{toastText}</div>
+
+  {#if auditMode === null}
+    <div class="audit-mode-backdrop">
+      <div class="audit-mode-picker">
+        <div class="audit-mode-picker-title">Station Curation</div>
+        <div class="audit-mode-picker-subtitle">Choose a workflow</div>
+        <div class="audit-mode-options">
+          <button type="button" class="audit-mode-option" onclick={() => startMode('screen')}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <div>
+              <div class="audit-mode-option-name">Screen</div>
+              <div class="audit-mode-option-desc">Review unscreened station photos — approve or skip</div>
+            </div>
+          </button>
+          <button type="button" class="audit-mode-option" onclick={() => startMode('details')}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            <div>
+              <div class="audit-mode-option-name">Details</div>
+              <div class="audit-mode-option-desc">Tag approved stations for themed daily challenges</div>
+            </div>
+          </button>
+        </div>
+        <button type="button" class="audit-mode-cancel" onclick={() => currentScreen.set('start')}>Cancel</button>
+      </div>
+    </div>
+  {/if}
 
   <GameHeader mode="Station Curation" onTitleClick={handleTitleClick}>
     {#snippet center()}
@@ -497,13 +574,40 @@
     </div>
 
     <div class="map-panel">
-      <div id="audit-map" bind:this={mapEl}></div>
-      <div class="map-footer">
-        <div class="map-hint">Does Street View clearly show the station entrance?</div>
-        <button type="button" class="audit-no-btn" onclick={handleNo}>No <kbd>N</kbd></button>
-        <button type="button" class="audit-env-btn" onclick={handleIndoors}>Indoors <kbd>I</kbd></button>
-        <button type="button" class="audit-env-btn" onclick={handleOutdoors}>Outdoors <kbd>O</kbd></button>
-      </div>
+      {#if auditMode === 'details'}
+        <div class="details-panel">
+          <div class="details-station-info">
+            <div class="details-station-name">{auditStationName}</div>
+            <div class="details-station-system">{auditStationSystem}</div>
+          </div>
+          <div class="details-tags-section">
+            <div class="details-section-label">Tags</div>
+            <div class="details-tag-grid">
+              {#each AUDIT_TAGS as tag}
+                <button
+                  type="button"
+                  class="tag-chip"
+                  class:active={detailTags.has(tag.key)}
+                  onclick={() => toggleTag(tag.key)}
+                >{tag.label}</button>
+              {/each}
+            </div>
+          </div>
+          <div class="details-nav">
+            <button type="button" class="details-nav-btn" onclick={() => saveDetailAndAdvance(-1)} disabled={detailIdx === 0 || detailSaving}>← Prev</button>
+            <span class="details-nav-count">{detailIdx + 1} / {detailStations.length}</span>
+            <button type="button" class="details-nav-btn details-nav-next" onclick={() => saveDetailAndAdvance(1)} disabled={detailIdx >= detailStations.length - 1 || detailSaving}>Next →</button>
+          </div>
+        </div>
+      {:else}
+        <div id="audit-map" bind:this={mapEl}></div>
+        <div class="map-footer">
+          <div class="map-hint">Does Street View clearly show the station entrance?</div>
+          <button type="button" class="audit-no-btn" onclick={handleNo}>No <kbd>N</kbd></button>
+          <button type="button" class="audit-env-btn" onclick={handleIndoors}>Indoors <kbd>I</kbd></button>
+          <button type="button" class="audit-env-btn" onclick={handleOutdoors}>Outdoors <kbd>O</kbd></button>
+        </div>
+      {/if}
     </div>
   </div>
 </div>
