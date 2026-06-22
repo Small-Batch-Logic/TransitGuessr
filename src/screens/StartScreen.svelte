@@ -106,6 +106,7 @@
   );
 
   let pendingMode = $state(null);
+  let showCityBrowser = $state(false);
 
   function playMode(mode) {
     if (mode === 'daily') {
@@ -155,6 +156,41 @@
         <span class="difficulty-choice-name">Expert</span>
         <span class="difficulty-choice-desc">Points drop fast with distance</span>
       </button>
+    </div>
+  </div>
+{:else if showCityBrowser}
+  <div id="start-screen" class="city-browser-screen">
+    <button type="button" class="difficulty-back-btn" onclick={() => showCityBrowser = false}>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back
+    </button>
+    <div class="city-browser-hero">
+      <h1 class="city-browser-title">Choose a City</h1>
+      <p class="city-browser-desc">Select a transit system to play</p>
+    </div>
+    <div class="city-browser-search">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input
+        type="text"
+        placeholder="Search cities..."
+        autocomplete="off"
+        aria-label="Search cities"
+        bind:value={citySearch}
+      />
+    </div>
+    <div class="city-browser-grid">
+      {#each filteredCityModes as [key, mode]}
+        <button type="button" class="city-browser-item" style="--system-color: {mode.color}" onclick={() => playMode(key)}>
+          <div class="city-browser-icon" style="color: {mode.color}">{@html mode.icon}</div>
+          <span class="city-browser-name">{mode.name}</span>
+        </button>
+      {/each}
+      {#if filteredCityModes.length === 0}
+        <p class="city-browser-empty">No cities match your search</p>
+      {/if}
     </div>
   </div>
 {:else}
@@ -225,45 +261,19 @@
       </div>
     </div>
 
-    <!-- Regional Cities Card -->
-    <div class="cities-card">
-      <h2 class="cities-title">Explore City Maps</h2>
-      <p class="cities-desc">Select a specific city to start playing its map instantly.</p>
-
-      <div class="search-wrapper">
-        <input
-          type="text"
-          placeholder="Search cities..."
-          autocomplete="off"
-          aria-label="Search cities"
-          bind:value={citySearch}
-        />
-        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-      </div>
-
-      <div class="city-grid">
-        {#each filteredCityModes as [key, mode]}
-          <button
-            type="button"
-            class="mode-card"
-            data-mode={key}
-            style="--system-color: {mode.color}; height: 50px; padding: 8px 12px;"
-            onclick={() => playMode(key)}
-          >
-            <div class="card-icon" style="width: 28px; height: 28px;">{@html mode.icon}</div>
-            <div class="card-name" style="font-size: 0.85rem;">{mode.name}</div>
-          </button>
+    <!-- City Maps Card -->
+    <button type="button" class="cities-card cities-card--compact" onclick={() => showCityBrowser = true}>
+      <div class="cities-card-icons">
+        {#each cityModes.slice(0, 4) as [, mode]}
+          <div class="cities-card-chip" style="color: {mode.color}">{@html mode.icon}</div>
         {/each}
-        {#if filteredCityModes.length === 0}
-          <div style="grid-column: 1 / -1; text-align: center; padding: 20px 10px; font-size: 0.85rem; color: var(--text-dim);">
-            No cities match your search
-          </div>
-        {/if}
       </div>
-    </div>
+      <div class="cities-card-body">
+        <h2 class="cities-title">Explore City Maps</h2>
+        <p class="cities-desc">{cityModes.length} transit {cityModes.length === 1 ? 'system' : 'systems'} available</p>
+      </div>
+      <svg class="cities-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
   </div>
   </div>
 </div>
