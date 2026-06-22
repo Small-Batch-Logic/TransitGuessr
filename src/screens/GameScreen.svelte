@@ -6,7 +6,9 @@
   import STATIONS from '../stations.json';
   import * as StationUtils from '../station-utils.js';
   import { escHtml, seededShuffle, shuffle, haversineKm, bearingBetween } from '../utils.js';
-  import { getDayNumber, markDailyPlayed } from '../daily.js';
+  import { getDayNumber, markDailyPlayed, getDailyThemeType } from '../daily.js';
+  import { reportStation } from '../reports.js';
+  import { CITY_REGIONS } from '../config.js';
   import GameHeader from '../components/GameHeader.svelte';
 
   let { onGameEnd } = $props();
@@ -21,6 +23,10 @@
   let totalScore = $state(0);
   let roundResults = $state([]);
   let roundStations = $state([]);
+  let dailyThemeLabel = $state('');
+  let replacementPool = $state([]);
+  let reportModalOpen = $state(false);
+  let reportSubmitted = $state(false);
   let isSubmitting = $state(false);
   let guessLatLng = $state(null);
   let timeLeft = $state(60);
@@ -444,23 +450,76 @@
 
       if (currentMode === 'daily') {
         const pool = StationUtils.selectStationPool(NORMALIZED_STATIONS);
-        const bySystem = {};
-        pool.forEach(station => {
-          const system = station.system;
-          if (!bySystem[system]) bySystem[system] = [];
-          bySystem[system].push(station);
-        });
-        const systems = Object.keys(bySystem).sort();
-        const shuffledSystems = seededShuffle([...systems], getDayNumber());
-        const selectedSystems = shuffledSystems.slice(0, 5);
-        const chosenStations = [];
-        selectedSystems.forEach((system, idx) => {
-          const stationsInSystem = bySystem[system].sort((a, b) => a.id.localeCompare(b.id));
-          const systemSeed = getDayNumber() + idx;
-          const shuffledStations = seededShuffle([...stationsInSystem], systemSeed);
-          chosenStations.push(shuffledStations[0]);
-        });
+        const day = getDayNumber();
+        const themeType = getDailyThemeType();
+        let chosenStations = [];
+        let themeLabel = '';
+
+        // Fixed seed for ordering — determines the cycle order, not the stations themselves
+        const DECK_SEED = 7331;
+
+        // Pick item at position (day mod deck size) from a fixed-order deck,
+        // then seed station selection within that item by day so stations vary each cycle
+        const pickFromDeck = (items, itemSeed = DECK_SEED) => {
+          const deck = seededShuffle([...items], itemSeed);
+          return deck[day % deck.length];
+        };
+
+        if (themeType === 'city') {
+          const byCity = {};
+          pool.forEach(s => { if (!byCity[s.city]) byCity[s.city] = []; byCity[s.city].push(s); });
+          const eligibleCities = Object.keys(byCity).filter(c => byCity[c].length >= 5).sort();
+          const city = pickFromDeck(eligibleCities);
+          chosenStations = seededShuffle([...byCity[city]], day).slice(0, 5);
+          themeLabel = city;
+
+        } else if (themeType === 'region') {
+          const byRegion = {};
+          pool.forEach(s => {
+            const r = CITY_REGIONS[s.city] || 'Other';
+            if (!byRegion[r]) byRegion[r] = [];
+            byRegion[r].push(s);
+          });
+          const eligibleRegions = Object.keys(byRegion).filter(r => byRegion[r].length >= 5).sort();
+          const region = pickFromDeck(eligibleRegions);
+          const regionPool = byRegion[region];
+          const bySystem = {};
+          regionPool.forEach(s => { if (!bySystem[s.system]) bySystem[s.system] = []; bySystem[s.system].push(s); });
+          const systems = seededShuffle(Object.keys(bySystem).sort(), DECK_SEED).slice(0, 5);
+          systems.forEach((sys, idx) => {
+            const s = seededShuffle([...bySystem[sys]], day + idx)[0];
+            if (s) chosenStations.push(s);
+          });
+          if (chosenStations.length < 5) {
+            const extra = seededShuffle([...regionPool], day + 99).filter(s => !chosenStations.includes(s));
+            chosenStations.push(...extra.slice(0, 5 - chosenStations.length));
+          }
+          themeLabel = region;
+
+        } else if (themeType === 'worldwide') {
+          const bySystem = {};
+          pool.forEach(s => { if (!bySystem[s.system]) bySystem[s.system] = []; bySystem[s.system].push(s); });
+          // Fixed system order, rotate through it — each cycle picks a different offset
+          const systemDeck = seededShuffle(Object.keys(bySystem).sort(), DECK_SEED);
+          const offset = (day * 5) % systemDeck.length;
+          const systems = [...systemDeck.slice(offset), ...systemDeck].slice(0, 5);
+          systems.forEach((sys, idx) => {
+            const s = seededShuffle([...bySystem[sys]], day + idx)[0];
+            if (s) chosenStations.push(s);
+          });
+          themeLabel = 'Worldwide';
+
+        } else {
+          // random — exhaust all stations before repeating
+          const stationDeck = seededShuffle([...pool], DECK_SEED);
+          const offset = (day * 5) % stationDeck.length;
+          chosenStations = [...stationDeck.slice(offset), ...stationDeck].slice(0, 5);
+          themeLabel = 'Random';
+        }
+
         roundStations = chosenStations;
+        dailyThemeLabel = themeLabel;
+        replacementPool = pool;
       } else {
         const modeConfig = MODES[currentMode];
         const pool = StationUtils.selectStationPool(modeConfig ? NORMALIZED_STATIONS.filter(modeConfig.filter) : NORMALIZED_STATIONS);
@@ -469,6 +528,7 @@
         const finalPool = unseen.length >= 5 ? unseen : pool;
         roundStations = shuffle(finalPool).slice(0, 5);
         markSeen(roundStations.map(s => s.id));
+        replacementPool = pool;
       }
 
       resultActive = false;
@@ -588,9 +648,36 @@
         mode,
         isNewRecord: isNew,
         previousBest: prev,
-        dayNumber: getDayNumber()
+        dayNumber: getDayNumber(),
+        dailyThemeLabel
       });
     }
+  }
+
+  function submitReport(reportType) {
+    const station = roundStations[currentRound];
+    if (!station) return;
+    reportStation(station.id, station.name, reportType);
+
+    // Swap in a replacement from the same pool so theme is preserved
+    const usedIds = new Set(roundStations.map(s => s.id));
+    const candidates = replacementPool.filter(s => !usedIds.has(s.id));
+    const replacement = candidates[Math.floor(Math.random() * candidates.length)];
+
+    reportSubmitted = true;
+    setTimeout(() => {
+      reportModalOpen = false;
+      reportSubmitted = false;
+      // Remove reported station, append replacement at end so it preloads during play
+      const updated = roundStations.filter((_, i) => i !== currentRound);
+      if (replacement) updated.push(replacement);
+      roundStations = updated;
+      // Next station (already preloaded) is now at currentRound — just reload
+      stopTimer();
+      setupRound();
+      loadStreetView();
+      startTimer();
+    }, 1200);
   }
 
   function togglePeek() {
@@ -610,7 +697,9 @@
 
   // ── Mode badge label ──
   let modeBadgeLabel = $derived(
-    mode === 'daily' ? `Daily #${getDayNumber()}` : (MODES[mode]?.name || mode)
+    mode === 'daily'
+      ? `Daily #${getDayNumber()}${dailyThemeLabel ? ` · ${dailyThemeLabel}` : ''}`
+      : (MODES[mode]?.name || mode)
   );
 
   let streakDisplay = $derived(
@@ -687,6 +776,35 @@
         <div class="photo-loading">
           {#if photoLoadingSpinner}<div class="spinner"></div>{/if}
           {photoLoadingMsg}
+        </div>
+      {/if}
+
+      <button
+        type="button"
+        class="btn-report-flag"
+        title="Report an issue with this station"
+        onclick={() => { reportModalOpen = true; reportSubmitted = false; }}
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+          <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+          <line x1="4" y1="22" x2="4" y2="15"></line>
+        </svg>
+      </button>
+
+      {#if reportModalOpen}
+        <div class="report-modal">
+          {#if reportSubmitted}
+            <p class="report-thanks">Thanks, we'll review it.</p>
+          {:else}
+            <p class="report-label">What's wrong with this station?</p>
+            <button type="button" class="report-option" onclick={() => submitReport('not_a_station')}>
+              Not a transit station
+            </button>
+            <button type="button" class="report-option" onclick={() => submitReport('unusable')}>
+              Can't tell where this is
+            </button>
+            <button type="button" class="report-cancel" onclick={() => reportModalOpen = false}>Cancel</button>
+          {/if}
         </div>
       {/if}
     </div>

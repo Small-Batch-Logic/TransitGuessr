@@ -1,5 +1,25 @@
 export const SITE_URL = window.location.origin === 'null' ? 'https://transitguessr.app' : window.location.origin;
 
+export const CITY_REGIONS = {
+  // North America
+  Toronto: 'North America', Vaughan: 'North America', Burnaby: 'North America',
+  Surrey: 'North America', Vancouver: 'North America', Montreal: 'North America',
+  'Montréal': 'North America', 'New York': 'North America', Brooklyn: 'North America',
+  Boston: 'North America', Philadelphia: 'North America', Baltimore: 'North America',
+  Chicago: 'North America', Minneapolis: 'North America', Atlanta: 'North America',
+  Dallas: 'North America', 'San Francisco': 'North America', 'Los Angeles': 'North America',
+  'San Diego': 'North America', Phoenix: 'North America', Portland: 'North America',
+  Seattle: 'North America', Denver: 'North America', Sacramento: 'North America',
+  'Salt Lake City': 'North America', Cleveland: 'North America', Miami: 'North America',
+  Houston: 'North America',
+  // Europe
+  London: 'Europe', Manchester: 'Europe', Edinburgh: 'Europe', Glasgow: 'Europe',
+  Paris: 'Europe', Berlin: 'Europe', Newcastle: 'Europe', Birmingham: 'Europe',
+  Sheffield: 'Europe', Nottingham: 'Europe', Liverpool: 'Europe',
+  // Asia-Pacific
+  Tokyo: 'Asia-Pacific', Sydney: 'Asia-Pacific',
+};
+
 export const STATION_NAME_REVEAL_SCORE = 4500;
 
 export const MODES = {

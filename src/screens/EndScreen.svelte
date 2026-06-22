@@ -6,7 +6,7 @@
 
   let { gameResult } = $props();
 
-  // gameResult: { totalScore, roundResults, mode, isNewRecord, previousBest, dayNumber }
+  // gameResult: { totalScore, roundResults, mode, isNewRecord, previousBest, dayNumber, dailyThemeLabel }
 
   function shouldRevealStationName(pts) {
     return pts >= STATION_NAME_REVEAL_SCORE;
@@ -91,8 +91,9 @@
   }
 
   function shareResult() {
+    const themeLabel = gameResult?.dailyThemeLabel ? ` · ${gameResult.dailyThemeLabel}` : '';
     const modeLabel = mode === 'toronto' ? 'Toronto TTC'
-      : mode === 'daily' ? `Daily Challenge #${dayNumber}`
+      : mode === 'daily' ? `Daily Challenge #${dayNumber}${themeLabel}`
       : MODES[mode]?.name || 'Worldwide';
     const streak = mode === 'daily' ? getDailyStreak() : 0;
 

@@ -23,6 +23,13 @@ All notable changes to this project will be documented in this file.
 - **Navbar Redesign** — site title and logo moved into the top action bar; old centred logo header removed.
 - **Daily Utility Module** — extracted `getDayNumber`, `getDailyStreak`, `hasDailyBeenPlayed`, `getDailyPlayedScore`, and `markDailyPlayed` into `src/daily.js`; removed duplicate implementations from StartScreen, GameScreen, and EndScreen.
 
+- **Daily Challenge Theme Rotation** — daily challenge now cycles through four themes by day number: City Spotlight (all 5 stations from one city), Regional (5 stations from one geographic region), Worldwide (one station per system across 5 systems), and Random; theme label shown in the in-game header badge and share text.
+- **Non-Repeating Daily Deck** — cities, regions, and systems are ordered by a fixed seed and cycled exhaustively before repeating; stations within a city/region are re-seeded by day number so each cycle feels fresh.
+- **City Regions Map** — added `CITY_REGIONS` lookup in `config.js` mapping all known cities to North America / Europe / Asia-Pacific for the regional theme.
+- **Report Issue Button** — players can flag a station mid-round using a flag button overlaid on the Street View panel; options are "Not a transit station" or "Can't tell where this is"; reports stored in `src/reports.js` via localStorage.
+- **Report Auto-Advance** — reporting a station removes it from the queue, appends a theme-consistent replacement to the end (preloads during remaining rounds), and immediately advances to the next already-loaded station with no score penalty.
+- **Play History Roadmap Item** — added persistent daily play history (requires Supabase backend) to `docs/FEATURES.md`.
+
 ### Changed
 - **Daily Countdown** — timer now shows hours only (e.g. "Ends in 3h"); drops to "Ends in less than an hour" when under 60 minutes; seconds removed.
 

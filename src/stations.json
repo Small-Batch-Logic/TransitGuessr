@@ -4509,5 +4509,32 @@
     "svPitch": -0.7,
     "svStatus": "curated",
     "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Clifton Centre",
+    "system": "Nottingham NET",
+    "city": "Nottingham",
+    "lat": 52.903606,
+    "lng": -1.176979,
+    "svPanoId": "QxT-NpLa7TSBZLR6Pi5CKQ",
+    "svLat": 52.903648,
+    "svLng": -1.177092,
+    "svHeading": 86.2,
+    "svPitch": -4,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "S+U Karl-Bonhoeffer-Nervenklinik (Berlin)",
+    "system": "BVG",
+    "city": "Berlin",
+    "lat": 52.578169,
+    "lng": 13.332921,
+    "svPanoId": "jG-UvGrrKwEGaYNFq4S3pg",
+    "svLat": 52.577899,
+    "svLng": 13.3329,
+    "svHeading": 265.1,
+    "svPitch": -3.5,
+    "svStatus": "skip"
   }
 ]

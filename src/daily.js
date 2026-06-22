@@ -1,5 +1,11 @@
 const LAUNCH_DATE_UTC = Date.UTC(2026, 2, 22);
 
+export const THEME_CYCLE = ['city', 'region', 'worldwide', 'random'];
+
+export function getDailyThemeType() {
+  return THEME_CYCLE[getDayNumber() % THEME_CYCLE.length];
+}
+
 export function getDayNumber() {
   const now = new Date();
   const todayUTC = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
