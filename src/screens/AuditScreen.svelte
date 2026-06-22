@@ -346,12 +346,22 @@
   async function handleOutdoors() { await decide({ svStatus: 'curated', svEnvironment: 'outdoor' }, '✓ Outdoors'); }
   async function handleNo() { await decide({ svStatus: 'skip' }, 'Skipped'); }
 
+  function handleSkip() {
+    // Defer: move current entry to end of queue without recording any decision
+    const station = getSelectedStation();
+    if (!station) return;
+    const next = nextQueryAfter(station.id);
+    queries = [...queries.filter(s => s.id !== station.id), station];
+    if (next) selectStation(next);
+  }
+
   // ── Keyboard ──
   function onKeydown(e) {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
     if (e.key === 'i' || e.key === 'I') handleIndoors();
     if (e.key === 'o' || e.key === 'O') handleOutdoors();
     if (e.key === 'n' || e.key === 'N') handleNo();
+    if (e.key === 's' || e.key === 'S') handleSkip();
   }
 
   function handleTitleClick() {
@@ -478,6 +488,9 @@
           {:else}
             {#if loadingSpinner}<div class="spinner"></div>{/if}
             {loadingMsg}
+            {#if loadingMsg === 'Loading Street View…' || loadingMsg === 'Saved pano not found.'}
+              <button type="button" class="loading-skip-btn" onclick={handleSkip}>Skip <kbd>S</kbd></button>
+            {/if}
           {/if}
         </div>
       {/if}

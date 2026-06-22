@@ -125,6 +125,27 @@
   margin: 20px;
 }
 
+.loading-skip-btn {
+  display: block;
+  margin: 14px auto 0;
+  padding: 6px 16px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px;
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+.loading-skip-btn:hover { background: rgba(255,255,255,0.14); }
+.loading-skip-btn kbd {
+  margin-left: 4px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: rgba(0,0,0,0.2);
+  font-size: 0.75rem;
+}
+
 .photo-loading.error-active {
   background: var(--bg);
 }
