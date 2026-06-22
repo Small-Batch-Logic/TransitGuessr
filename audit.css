@@ -146,43 +146,7 @@
   font-size: 0.75rem;
 }
 
-/* ── Mode picker ── */
-.audit-mode-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(6px);
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.audit-mode-picker {
-  background: var(--island);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 28px 24px 20px;
-  width: 320px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
-}
-
-.audit-mode-picker-title {
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: var(--text);
-  letter-spacing: -0.02em;
-}
-
-.audit-mode-picker-subtitle {
-  font-size: 0.78rem;
-  color: var(--text-dim);
-  margin-bottom: 10px;
-}
-
+/* ── Mode picker options (inside shared Modal) ── */
 .audit-mode-options {
   display: flex;
   flex-direction: column;
@@ -229,23 +193,6 @@
   margin-top: 2px;
   line-height: 1.4;
 }
-
-.audit-mode-cancel {
-  background: none;
-  border: none;
-  color: var(--text-dim);
-  font-size: 0.78rem;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: inherit;
-  padding: 4px 0 0;
-  text-align: center;
-  transition: color 0.15s;
-  align-self: center;
-  margin-top: 4px;
-}
-
-.audit-mode-cancel:hover { color: var(--text); }
 
 /* ── Details panel ── */
 .details-panel {
@@ -356,9 +303,7 @@
   color: #fff;
 }
 
-.photo-loading.error-active {
-  background: var(--bg);
-}
+/* .error-active styles live in game.css alongside .photo-loading */
 
 .error-icon {
   width: 44px;

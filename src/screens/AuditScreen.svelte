@@ -1,7 +1,9 @@
 <script>
   import { onMount } from 'svelte';
-  import { currentScreen } from '../stores.js';
+  import { currentScreen, toastMsg } from '../stores.js';
   import GameHeader from '../components/GameHeader.svelte';
+  import Modal from '../components/Modal.svelte';
+  import PhotoLoading from '../components/PhotoLoading.svelte';
   import '../../audit.css';
 
   const BEST_SESSION_KEY = 'transitguessr_audit_best_session';
@@ -11,9 +13,6 @@
   let stations = $state([]);  // decided entries in stations.json
   let selectedId = $state(null);
   let sessionReviewed = $state(0);
-  let toastText = $state('');
-  let toastActive = $state(false);
-  let toastTimer = null;
 
   // Header center info
   let auditStationSystem = $state('');
@@ -59,14 +58,6 @@
   let svService = null;
   let panorama = null;
   let mapsReady = false;
-
-  // ── Toast ──
-  function showToast(msg) {
-    toastText = msg;
-    toastActive = true;
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => { toastActive = false; }, 1800);
-  }
 
   // ── Best Session ──
   function getBestSession() {
@@ -359,7 +350,7 @@
     sessionReviewed++;
     updateBestSession();
     updateHeader();
-    showToast(toast);
+    toastMsg.set(toast);
 
     if (next) selectStation(next);
     else { updateHeader(); setLoading('All done!'); loadingSpinner = false; }
@@ -420,7 +411,7 @@
     stations = allStations;
     await saveFile('/api/save-stations', allStations.map(({ id: _id, ...s }) => s));
     detailSaving = false;
-    showToast('Saved');
+    toastMsg.set('Saved');
     const next = detailIdx + dir;
     if (next >= 0 && next < detailStations.length) loadDetailStation(next);
   }
@@ -486,32 +477,25 @@
 </script>
 
 <div id="audit-screen">
-  <div id="toast" class:active={toastActive}>{toastText}</div>
-
   {#if auditMode === null}
-    <div class="audit-mode-backdrop">
-      <div class="audit-mode-picker">
-        <div class="audit-mode-picker-title">Station Curation</div>
-        <div class="audit-mode-picker-subtitle">Choose a workflow</div>
-        <div class="audit-mode-options">
-          <button type="button" class="audit-mode-option" onclick={() => startMode('screen')}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            <div>
-              <div class="audit-mode-option-name">Screen</div>
-              <div class="audit-mode-option-desc">Review unscreened station photos — approve or skip</div>
-            </div>
-          </button>
-          <button type="button" class="audit-mode-option" onclick={() => startMode('details')}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-            <div>
-              <div class="audit-mode-option-name">Details</div>
-              <div class="audit-mode-option-desc">Tag approved stations for themed daily challenges</div>
-            </div>
-          </button>
-        </div>
-        <button type="button" class="audit-mode-cancel" onclick={() => currentScreen.set('start')}>Cancel</button>
+    <Modal title="Station Curation" subtitle="Choose a workflow" oncancel={() => currentScreen.set('start')}>
+      <div class="audit-mode-options">
+        <button type="button" class="audit-mode-option" onclick={() => startMode('screen')}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <div>
+            <div class="audit-mode-option-name">Screen</div>
+            <div class="audit-mode-option-desc">Review unscreened station photos — approve or skip</div>
+          </div>
+        </button>
+        <button type="button" class="audit-mode-option" onclick={() => startMode('details')}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          <div>
+            <div class="audit-mode-option-name">Details</div>
+            <div class="audit-mode-option-desc">Tag approved stations for themed daily challenges</div>
+          </div>
+        </button>
       </div>
-    </div>
+    </Modal>
   {/if}
 
   <GameHeader mode="Station Curation" onTitleClick={handleTitleClick}>
@@ -562,27 +546,25 @@
   <div class="game-body">
     <div class="photo-panel">
       <div id="audit-pano" bind:this={panoEl}></div>
-      {#if loadingVisible}
-        <div class="photo-loading" class:error-active={loadingError}>
-          {#if loadingError}
-            <div class="audit-error-container">
-              <svg class="error-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
-              <div class="error-title">Curation Tool Error</div>
-              <div class="error-msg">{loadingMsg}</div>
-            </div>
-          {:else}
-            {#if loadingSpinner}<div class="spinner"></div>{/if}
-            {loadingMsg}
-            {#if auditMode === 'screen' && (loadingMsg === 'Loading Street View…' || loadingMsg === 'Saved pano not found.')}
-              <button type="button" class="loading-skip-btn" onclick={handleSkip}>Skip <kbd>S</kbd></button>
-            {/if}
+      <PhotoLoading visible={loadingVisible} msg={loadingMsg} spinner={loadingSpinner} error={loadingError}>
+        {#if loadingError}
+          <div class="audit-error-container">
+            <svg class="error-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <div class="error-title">Curation Tool Error</div>
+            <div class="error-msg">{loadingMsg}</div>
+          </div>
+        {:else}
+          {#if loadingSpinner}<div class="spinner"></div>{/if}
+          {loadingMsg}
+          {#if auditMode === 'screen' && (loadingMsg === 'Loading Street View…' || loadingMsg === 'Saved pano not found.')}
+            <button type="button" class="loading-skip-btn" onclick={handleSkip}>Skip <kbd>S</kbd></button>
           {/if}
-        </div>
-      {/if}
+        {/if}
+      </PhotoLoading>
     </div>
 
     <div class="map-panel">

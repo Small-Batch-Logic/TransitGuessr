@@ -170,6 +170,15 @@
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
+.photo-loading.error-active {
+  background: var(--bg);
+  color: var(--text);
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+  padding: 32px 24px;
+}
+
 #sv-pano {
   position: absolute;
   inset: 0;

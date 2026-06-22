@@ -132,6 +132,32 @@
   });
 </script>
 
+{#if pendingMode}
+  <div id="start-screen" class="difficulty-screen">
+    <button type="button" class="difficulty-back-btn" onclick={() => pendingMode = null}>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back
+    </button>
+    <div class="difficulty-hero">
+      <div class="difficulty-city-icon" style="color: {MODES[pendingMode]?.color}">
+        {@html MODES[pendingMode]?.icon ?? ''}
+      </div>
+      <h1 class="difficulty-city-name">{MODES[pendingMode]?.name}</h1>
+      <p class="difficulty-prompt">Pick your difficulty</p>
+    </div>
+    <div class="difficulty-choices">
+      <button type="button" class="difficulty-choice" onclick={() => launchWithDifficulty('normal')}>
+        <span class="difficulty-choice-name">Normal</span>
+        <span class="difficulty-choice-desc">A few km off still scores well</span>
+      </button>
+      <button type="button" class="difficulty-choice difficulty-choice--expert" onclick={() => launchWithDifficulty('expert')}>
+        <span class="difficulty-choice-name">Expert</span>
+        <span class="difficulty-choice-desc">Points drop fast with distance</span>
+      </button>
+    </div>
+  </div>
+{:else}
+
 <div id="start-screen">
   <div class="top-actions-row">
     <div class="navbar-logo">
@@ -249,34 +275,4 @@
   </div>
 </div>
 
-{#if pendingMode}
-  <div class="difficulty-backdrop" onclick={() => pendingMode = null}>
-    <div class="difficulty-modal" onclick={(e) => e.stopPropagation()}>
-      <div class="difficulty-modal-header">
-        <div class="difficulty-modal-icon" style="color: {MODES[pendingMode]?.color}">
-          {@html MODES[pendingMode]?.icon ?? ''}
-        </div>
-        <div>
-          <p class="difficulty-modal-title">{MODES[pendingMode]?.name}</p>
-          <p class="difficulty-modal-subtitle">Choose difficulty</p>
-        </div>
-      </div>
-      <div class="difficulty-options">
-        <button
-          type="button"
-          class="difficulty-option"
-          style="--mode-color: {MODES[pendingMode]?.color}"
-          onclick={() => launchWithDifficulty('normal')}
-        >
-          <span class="difficulty-option-name">Normal</span>
-          <span class="difficulty-option-desc">Forgiving scoring curve</span>
-        </button>
-        <button type="button" class="difficulty-option expert" onclick={() => launchWithDifficulty('expert')}>
-          <span class="difficulty-option-name">Expert</span>
-          <span class="difficulty-option-desc">Precision required</span>
-        </button>
-      </div>
-      <button type="button" class="difficulty-cancel" onclick={() => pendingMode = null}>Cancel</button>
-    </div>
-  </div>
 {/if}

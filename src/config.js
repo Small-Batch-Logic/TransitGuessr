@@ -45,7 +45,7 @@ export const MODES = {
     desc: 'Master the red and white: All Line 1, 2, and 4 stations in the GTHA.',
     filter: s => ['Toronto', 'Vaughan'].includes(s.city),
     color: 'var(--ttc)',
-    icon: `<svg viewBox="0 0 24 24"><rect width="24" height="24" rx="4" fill="currentColor"/><path d="M6 8h12v3h-4.5v5h-3v-5H6V8z" fill="white"/></svg>`
+    icon: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7 9h10M12 9v7" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>`
   },
   montreal: {
     name: 'Montréal',
@@ -69,7 +69,7 @@ export const MODES = {
     desc: 'The city that never sleeps: Iconic entrances across all five boroughs.',
     filter: s => ['New York', 'Brooklyn'].includes(s.city),
     color: 'var(--nyc)',
-    icon: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M9 15.5c0-2 1.5-3.5 3-3.5s3 1.5 3 3.5m-3-7V12" stroke="black" stroke-width="2.5"/></svg>`
+    icon: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M9 15.5c0-2 1.5-3.5 3-3.5s3 1.5 3 3.5m-3-7V12" stroke="white" stroke-width="2.5" fill="none"/></svg>`
   },
   london: {
     name: 'London',
@@ -77,7 +77,7 @@ export const MODES = {
     desc: 'Mind the Gap: Stations across the Underground and DLR networks.',
     filter: s => s.city === 'London',
     color: 'var(--tube)',
-    icon: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="3" fill="none"/><rect x="2" y="10" width="20" height="4" fill="#0019a8"/></svg>`
+    icon: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="currentColor"/><rect x="2" y="10" width="20" height="4" fill="white" rx="1"/></svg>`
   },
   paris: {
     name: 'Paris',
@@ -101,7 +101,7 @@ export const MODES = {
     desc: 'The "L": Elevated lines and subterranean stations in the Windy City.',
     filter: s => s.city === 'Chicago',
     color: 'var(--cta)',
-    icon: `<svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="8" rx="4" fill="currentColor"/><text x="12" y="15" font-size="10" text-anchor="middle" fill="white" font-weight="900" font-family="Arial">L</text></svg>`
+    icon: `<svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="3" fill="currentColor"/><path d="M8 16V9M8 16h5" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>`
   },
   berlin: {
     name: 'Berlin',
@@ -109,7 +109,7 @@ export const MODES = {
     desc: 'U-Bahn History: Navigate the iconic yellow trains and brutalist architecture.',
     filter: s => s.city === 'Berlin',
     color: 'var(--ubahn)',
-    icon: `<svg viewBox="0 0 24 24"><rect width="24" height="24" rx="2" fill="currentColor"/><text x="12" y="18" font-size="16" text-anchor="middle" fill="#003591" font-weight="900" font-family="Arial">U</text></svg>`
+    icon: `<svg viewBox="0 0 24 24"><rect width="24" height="24" rx="4" fill="currentColor"/><path d="M9 8v5a3 3 0 0 0 6 0V8" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>`
   },
   sydney: {
     name: 'Sydney',

@@ -200,124 +200,126 @@
   letter-spacing: -0.01em;
 }
 
-.difficulty-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(4px);
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.difficulty-modal {
-  background: var(--island);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 24px;
-  width: 300px;
+/* ── Full-page difficulty selection ── */
+#start-screen.difficulty-screen {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  padding: 40px 24px;
+  position: relative;
 }
 
-.difficulty-modal-header {
+.difficulty-back-btn {
+  position: absolute;
+  top: 24px;
+  left: 24px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 6px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 8px 16px;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
-.difficulty-modal-icon {
-  width: 36px;
-  height: 36px;
-  flex-shrink: 0;
+.difficulty-back-btn:hover {
+  color: var(--text);
+  border-color: var(--text-dim);
 }
 
-.difficulty-modal-icon svg {
+.difficulty-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.difficulty-city-icon {
+  width: 56px;
+  height: 56px;
+}
+
+.difficulty-city-icon svg {
   width: 100%;
   height: 100%;
 }
 
-.difficulty-modal-title {
-  font-size: 1rem;
-  font-weight: 800;
+.difficulty-city-name {
+  font-size: 2rem;
+  font-weight: 900;
   color: var(--text);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   margin: 0;
 }
 
-.difficulty-modal-subtitle {
-  font-size: 0.75rem;
-  font-weight: 600;
+.difficulty-prompt {
+  font-size: 0.9rem;
+  font-weight: 500;
   color: var(--text-dim);
   margin: 0;
 }
 
-.difficulty-options {
+.difficulty-choices {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  gap: 16px;
+  width: 100%;
+  max-width: 500px;
 }
 
-.difficulty-option {
+.difficulty-choice {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
-  padding: 13px 16px;
-  border-radius: 12px;
-  border: 1.5px solid var(--border);
-  background: var(--card-item-bg);
+  align-items: center;
+  gap: 8px;
+  padding: 28px 20px;
+  border-radius: 20px;
+  border: 2px solid var(--border);
+  background: var(--card-bg);
   cursor: pointer;
   font-family: inherit;
-  text-align: left;
-  transition: all 0.2s;
-  width: 100%;
+  text-align: center;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--card-shadow);
 }
 
-.difficulty-option:hover {
-  border-color: var(--mode-color, var(--accent));
-  background: var(--card-item-hover);
+.difficulty-choice:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -8px rgba(59, 130, 246, 0.2);
 }
 
-.difficulty-option.expert:hover {
+.difficulty-choice--expert:hover {
   border-color: #f59e0b;
+  box-shadow: 0 16px 32px -8px rgba(245, 158, 11, 0.2);
 }
 
-.difficulty-option-name {
-  font-size: 0.88rem;
-  font-weight: 800;
+.difficulty-choice-name {
+  font-size: 1.2rem;
+  font-weight: 900;
   color: var(--text);
-  letter-spacing: 0.01em;
+  letter-spacing: -0.02em;
 }
 
-.difficulty-option.expert .difficulty-option-name {
+.difficulty-choice--expert .difficulty-choice-name {
   color: #f59e0b;
 }
 
-.difficulty-option-desc {
-  font-size: 0.72rem;
+.difficulty-choice-desc {
+  font-size: 0.82rem;
   font-weight: 500;
   color: var(--text-dim);
+  line-height: 1.4;
 }
-
-.difficulty-cancel {
-  background: none;
-  border: none;
-  color: var(--text-dim);
-  font-size: 0.78rem;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: inherit;
-  padding: 2px 0 0;
-  text-align: center;
-  transition: color 0.15s;
-  align-self: center;
-}
-
-.difficulty-cancel:hover { color: var(--text); }
 
 .top-actions-row {
   display: flex;

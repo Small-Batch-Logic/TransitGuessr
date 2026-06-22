@@ -10,6 +10,7 @@
   import { reportStation } from '../reports.js';
   import { CITY_REGIONS } from '../config.js';
   import GameHeader from '../components/GameHeader.svelte';
+  import PhotoLoading from '../components/PhotoLoading.svelte';
 
   let { onGameEnd } = $props();
 
@@ -804,12 +805,7 @@
   <div class="game-body">
     <div class="photo-panel">
       <div id="sv-pano" bind:this={svPanoEl}></div>
-      {#if photoLoadingVisible}
-        <div class="photo-loading">
-          {#if photoLoadingSpinner}<div class="spinner"></div>{/if}
-          {photoLoadingMsg}
-        </div>
-      {/if}
+      <PhotoLoading visible={photoLoadingVisible} msg={photoLoadingMsg} spinner={photoLoadingSpinner} />
 
       <button
         type="button"

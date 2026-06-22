@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- **`Modal.svelte` shared component** — generic backdrop + dialog shell with icon/title/subtitle/cancel slots; used by AuditScreen mode picker (and available for future dialogs).
+- **`PhotoLoading.svelte` shared component** — shared Street View loading overlay (spinner + message + optional error state); replaces duplicate inline divs in GameScreen and AuditScreen.
+- **Full-page difficulty selector** — clicking a city no longer opens a modal; navigates to a dedicated full-page difficulty screen with the city name, icon, and two large choice tiles.
+
+### Changed
+- **Toast unified** — AuditScreen's local toast state removed; all screens now use the `toastMsg` store and the single `#toast` element in App.svelte.
+- **Difficulty descriptions** — "Forgiving scoring curve" → "A few km off still scores well"; "Precision required" → "Points drop fast with distance".
+- **City icon fixes** — Toronto: replaced rectangular logo-style icon with a stroke-circle T; NYC: fixed `stroke="black"` → `stroke="white"`; London: removed hardcoded `#0019a8` fill on the bar; Chicago: replaced `<text>` element with path-based L letterform; Berlin: replaced `<text>` element + hardcoded `#003591` with a path-based U letterform.
+
+### Added
 - **Audit Mode Picker** — audit screen now opens with a mode selector; Screen mode is the existing screening queue (N/I/O decisions); Details mode browses approved stations and lets you tag them (underground, elevated, island platform, snowy, heritage, art, etc.) for use in future themed daily challenges.
 - **Result card quit button** — timed-out rounds now show a Quit button on the left of the footer; regular rounds show a small "Quit game" link below the footer, giving players a way to exit without finishing all 5 rounds.
 - **End screen score colours** — round scores in the breakdown are now colour-coded: green (4,500+), cyan (3,000+), amber (1,000+), red (below 1,000). Round numbers (R1–R5) added as a dim prefix on each row.
