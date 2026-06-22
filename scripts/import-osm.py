@@ -26,7 +26,19 @@ _STRIP_PATTERNS = [
     r'\s*[-–]\s*Track\s*\d+',
     r'\s*[-–]\s*Bay\s*\w+',
     r'\s*[-–]\s*(Inbound|Outbound)',
-    r'\s*\((Subway|LRT|Metro|Rail|Light Rail|Skytrain)\)',
+    r'\s+METROMOVER\s+STATION$',
+    r'\s*\.?\s*STAT\.?\s*RAIL\s+(NORTH|SOUTH|EAST|WEST)BOUND$',
+    r'\s+STATION\s+RAIL\s+(NORTH|SOUTH|EAST|WEST)BOUND$',
+    r'\s+STATION\s+(NORTH|SOUTH|EAST|WEST)BOUND$',
+    r'\s*\((Subway|LRT|Metro|Rail|Light Rail|Skytrain)\)$',
+    r'\s*\(Berlin\)$',
+    r'\s*\(Manchester Metrolink\)$',
+    r'\s*\(Edinburgh Trams\)$',
+    r'\s*\((EB|WB|NB|SB)\)$',
+    r'\s*\((Blue|Red|Green|Pink|Orange|Brown|Purple)[^)]*\)$',
+    r'\s+Underground Station$',
+    r'\s+SPT Subway Station$',
+    r'\s+Overground Station$',
     r'(?<!\bUnion)(?<!\bCentral)(?<!\bVictoria)(?<!\bPaddington)(?<!\bWaterloo)\s+Station$',
 ]
 _COMPILED = [re.compile(p, re.IGNORECASE) for p in _STRIP_PATTERNS]
@@ -34,7 +46,10 @@ _COMPILED = [re.compile(p, re.IGNORECASE) for p in _STRIP_PATTERNS]
 def normalize_name(name):
     for pattern in _COMPILED:
         name = pattern.sub('', name)
-    return name.strip()
+    name = name.strip()
+    if name == name.upper() and not name.isnumeric():
+        name = name.title()
+    return name
 
 OVERPASS_URL = "https://overpass-api.de/api/interpreter"
 

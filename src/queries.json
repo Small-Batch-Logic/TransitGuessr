@@ -1,383 +1,5 @@
 [
   {
-    "name": "86 St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.779492,
-    "lng": -73.955589
-  },
-  {
-    "name": "St. James's Park Underground Station",
-    "system": "London Underground",
-    "city": "London",
-    "lat": 51.499544,
-    "lng": -0.133608
-  },
-  {
-    "name": "PSU Urban Center/SW 5th & Mill MAX Station",
-    "system": "MAX",
-    "city": "Portland",
-    "lat": 45.511645,
-    "lng": -122.681551
-  },
-  {
-    "name": "Mattituck",
-    "system": "LIRR",
-    "city": "New York",
-    "lat": 40.991794,
-    "lng": -72.536062
-  },
-  {
-    "name": "Lorimer St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.714063,
-    "lng": -73.950275
-  },
-  {
-    "name": "Fairview Heights Station",
-    "system": "LA Metro",
-    "city": "Los Angeles",
-    "lat": 33.975252,
-    "lng": -118.336072
-  },
-  {
-    "name": "Rue des Boulets",
-    "system": "RATP",
-    "city": "Paris",
-    "lat": 48.85214,
-    "lng": 2.389555
-  },
-  {
-    "name": "Porte de Vincennes",
-    "system": "RATP",
-    "city": "Paris",
-    "lat": 48.847157,
-    "lng": 2.41017
-  },
-  {
-    "name": "Weaste (Manchester Metrolink)",
-    "system": "Metrolink",
-    "city": "Manchester",
-    "lat": 53.482366,
-    "lng": -2.307367
-  },
-  {
-    "name": "Bushey",
-    "system": "London Overground",
-    "city": "London",
-    "lat": 51.645483,
-    "lng": -0.384919
-  },
-  {
-    "name": "SE 17th Ave & Holgate Blvd MAX Station",
-    "system": "MAX",
-    "city": "Portland",
-    "lat": 45.490898,
-    "lng": -122.648507
-  },
-  {
-    "name": "Timperley (Manchester Metrolink)",
-    "system": "Metrolink",
-    "city": "Manchester",
-    "lat": 53.404343,
-    "lng": -2.33842
-  },
-  {
-    "name": "Soto Station",
-    "system": "LA Metro",
-    "city": "Los Angeles",
-    "lat": 34.043747,
-    "lng": -118.210061
-  },
-  {
-    "name": "NE Weidler & 2nd (Streetcar)",
-    "system": "MAX",
-    "city": "Portland",
-    "lat": 45.534426,
-    "lng": -122.663835
-  },
-  {
-    "name": "Haymarket",
-    "system": "MBTA",
-    "city": "Boston",
-    "lat": 42.363021,
-    "lng": -71.05829
-  },
-  {
-    "name": "Ibrox SPT Subway Station",
-    "system": "Glasgow Subway",
-    "city": "Glasgow",
-    "lat": 55.854597,
-    "lng": -4.304671
-  },
-  {
-    "name": "Radnor South",
-    "system": "SEPTA",
-    "city": "Philadelphia",
-    "lat": 40.042106,
-    "lng": -75.353676
-  },
-  {
-    "name": "Highbury Vale A",
-    "system": "Nottingham NET",
-    "city": "Nottingham",
-    "lat": 52.989882,
-    "lng": -1.189969
-  },
-  {
-    "name": "Stadium Village Station",
-    "system": "Metro Transit",
-    "city": "Minneapolis",
-    "lat": 44.974753,
-    "lng": -93.222757
-  },
-  {
-    "name": "S Lichterfelde Süd (Berlin)",
-    "system": "BVG",
-    "city": "Berlin",
-    "lat": 52.409956,
-    "lng": 13.308662
-  },
-  {
-    "name": "Hampton Bays",
-    "system": "LIRR",
-    "city": "New York",
-    "lat": 40.876609,
-    "lng": -72.523949
-  },
-  {
-    "name": "South Norwalk",
-    "system": "Metro-North",
-    "city": "New York",
-    "lat": 41.09673,
-    "lng": -73.421132
-  },
-  {
-    "name": "Beacon Hill",
-    "system": "Link",
-    "city": "Seattle",
-    "lat": 47.579328,
-    "lng": -122.311533
-  },
-  {
-    "name": "S Ostkreuz Bhf (Berlin)",
-    "system": "BVG",
-    "city": "Berlin",
-    "lat": 52.503113,
-    "lng": 13.469221
-  },
-  {
-    "name": "Shoreline North/185th",
-    "system": "Link",
-    "city": "Seattle",
-    "lat": 47.764067,
-    "lng": -122.322889
-  },
-  {
-    "name": "Hollywood / Western Station",
-    "system": "LA Metro",
-    "city": "Los Angeles",
-    "lat": 34.101737,
-    "lng": -118.308117
-  },
-  {
-    "name": "Pyramides",
-    "system": "RATP",
-    "city": "Paris",
-    "lat": 48.866361,
-    "lng": 2.334299
-  },
-  {
-    "name": "Harlem (Blue - O'Hare Branch)",
-    "system": "CTA",
-    "city": "Chicago",
-    "lat": 41.98227,
-    "lng": -87.8089
-  },
-  {
-    "name": "North Hollywood Station",
-    "system": "LA Metro",
-    "city": "Los Angeles",
-    "lat": 34.168504,
-    "lng": -118.376808
-  },
-  {
-    "name": "WEST END STATION",
-    "system": "DART",
-    "city": "Dallas",
-    "lat": 32.780915,
-    "lng": -96.805443
-  },
-  {
-    "name": "West India Quay DLR Station",
-    "system": "London Underground",
-    "city": "London",
-    "lat": 51.50703,
-    "lng": -0.020311
-  },
-  {
-    "name": "Beckton Park DLR Station",
-    "system": "London Underground",
-    "city": "London",
-    "lat": 51.508793,
-    "lng": 0.054932
-  },
-  {
-    "name": "Pico / Aliso Station",
-    "system": "LA Metro",
-    "city": "Los Angeles",
-    "lat": 34.047634,
-    "lng": -118.22594
-  },
-  {
-    "name": "24th Street / Mission",
-    "system": "BART",
-    "city": "San Francisco",
-    "lat": 37.752419,
-    "lng": -122.418468
-  },
-  {
-    "name": "Pallion",
-    "system": "Tyne and Wear Metro",
-    "city": "Newcastle",
-    "lat": 54.912741,
-    "lng": -1.417855
-  },
-  {
-    "name": "Jefferson Park Transit Center",
-    "system": "CTA",
-    "city": "Chicago",
-    "lat": 41.970234,
-    "lng": -87.761594
-  },
-  {
-    "name": "Leipzig-Thekla, Bahnhof",
-    "system": "BVG",
-    "city": "Berlin",
-    "lat": 51.371995,
-    "lng": 12.428987
-  },
-  {
-    "name": "S Hackescher Markt (Berlin)",
-    "system": "BVG",
-    "city": "Berlin",
-    "lat": 52.522607,
-    "lng": 13.402358
-  },
-  {
-    "name": "SW 3rd & Harrison",
-    "system": "MAX",
-    "city": "Portland",
-    "lat": 45.510277,
-    "lng": -122.679813
-  },
-  {
-    "name": "Harlem (Blue - Forest Park Branch)",
-    "system": "CTA",
-    "city": "Chicago",
-    "lat": 41.87349,
-    "lng": -87.806961
-  },
-  {
-    "name": "Whitechapel Underground Station",
-    "system": "London Underground",
-    "city": "London",
-    "lat": 51.519518,
-    "lng": -0.059971
-  },
-  {
-    "name": "Redbridge Underground Station",
-    "system": "London Underground",
-    "city": "London",
-    "lat": 51.576243,
-    "lng": 0.04536
-  },
-  {
-    "name": "Hayward",
-    "system": "BART",
-    "city": "San Francisco",
-    "lat": 37.669699,
-    "lng": -122.086958
-  },
-  {
-    "name": "14 St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.740893,
-    "lng": -74.00169
-  },
-  {
-    "name": "Edinburgh Airport (Edinburgh Trams)",
-    "system": "Edinburgh Trams",
-    "city": "Edinburgh",
-    "lat": 55.947619,
-    "lng": -3.360512
-  },
-  {
-    "name": "Dagenham East Underground Station",
-    "system": "London Underground",
-    "city": "London",
-    "lat": 51.544096,
-    "lng": 0.166017
-  },
-  {
-    "name": "Warren Street Underground Station",
-    "system": "London Underground",
-    "city": "London",
-    "lat": 51.524951,
-    "lng": -0.138321
-  },
-  {
-    "name": "Père Lachaise",
-    "system": "RATP",
-    "city": "Paris",
-    "lat": 48.862785,
-    "lng": 2.387202
-  },
-  {
-    "name": "Fulton St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.687119,
-    "lng": -73.975375
-  },
-  {
-    "name": "Parkview",
-    "system": "SEPTA",
-    "city": "Philadelphia",
-    "lat": 39.969026,
-    "lng": -75.27478
-  },
-  {
-    "name": "Stokes-Windermere Station",
-    "system": "GCRTA",
-    "city": "Cleveland",
-    "lat": 41.530379,
-    "lng": -81.584921
-  },
-  {
-    "name": "Ruggles",
-    "system": "MBTA",
-    "city": "Boston",
-    "lat": 42.336377,
-    "lng": -71.088961
-  },
-  {
-    "name": "Sully - Morland",
-    "system": "RATP",
-    "city": "Paris",
-    "lat": 48.8511,
-    "lng": 2.362598
-  },
-  {
-    "name": "103 St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.799446,
-    "lng": -73.968379
-  },
-  {
     "name": "LYNNFIELD STATION",
     "system": "GCRTA",
     "city": "Cleveland",
@@ -2870,13 +2492,6 @@
     "lng": -122.669522
   },
   {
-    "name": "86 St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.777891,
-    "lng": -73.951787
-  },
-  {
     "name": "LAKE HIGHLANDS STATION",
     "system": "DART",
     "city": "Dallas",
@@ -3934,13 +3549,6 @@
     "lng": -117.085948
   },
   {
-    "name": "Lorimer St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.703869,
-    "lng": -73.947408
-  },
-  {
     "name": "Lake Union Park",
     "system": "Link",
     "city": "Seattle",
@@ -4240,20 +3848,6 @@
     "city": "New York",
     "lat": 40.706607,
     "lng": -73.922913
-  },
-  {
-    "name": "86 St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.788644,
-    "lng": -73.976218
-  },
-  {
-    "name": "Fulton St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.710374,
-    "lng": -74.007582
   },
   {
     "name": "Dwntwn Line End (No Service)",
@@ -7462,13 +7056,6 @@
     "lng": -73.950426
   },
   {
-    "name": "103 St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.7906,
-    "lng": -73.947478
-  },
-  {
     "name": "Front Populaire",
     "system": "RATP",
     "city": "Paris",
@@ -8232,13 +7819,6 @@
     "lng": -80.207551
   },
   {
-    "name": "103 St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.796092,
-    "lng": -73.961454
-  },
-  {
     "name": "Gilmore Station",
     "system": "SkyTrain",
     "city": "Vancouver",
@@ -8904,13 +8484,6 @@
     "lng": -118.213213
   },
   {
-    "name": "86 St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.785868,
-    "lng": -73.968916
-  },
-  {
     "name": "La Courneuve - 8 Mai 1945",
     "system": "RATP",
     "city": "Paris",
@@ -9098,13 +8671,6 @@
     "city": "Phoenix",
     "lat": 33.447756,
     "lng": -112.073778
-  },
-  {
-    "name": "86 St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.592721,
-    "lng": -73.97823
   },
   {
     "name": "Zielitz, Bahnhof Ort",
@@ -10218,13 +9784,6 @@
     "city": "Dallas",
     "lat": 32.908056,
     "lng": -96.679457
-  },
-  {
-    "name": "Radnor South",
-    "system": "SEPTA",
-    "city": "Philadelphia",
-    "lat": 40.042052,
-    "lng": -75.353558
   },
   {
     "name": "Hamilton Square",
@@ -13517,13 +13076,6 @@
     "lng": -73.893064
   },
   {
-    "name": "SW 3rd & Harrison",
-    "system": "MAX",
-    "city": "Portland",
-    "lat": 45.510203,
-    "lng": -122.679598
-  },
-  {
     "name": "Martinscroft (Manchester Metrolink)",
     "system": "Metrolink",
     "city": "Manchester",
@@ -13606,13 +13158,6 @@
     "city": "Portland",
     "lat": 45.495594,
     "lng": -122.670933
-  },
-  {
-    "name": "86 St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.622687,
-    "lng": -74.028398
   },
   {
     "name": "STATION CHARLEVOIX",
@@ -14749,13 +14294,6 @@
     "lng": -122.669221
   },
   {
-    "name": "14 St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.738228,
-    "lng": -73.996209
-  },
-  {
     "name": "Kedzie (Green)",
     "system": "CTA",
     "city": "Chicago",
@@ -15006,13 +14544,6 @@
     "city": "Portland",
     "lat": 45.527222,
     "lng": -122.676517
-  },
-  {
-    "name": "Highbury Vale A",
-    "system": "Nottingham NET",
-    "city": "Nottingham",
-    "lat": 52.989688,
-    "lng": -1.189492
   },
   {
     "name": "S River Pkwy & Moody",
@@ -15862,13 +15393,6 @@
     "lng": -96.800633
   },
   {
-    "name": "Timperley (Manchester Metrolink)",
-    "system": "Metrolink",
-    "city": "Manchester",
-    "lat": 53.404298,
-    "lng": -2.33827
-  },
-  {
     "name": "Duroc",
     "system": "RATP",
     "city": "Paris",
@@ -16674,13 +16198,6 @@
     "lng": -111.943457
   },
   {
-    "name": "Fulton St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.710368,
-    "lng": -74.009509
-  },
-  {
     "name": "Winson Green Outer Circle",
     "system": "West Midlands Metro",
     "city": "Birmingham",
@@ -17393,13 +16910,6 @@
     "city": "Berlin",
     "lat": 52.443512,
     "lng": 13.294141
-  },
-  {
-    "name": "Parkview",
-    "system": "SEPTA",
-    "city": "Philadelphia",
-    "lat": 39.968955,
-    "lng": -75.274851
   },
   {
     "name": "Leipzig, Bayerischer Bhf",
@@ -18326,13 +17836,6 @@
     "lng": -0.156377
   },
   {
-    "name": "Weaste (Manchester Metrolink)",
-    "system": "Metrolink",
-    "city": "Manchester",
-    "lat": 53.482474,
-    "lng": -2.307548
-  },
-  {
     "name": "STATION RADISSON",
     "system": "STM",
     "city": "Montreal",
@@ -18674,13 +18177,6 @@
     "city": "Manchester",
     "lat": 53.501146,
     "lng": -2.210672
-  },
-  {
-    "name": "14 St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.737826,
-    "lng": -74.000201
   },
   {
     "name": "U Walther-Schreiber-Platz (Berlin)",
@@ -19143,13 +18639,6 @@
     "city": "New York",
     "lat": 40.849505,
     "lng": -73.933596
-  },
-  {
-    "name": "Stadium Village Station",
-    "system": "Metro Transit",
-    "city": "Minneapolis",
-    "lat": 44.974799,
-    "lng": -93.222881
   },
   {
     "name": "S Karow Bhf (Berlin)",
@@ -22328,13 +21817,6 @@
     "city": "Toronto",
     "lat": 43.655649,
     "lng": -79.458691
-  },
-  {
-    "name": "Fulton St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.710197,
-    "lng": -74.007691
   },
   {
     "name": "Wansbeck Road",
@@ -28765,13 +28247,6 @@
     "lng": -73.735548
   },
   {
-    "name": "Fulton St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.709416,
-    "lng": -74.006571
-  },
-  {
     "name": "Monrovia Station",
     "system": "LA Metro",
     "city": "Los Angeles",
@@ -29222,5 +28697,101 @@
     "lat": 51.499722,
     "lng": -0.269898,
     "_indoorPanoId": "CAoSF0NJSE0wb2dLRUlDQWdJRG02N1NzdXdF"
+  },
+  {
+    "name": "86 St",
+    "system": "NYC Subway",
+    "city": "New York",
+    "lat": 40.779492,
+    "lng": -73.955589,
+    "_indoorPanoId": "CAoSFkNJSE0wb2dLRUlDQWdJQ3NqSmlVZVE."
+  },
+  {
+    "name": "St. James's Park Underground Station",
+    "system": "London Underground",
+    "city": "London",
+    "lat": 51.499544,
+    "lng": -0.133608,
+    "_indoorPanoId": "CAoSFkNJSE0wb2dLRUlDQWdJRHFwZUNDQmc."
+  },
+  {
+    "name": "Timperley (Manchester Metrolink)",
+    "system": "Metrolink",
+    "city": "Manchester",
+    "lat": 53.404343,
+    "lng": -2.33842,
+    "_indoorPanoId": "CAoSF0NJSE0wb2dLRUlDQWdJRHg1TDNIN1FF"
+  },
+  {
+    "name": "Highbury Vale A",
+    "system": "Nottingham NET",
+    "city": "Nottingham",
+    "lat": 52.989882,
+    "lng": -1.189969,
+    "_indoorPanoId": "CAoSFkNJSE0wb2dLRUlDQWdJRGM3ZTNqVVE."
+  },
+  {
+    "name": "Beacon Hill",
+    "system": "Link",
+    "city": "Seattle",
+    "lat": 47.579328,
+    "lng": -122.311533,
+    "_indoorPanoId": "CAoSF0NJSE0wb2dLRUlDQWdJRDR0YmFDM1FF"
+  },
+  {
+    "name": "S Ostkreuz Bhf (Berlin)",
+    "system": "BVG",
+    "city": "Berlin",
+    "lat": 52.503113,
+    "lng": 13.469221,
+    "_indoorPanoId": "CAoSFkNJSE0wb2dLRUlDQWdJRDBuOUNySnc."
+  },
+  {
+    "name": "Shoreline North/185th",
+    "system": "Link",
+    "city": "Seattle",
+    "lat": 47.764067,
+    "lng": -122.322889,
+    "_indoorPanoId": "CAoSF0NJSE0wb2dLRUlDQWdJQ0hnTzMtemdF"
+  },
+  {
+    "name": "West India Quay DLR Station",
+    "system": "London Underground",
+    "city": "London",
+    "lat": 51.50703,
+    "lng": -0.020311,
+    "_indoorPanoId": "CAoSF0NJSE0wb2dLRUlDQWdJRHE5cDJ2b3dF"
+  },
+  {
+    "name": "Jefferson Park Transit Center",
+    "system": "CTA",
+    "city": "Chicago",
+    "lat": 41.970234,
+    "lng": -87.761594,
+    "_indoorPanoId": "PEBbm8iofcm9teXiSx164g"
+  },
+  {
+    "name": "S Hackescher Markt (Berlin)",
+    "system": "BVG",
+    "city": "Berlin",
+    "lat": 52.522607,
+    "lng": 13.402358,
+    "_indoorPanoId": "CAoSFkNJSE0wb2dLRUlDQWdJQ3gzNU9rY0E."
+  },
+  {
+    "name": "Parkview",
+    "system": "SEPTA",
+    "city": "Philadelphia",
+    "lat": 39.969026,
+    "lng": -75.27478,
+    "_indoorPanoId": "CAoSF0NJSE0wb2dLRUlDQWdJQ3F5X19BMXdF"
+  },
+  {
+    "name": "Ruggles",
+    "system": "MBTA",
+    "city": "Boston",
+    "lat": 42.336377,
+    "lng": -71.088961,
+    "_indoorPanoId": "CAoSFkNJSE0wb2dLRUlDQWdJRDRyTExhYnc."
   }
 ]
