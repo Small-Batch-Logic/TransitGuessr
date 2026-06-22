@@ -4,15 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.8.0]
+
 ### Added
 - **Custom tags in Details mode** — free-text input below the preset tag chips; type any tag and press Enter or click Add; custom tags appear as dashed chips and can be toggled off like presets.
-
+- **Full-page city browser** — "Explore City Maps" is now a compact card that opens a dedicated city selection screen; cities display as individual cards with custom SVG scene graphics (Toronto: CN Tower skyline, New York: Manhattan at night).
+- **City card preview animation** — the Explore City Maps card previews up to 4 randomly selected city icons on each load, floating with a staggered animation.
 - **`Modal.svelte` shared component** — generic backdrop + dialog shell with icon/title/subtitle/cancel slots; used by AuditScreen mode picker (and available for future dialogs).
 - **`PhotoLoading.svelte` shared component** — shared Street View loading overlay (spinner + message + optional error state); replaces duplicate inline divs in GameScreen and AuditScreen.
 - **Full-page difficulty selector** — clicking a city no longer opens a modal; navigates to a dedicated full-page difficulty screen with the city name, icon, and two large choice tiles.
 - **Consistent header across all screens** — StartScreen and EndScreen now use the shared `GameHeader` component; logo always appears in the same position regardless of screen.
 
 ### Changed
+- **Audit screen hidden in production** — Audit button and screen are only present in `dev` builds; the feature is completely absent from production bundles.
+- **Streak indicator position** — moved beside the theme toggle (end of header) rather than before the Audit button.
+- **Logo size** — wordmark bumped from 0.92rem to 1.05rem.
+- **Start screen header alignment** — header items now align with the content column edges on wide viewports.
 - **Start screen header width** — header content constrained to match the 1000px content column; logo and actions no longer span the full viewport on wide screens.
 - **Toast unified** — AuditScreen's local toast state removed; all screens now use the `toastMsg` store and the single `#toast` element in App.svelte.
 - **Audit button labelled** — "Audit" text label added to the icon button in the start screen header; was icon-only and unclear.
