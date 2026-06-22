@@ -92,6 +92,37 @@
   gap: 6px;
 }
 
+.top-streak-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--daily);
+  padding: 0 14px;
+  height: 40px;
+  border-radius: 99px;
+  background: var(--island);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+:root[data-theme="dark"] .top-streak-indicator {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.streak-chip {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--daily);
+  background: color-mix(in srgb, var(--daily) 12%, transparent);
+  padding: 4px 10px;
+  border-radius: 99px;
+  border: 1px solid color-mix(in srgb, var(--daily) 25%, transparent);
+}
+
 .badge-dot {
   width: 6px;
   height: 6px;

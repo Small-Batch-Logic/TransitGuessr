@@ -2,6 +2,7 @@
   import { currentScreen, selectedMode, toastMsg } from '../stores.js';
   import { MODES, SITE_URL, STATION_NAME_REVEAL_SCORE } from '../config.js';
   import { escHtml } from '../utils.js';
+  import { getDailyStreak } from '../daily.js';
 
   let { gameResult } = $props();
 
@@ -87,17 +88,6 @@
 
   function showToast(msg) {
     toastMsg.set(msg);
-  }
-
-  function getDailyStreak() {
-    try {
-      const raw = localStorage.getItem('transitguessr_daily_streak');
-      if (!raw) return 0;
-      const data = JSON.parse(raw);
-      if (!Number.isInteger(data?.day) || !Number.isInteger(data?.streak)) return 0;
-      if (data.day === dayNumber || data.day === dayNumber - 1) return Math.max(0, data.streak);
-      return 0;
-    } catch { return 0; }
   }
 
   function shareResult() {

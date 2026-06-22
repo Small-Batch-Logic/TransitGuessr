@@ -19,6 +19,12 @@ All notable changes to this project will be documented in this file.
 - **OSM Import Pipeline** — added `scripts/import-osm.py` to import stations from OpenStreetMap via Overpass API for systems with no accessible GTFS feed; supports `--merge` to append directly into `src/queries.json`.
 - **Expanded Station Dataset** — regenerated `src/queries.json` with 4,270 candidates across 35 cities; added London (DLR + Underground), Manchester Metrolink, Edinburgh Trams, Glasgow Subway, Paris metro, Berlin U-Bahn + S-Bahn, LIRR, Metro-North, Tyne and Wear Metro, West Midlands Metro, Sheffield Supertram, Nottingham NET, Merseyrail, and London Overground.
 - **Atlas Integration Note** — documented long-term plan to source station candidates from Atlas's GTFS infrastructure in `docs/DATA.md`.
+- **Daily Streak Indicator** — navbar now shows a flame chip with the current daily play streak when streak > 0.
+- **Navbar Redesign** — site title and logo moved into the top action bar; old centred logo header removed.
+- **Daily Utility Module** — extracted `getDayNumber`, `getDailyStreak`, `hasDailyBeenPlayed`, `getDailyPlayedScore`, and `markDailyPlayed` into `src/daily.js`; removed duplicate implementations from StartScreen, GameScreen, and EndScreen.
+
+### Changed
+- **Daily Countdown** — timer now shows hours only (e.g. "Ends in 3h"); drops to "Ends in less than an hour" when under 60 minutes; seconds removed.
 
 ### Changed
 - **Audit Tool Direct File Writing** — curation tool now uses the File System Access API to pick and write `stations.json` directly; Yes/No decisions are written to the file immediately with no localStorage drafts or export step required.

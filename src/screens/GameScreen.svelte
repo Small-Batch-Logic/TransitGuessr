@@ -6,6 +6,7 @@
   import STATIONS from '../stations.json';
   import * as StationUtils from '../station-utils.js';
   import { escHtml, seededShuffle, shuffle, haversineKm, bearingBetween } from '../utils.js';
+  import { getDayNumber, markDailyPlayed } from '../daily.js';
   import GameHeader from '../components/GameHeader.svelte';
 
   let { onGameEnd } = $props();
@@ -64,14 +65,6 @@
   let startGamePromise = null;
   let preloadedPanoData = null; // { stationId, pano, latLng }
 
-  const LAUNCH_DATE_UTC = Date.UTC(2026, 2, 22);
-
-  function getDayNumber() {
-    const now = new Date();
-    const todayUTC = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
-    return Math.max(1, Math.floor((todayUTC - LAUNCH_DATE_UTC) / 86400000) + 1);
-  }
-
   function loadOptionalScript(src) {
     return new Promise((resolve) => {
       const script = document.createElement('script');
@@ -125,31 +118,6 @@
   }
 
   // ── Daily ──
-  function dailyPlayedKey() { return `transitguessr_daily_played_${getDayNumber()}`; }
-
-  function updateDailyStreak() {
-    const today = getDayNumber();
-    let nextStreak = 1;
-    try {
-      const raw = localStorage.getItem('transitguessr_daily_streak');
-      if (raw) {
-        const data = JSON.parse(raw);
-        if (Number.isInteger(data?.day) && Number.isInteger(data?.streak)) {
-          if (data.day === today) return data.streak;
-          if (data.day === today - 1) nextStreak = Math.max(1, data.streak + 1);
-        }
-      }
-      localStorage.setItem('transitguessr_daily_streak', JSON.stringify({ day: today, streak: nextStreak }));
-    } catch {}
-    return nextStreak;
-  }
-
-  function markDailyPlayed(score) {
-    try {
-      localStorage.setItem(dailyPlayedKey(), score);
-      updateDailyStreak();
-    } catch {}
-  }
 
   // ── Seen Stations ──
   function getSeenIds() {

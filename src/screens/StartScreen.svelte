@@ -1,42 +1,7 @@
 <script>
   import { currentScreen, selectedMode } from '../stores.js';
   import { MODES } from '../config.js';
-
-  // ── Daily helpers ──
-  const LAUNCH_DATE_UTC = Date.UTC(2026, 2, 22);
-
-  function getDayNumber() {
-    const now = new Date();
-    const todayUTC = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
-    return Math.max(1, Math.floor((todayUTC - LAUNCH_DATE_UTC) / 86400000) + 1);
-  }
-
-  function dailyPlayedKey() { return `transitguessr_daily_played_${getDayNumber()}`; }
-
-  function hasDailyBeenPlayed() {
-    try { return !!localStorage.getItem(dailyPlayedKey()); } catch { return false; }
-  }
-
-  function getDailyPlayedScore() {
-    try {
-      const raw = localStorage.getItem(dailyPlayedKey());
-      if (raw == null) return null;
-      const score = parseInt(raw, 10);
-      return Number.isNaN(score) ? null : score;
-    } catch { return null; }
-  }
-
-  function getDailyStreak() {
-    try {
-      const raw = localStorage.getItem('transitguessr_daily_streak');
-      if (!raw) return 0;
-      const data = JSON.parse(raw);
-      if (!Number.isInteger(data?.day) || !Number.isInteger(data?.streak)) return 0;
-      const today = getDayNumber();
-      if (data.day === today || data.day === today - 1) return Math.max(0, data.streak);
-      return 0;
-    } catch { return 0; }
-  }
+  import { getDayNumber, getDailyStreak, hasDailyBeenPlayed, getDailyPlayedScore } from '../daily.js';
 
   function getHighScoreForMode(mode) {
     try {
@@ -50,16 +15,16 @@
   // ── Reactive state ──
   let citySearch = $state('');
 
+  let dailyStreak = $derived(getDailyStreak());
+
   let dailyStatusText = $derived.by(() => {
-    const streak = getDailyStreak();
-    const streakText = streak > 0 ? ` • Streak: ${streak} day${streak === 1 ? '' : 's'} 🔥` : '';
     if (hasDailyBeenPlayed()) {
       const todayScore = getDailyPlayedScore();
       return todayScore != null
-        ? `Today's score: ${todayScore.toLocaleString()}/25,000${streakText}`
-        : `Today's run complete${streakText}`;
+        ? `Today's score: ${todayScore.toLocaleString()}/25,000`
+        : `Today's run complete`;
     }
-    return streak > 0 ? `Daily Challenge ready!${streakText}` : "Play today's challenge map!";
+    return "Play today's challenge map!";
   });
 
   let worldwideStatusText = $derived.by(() => {
@@ -86,8 +51,11 @@
     const remH = 23 - h;
     const remM = 59 - m;
     const remS = 59 - s;
-    const pad = (n) => n.toString().padStart(2, '0');
-    countdownText = `Ends in ${remH}h ${pad(remM)}m ${pad(remS)}s`;
+    if (remH === 0) {
+      countdownText = `Ends in less than an hour`;
+    } else {
+      countdownText = `Ends in ${remH}h`;
+    }
   }
 
   // Theme toggle
@@ -125,23 +93,7 @@
 
 <div id="start-screen">
   <div class="top-actions-row">
-    <button type="button" class="audit-mode-btn" title="Curation & Audit Mode" onclick={() => currentScreen.set('audit')}>
-      <svg class="audit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-        <polyline points="14 2 14 8 20 8"></polyline>
-        <line x1="16" y1="13" x2="8" y2="13"></line>
-        <line x1="16" y1="17" x2="8" y2="17"></line>
-        <polyline points="10 9 9 9 8 9"></polyline>
-      </svg>
-    </button>
-    <button type="button" class="theme-toggle-btn" aria-label="Toggle theme" onclick={toggleTheme}>
-      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
-  </div>
-
-  <div class="logo-header">
-    <div class="logo">
+    <div class="navbar-logo">
       <svg class="logo-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <rect x="4" y="3" width="16" height="18" rx="2"></rect>
         <path d="M9 21h6"></path>
@@ -152,7 +104,27 @@
       </svg>
       <span>transitguessr</span>
     </div>
-    <div class="tagline">The interactive guessing game for transit nerds.</div>
+    <div class="navbar-actions">
+      {#if dailyStreak > 0}
+        <div class="top-streak-indicator" title="Daily challenge streak">
+          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="14" height="14"><path d="M13.5 0.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67z"/></svg>
+          {dailyStreak}
+        </div>
+      {/if}
+      <button type="button" class="audit-mode-btn" title="Curation & Audit Mode" onclick={() => currentScreen.set('audit')}>
+        <svg class="audit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+      </button>
+      <button type="button" class="theme-toggle-btn" aria-label="Toggle theme" onclick={toggleTheme}>
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
   </div>
 
   <div class="start-main-grid">
