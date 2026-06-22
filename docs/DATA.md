@@ -43,6 +43,18 @@ Once a city's curated pano count crosses the threshold, its card appears on the 
 
 All cities are currently below the 1,000 threshold and are available via the hardcoded `MODES` config. Dynamic unlocking kicks in once the pipeline runs.
 
+## Atlas Integration
+
+TransitGuessr's station candidates come from the same GTFS feeds that power [Atlas](https://atlas-gamma-two.vercel.app) — a separate project that processes GTFS data for the GTHA and stores it on Cloudflare R2 with a weekly auto-refresh.
+
+The long-term plan is to make TransitGuessr a consumer of Atlas's data infrastructure rather than maintaining a parallel pipeline:
+
+- `queries.json` moves from the repo to R2, fetched at runtime by the audit tool
+- Atlas's weekly GTFS refresh regenerates the candidate pool automatically — new stations appear, closed or renamed stations drop out
+- One pipeline, two consumers
+
+This is not yet implemented. The Atlas R2 migration (planned June 2026) is the natural integration point.
+
 ## Future Cities
 
 - Seoul Metro

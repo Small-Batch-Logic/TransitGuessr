@@ -200,8 +200,9 @@
       hideLoading();
     };
 
-    if (panoId) {
-      svService.getPanorama({ pano: panoId }, (data, status) => {
+    const lookupId = panoId || station._indoorPanoId;
+    if (lookupId) {
+      svService.getPanorama({ pano: lookupId }, (data, status) => {
         if (status === google.maps.StreetViewStatus.OK) apply(data);
         else setLoading('Saved pano not found.');
       });
@@ -218,14 +219,31 @@
       { location, radius: 150, source: google.maps.StreetViewSource.DEFAULT },
     ];
 
+    const queueIndoorCandidate = (outdoorPanoId) => {
+      const location = { lat, lng };
+      svService.getPanorama({ location, radius: 150, source: google.maps.StreetViewSource.DEFAULT }, (data, status) => {
+        if (status === google.maps.StreetViewStatus.OK && data.location.pano !== outdoorPanoId) {
+          const indoorEntry = { ...station, id: station.id + '__indoor', _indoorPanoId: data.location.pano };
+          queries = [...queries, indoorEntry];
+        }
+      });
+    };
+
     const tryNext = (i) => {
       if (i >= attempts.length) {
         handleNo();
         return;
       }
       svService.getPanorama(attempts[i], (data, status) => {
-        if (status === google.maps.StreetViewStatus.OK) apply(data);
-        else tryNext(i + 1);
+        if (status === google.maps.StreetViewStatus.OK) {
+          apply(data);
+          // If we found an outdoor pano, check if there's also an indoor one
+          if (attempts[i].source === google.maps.StreetViewSource.OUTDOOR) {
+            queueIndoorCandidate(data.location.pano);
+          }
+        } else {
+          tryNext(i + 1);
+        }
       });
     };
     tryNext(0);

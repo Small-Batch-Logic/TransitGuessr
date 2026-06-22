@@ -15,6 +15,10 @@ All notable changes to this project will be documented in this file.
 - **Audit Auto-Skip** — when no Street View can be found for a candidate after exhausting all search radii and sources, the station is automatically marked as skipped and the queue advances.
 - **Audit Randomized Queue** — candidate queue is now shuffled on load for geographic variety across sessions.
 - **Audit Progressive Search** — pano lookup now tries five progressively broader searches (50m outdoor → 100m outdoor → 200m outdoor → 50m all → 150m all) before giving up.
+- **Audit Indoor Candidate Queuing** — after finding an outdoor pano, the audit tool checks for a distinct indoor pano at the same location and appends it to the end of the queue automatically.
+- **OSM Import Pipeline** — added `scripts/import-osm.py` to import stations from OpenStreetMap via Overpass API for systems with no accessible GTFS feed; supports `--merge` to append directly into `src/queries.json`.
+- **Expanded Station Dataset** — regenerated `src/queries.json` with 4,270 candidates across 35 cities; added London (DLR + Underground), Manchester Metrolink, Edinburgh Trams, Glasgow Subway, Paris metro, Berlin U-Bahn + S-Bahn, LIRR, Metro-North, Tyne and Wear Metro, West Midlands Metro, Sheffield Supertram, Nottingham NET, Merseyrail, and London Overground.
+- **Atlas Integration Note** — documented long-term plan to source station candidates from Atlas's GTFS infrastructure in `docs/DATA.md`.
 
 ### Changed
 - **Audit Tool Direct File Writing** — curation tool now uses the File System Access API to pick and write `stations.json` directly; Yes/No decisions are written to the file immediately with no localStorage drafts or export step required.

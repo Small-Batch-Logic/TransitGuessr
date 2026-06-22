@@ -52,6 +52,21 @@ FEEDS = [
     ("United States/Florida",    "Miami-Dade Transit.zip",                                                                   "Metrorail",  "Miami",         {"2", "0"}),
     ("United States/Texas",      "METRO Houston.zip",                                                                        "METRORail",  "Houston",       {"0"}),
     # WMATA (DC) requires API key registration at developer.wmata.com — not in dataset
+    ("Europe/United Kingdom",    "Transport for London.zip",                                                                 "London Underground", "London", {"1"}),
+
+    # UK — regional feeds (agency_filter isolates metro/tram from bus-heavy feeds)
+    ("Europe/United Kingdom",    "Manchester Metrolink.zip",                                                                 "Metrolink",  "Manchester",    {"0"},          "7778482"),
+    ("Europe/United Kingdom",    "scotland.zip",                                                                              "Edinburgh Trams", "Edinburgh", {"0"},         "OP599"),
+    ("Europe/United Kingdom",    "scotland.zip",                                                                              "Glasgow Subway",  "Glasgow",  {"0"},          "OP570"),
+    # Missing (no accessible GTFS): Tyne & Wear Metro, Birmingham Metro, Sheffield Supertram, Nottingham NET, Merseyrail, London Overground
+
+    # Europe
+    ("Europe/France",            "Paris IDFM.zip",                                                                           "RATP",       "Paris",         {"1"}),          # metro-only; RER/tram via audit
+    ("Europe/Germany",           "Berlin VBB.zip",                                                                           "BVG",        "Berlin",        {"400", "109"}),  # 400=U-Bahn, 109=S-Bahn
+
+    # US Commuter Rail
+    ("United States/New York",   "MTA Long Island Rail Road.zip",                                                             "LIRR",       "New York",      {"2"}),
+    ("United States/New York",   "NYC Metro-North Railroad.zip",                                                              "Metro-North","New York",      {"2"}),
 ]
 
 
@@ -63,10 +78,14 @@ def read_csv(zf, filename):
         return []
 
 
-def extract_via_route_chain(zf, route_types):
+def extract_via_route_chain(zf, route_types, agency_filter=None):
     """Standard GTFS: routes → trips → stop_times → stops."""
     routes = read_csv(zf, "routes.txt")
-    rapid_route_ids = {r["route_id"] for r in routes if r.get("route_type") in route_types}
+    rapid_route_ids = {
+        r["route_id"] for r in routes
+        if r.get("route_type") in route_types
+        and (agency_filter is None or r.get("agency_id") == agency_filter)
+    }
     if not rapid_route_ids:
         return None  # signal: no rapid routes found
 
@@ -88,10 +107,21 @@ def extract_via_route_chain(zf, route_types):
     return rapid_stop_ids
 
 
-def extract_via_parent_stations(zf):
-    """Fallback: return all stops with location_type=1 (parent stations)."""
+def extract_via_parent_stations(zf, name_filter=None):
+    """Fallback: return all stops with location_type=1 (parent stations).
+    name_filter can be a string or tuple of strings (any match passes)."""
     stops = read_csv(zf, "stops.txt")
-    return {s["stop_id"] for s in stops if s.get("location_type") in ("1",)}
+    def name_match(name):
+        if name_filter is None:
+            return True
+        if isinstance(name_filter, (list, tuple)):
+            return any(f in name for f in name_filter)
+        return name_filter in name
+    return {
+        s["stop_id"] for s in stops
+        if s.get("location_type") in ("1",)
+        and name_match(s.get("stop_name", ""))
+    }
 
 
 def resolve_stops(zf, stop_ids, system, city):
@@ -125,17 +155,20 @@ def resolve_stops(zf, stop_ids, system, city):
     return list(seen.values())
 
 
-def extract_feed(path, system, city, route_types):
+def extract_feed(path, system, city, route_types, agency_filter=None):
     zf = zipfile.ZipFile(path)
 
-    stop_ids = extract_via_route_chain(zf, route_types)
+    # TfL feed has no trips.txt — filter parent stations by label type
+    if "Transport for London" in path:
+        name_filter = ("Underground Station", "DLR Station")
+        return resolve_stops(zf, extract_via_parent_stations(zf, name_filter=name_filter), system, city)
+
+    stop_ids = extract_via_route_chain(zf, route_types, agency_filter=agency_filter)
 
     if stop_ids is None:
-        # No rapid routes found at all — skip
         return []
 
     if len(stop_ids) == 0:
-        # Routes exist but trip chain returned nothing — fallback to parent stations
         stop_ids = extract_via_parent_stations(zf)
 
     return resolve_stops(zf, stop_ids, system, city)
@@ -147,13 +180,15 @@ def main():
     args = parser.parse_args()
 
     all_stations = []
-    for region, filename, system, city, route_types in FEEDS:
+    for feed in FEEDS:
+        region, filename, system, city, route_types = feed[:5]
+        agency_filter = feed[5] if len(feed) > 5 else None
         path = os.path.join(GTFS_BASE, region, filename)
         if not os.path.exists(path):
             print(f"  SKIP (not found): {filename}")
             continue
         try:
-            stations = extract_feed(path, system, city, route_types)
+            stations = extract_feed(path, system, city, route_types, agency_filter=agency_filter)
             print(f"  {system} ({city}): {len(stations)} stations")
             all_stations.extend(stations)
         except Exception as e:
