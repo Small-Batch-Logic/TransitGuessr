@@ -21,7 +21,7 @@ GTFS_BASE = os.path.expanduser("~/Desktop/Data/GTFS/Files")
 FEEDS = [
     # Canada
     ("Canada/Ontario",          "Toronto Transit Commission (TTC).zip",                                                    "TTC",        "Toronto",       {"1"}),
-    ("Canada/Quebec",           "Montréal.zip",                                                                             "STM",        "Montreal",      {"1"}),
+    ("Canada/Quebec",           "Montréal.zip",                                                                             "STM",        "Montréal",      {"1"}),
     ("Canada/British Columbia", "TransLink Vancouver.zip",                                                                  "SkyTrain",   "Vancouver",     {"0", "1"}),
 
     # US Northeast

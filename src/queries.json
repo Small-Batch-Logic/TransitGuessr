@@ -1,54 +1,5 @@
 [
   {
-    "name": "LYNNFIELD STATION",
-    "system": "GCRTA",
-    "city": "Cleveland",
-    "lat": 41.466575,
-    "lng": -81.5459
-  },
-  {
-    "name": "Porte d'Orléans",
-    "system": "RATP",
-    "city": "Paris",
-    "lat": 48.822418,
-    "lng": 2.325567
-  },
-  {
-    "name": "Tecolote Road Station",
-    "system": "MTS Trolley",
-    "city": "San Diego",
-    "lat": 32.769855,
-    "lng": -117.20509
-  },
-  {
-    "name": "Birkdale",
-    "system": "Merseyrail",
-    "city": "Liverpool",
-    "lat": 53.633889,
-    "lng": -3.014616
-  },
-  {
-    "name": "Fairlop Underground Station",
-    "system": "London Underground",
-    "city": "London",
-    "lat": 51.595618,
-    "lng": 0.091004
-  },
-  {
-    "name": "Danbury",
-    "system": "Metro-North",
-    "city": "New York",
-    "lat": 41.396146,
-    "lng": -73.44879
-  },
-  {
-    "name": "Hollinsend",
-    "system": "Supertram",
-    "city": "Sheffield",
-    "lat": 53.352039,
-    "lng": -1.424497
-  },
-  {
     "name": "SE Park Ave MAX Station",
     "system": "MAX",
     "city": "Portland",
@@ -10547,13 +10498,6 @@
     "city": "London",
     "lat": 51.523073,
     "lng": -0.124285
-  },
-  {
-    "name": "LYNNFIELD STATION",
-    "system": "GCRTA",
-    "city": "Cleveland",
-    "lat": 41.46662,
-    "lng": -81.546558
   },
   {
     "name": "Shepherd's Bush (Central) Underground Station",
@@ -27881,13 +27825,6 @@
     "city": "New York",
     "lat": 40.675812,
     "lng": -73.902809
-  },
-  {
-    "name": "Hollinsend",
-    "system": "Supertram",
-    "city": "Sheffield",
-    "lat": 53.352036,
-    "lng": -1.424554
   },
   {
     "name": "Allen Station",
