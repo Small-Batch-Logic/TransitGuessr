@@ -1,5 +1,5 @@
 <script>
-  import { currentScreen, selectedMode } from '../stores.js';
+  import { currentScreen, selectedMode, selectedDifficulty } from '../stores.js';
   import { MODES } from '../config.js';
   import { getDayNumber, getDailyStreak, hasDailyBeenPlayed, getDailyPlayedScore, getDailyThemeType, THEME_NAMES } from '../daily.js';
 
@@ -77,8 +77,22 @@
       : cityModes.filter(([, mode]) => mode.name.toLowerCase().includes(citySearch.toLowerCase().trim()))
   );
 
+  let pendingMode = $state(null);
+
   function playMode(mode) {
-    selectedMode.set(mode);
+    if (mode === 'daily') {
+      selectedMode.set(mode);
+      selectedDifficulty.set('normal');
+      currentScreen.set('game');
+    } else {
+      pendingMode = mode;
+    }
+  }
+
+  function launchWithDifficulty(difficulty) {
+    selectedMode.set(pendingMode);
+    selectedDifficulty.set(difficulty);
+    pendingMode = null;
     currentScreen.set('game');
   }
 
@@ -207,3 +221,23 @@
     </div>
   </div>
 </div>
+
+{#if pendingMode}
+  <div class="difficulty-backdrop" onclick={() => pendingMode = null}>
+    <div class="difficulty-modal" onclick={(e) => e.stopPropagation()}>
+      <p class="difficulty-modal-title">{MODES[pendingMode]?.name}</p>
+      <p class="difficulty-modal-subtitle">Choose difficulty</p>
+      <div class="difficulty-options">
+        <button type="button" class="difficulty-option" onclick={() => launchWithDifficulty('normal')}>
+          <span class="difficulty-option-name">Normal</span>
+          <span class="difficulty-option-desc">Forgiving scoring curve</span>
+        </button>
+        <button type="button" class="difficulty-option expert" onclick={() => launchWithDifficulty('expert')}>
+          <span class="difficulty-option-name">Expert</span>
+          <span class="difficulty-option-desc">Precision required</span>
+        </button>
+      </div>
+      <button type="button" class="difficulty-cancel" onclick={() => pendingMode = null}>Cancel</button>
+    </div>
+  </div>
+{/if}

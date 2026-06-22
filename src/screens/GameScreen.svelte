@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import { get } from 'svelte/store';
-  import { currentScreen, selectedMode, toastMsg } from '../stores.js';
+  import { currentScreen, selectedMode, selectedDifficulty, toastMsg } from '../stores.js';
   import { MODES, SITE_URL, STATION_NAME_REVEAL_SCORE } from '../config.js';
   import STATIONS from '../stations.json';
   import * as StationUtils from '../station-utils.js';
@@ -140,8 +140,8 @@
   }
 
   // ── Score ──
-  // Derive scale from the actual geographic spread of this round's stations
-  let roundScale = $derived.by(() => {
+  // Expert: scale derived from actual geographic spread of the round's stations
+  let expertScale = $derived.by(() => {
     if (!roundStations.length) return 2000;
     const lats = roundStations.map(s => s.lat);
     const lngs = roundStations.map(s => s.lng);
@@ -153,7 +153,13 @@
   });
 
   function calcScore(distKm) {
-    return Math.round(5000 * Math.exp(-distKm / roundScale));
+    let scale;
+    if ($selectedDifficulty === 'expert') {
+      scale = expertScale;
+    } else {
+      scale = ['worldwide', 'daily'].includes(mode) ? 2000 : 5;
+    }
+    return Math.round(5000 * Math.exp(-distKm / scale));
   }
 
   function shouldRevealStationName(pts) {
