@@ -282,13 +282,49 @@
     return updates;
   }
 
+  function normalizeStationName(name) {
+    const patterns = [
+      /^STATION\s+/i,
+      /\s*[-–]\s*(East|West|North|South)bound\s*(?:\w+\s+)?Platform\s*\d*$/i,
+      /\s*[-–]\s*(East|West|North|South)bound/i,
+      /\s*[-–]\s*(?:\w+\s+)?Platform\s*\d*$/i,
+      /\s*[-–]\s*(Upper|Lower|Mezzanine)\s*(Level|Platform)?/i,
+      /\s*[-–]\s*Track\s*\d+/i,
+      /\s*[-–]\s*Bay\s*\w+/i,
+      /\s*[-–]\s*(Inbound|Outbound)/i,
+      /\s+METROMOVER\s+STATION$/i,
+      /\s*\.?\s*STAT\.?\s*RAIL\s+(NORTH|SOUTH|EAST|WEST)BOUND$/i,
+      /\s+STATION\s+RAIL\s+(NORTH|SOUTH|EAST|WEST)BOUND$/i,
+      /\s+STATION\s+(NORTH|SOUTH|EAST|WEST)BOUND$/i,
+      /\s+METRO$/i,
+      /\s*\((Subway|LRT|Metro|Rail|Light Rail|Skytrain)\)$/i,
+      /\s*\(Berlin\)$/i,
+      /\s*\(Manchester Metrolink\)$/i,
+      /\s*\(Edinburgh Trams\)$/i,
+      /\s*\((EB|WB|NB|SB)\)$/i,
+      /\s*\((Blue|Red|Green|Pink|Orange|Brown|Purple)[^)]*\)$/i,
+      /\s+Underground Station$/i,
+      /\s+SPT Subway Station$/i,
+      /\s+Overground Station$/i,
+      /(?<!Union)(?<!Central)(?<!Victoria)(?<!Paddington)(?<!Waterloo)\s+Station$/i,
+    ];
+    for (const p of patterns) name = name.replace(p, '');
+    name = name.trim();
+    if (name === name.toUpperCase() && /[A-Z]/.test(name)) {
+      name = name.toLowerCase().replace(/(^|[\s\-/])(\S)/g, (_, sep, c) => sep + c.toUpperCase())
+        .replace(/(\d)(st|nd|rd|th)\b/gi, (_, n, s) => n + s.toLowerCase());
+    }
+    return name;
+  }
+
   async function decide(extraFields, toast) {
     const station = getSelectedStation();
     if (!station) return;
     const next = nextQueryAfter(station.id);
 
     // Move from queries → stations
-    const decided = { ...station, ...capturePanoState(), ...extraFields };
+    const panoState = capturePanoState();
+    const decided = { ...station, ...panoState, ...extraFields, name: normalizeStationName(station.name) };
     queries = queries.filter(s => s.id !== station.id);
     stations = [...stations, decided];
 

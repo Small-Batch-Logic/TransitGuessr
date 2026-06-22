@@ -10,7 +10,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "King Station",
+    "name": "King",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.6488,
@@ -20,7 +20,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Queen Station",
+    "name": "Queen",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.6525,
@@ -30,7 +30,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Dundas Station",
+    "name": "Dundas",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.6562,
@@ -40,7 +40,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "College Station",
+    "name": "College",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.6601,
@@ -50,7 +50,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Wellesley Station",
+    "name": "Wellesley",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.6646,
@@ -60,7 +60,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Bloor–Yonge Station",
+    "name": "Bloor–Yonge",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.6711,
@@ -70,7 +70,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Eglinton Station",
+    "name": "Eglinton",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.7051,
@@ -80,7 +80,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Lawrence Station",
+    "name": "Lawrence",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.7232,
@@ -90,7 +90,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "York Mills Station",
+    "name": "York Mills",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.7453,
@@ -100,7 +100,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Sheppard–Yonge Station",
+    "name": "Sheppard–Yonge",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.7615,
@@ -110,7 +110,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Finch Station",
+    "name": "Finch",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.7803,
@@ -120,7 +120,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Osgoode Station",
+    "name": "Osgoode",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.6506,
@@ -130,7 +130,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "St. Patrick Station",
+    "name": "St. Patrick",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.6539,
@@ -140,7 +140,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Queen's Park Station",
+    "name": "Queen's Park",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.6596,
@@ -150,7 +150,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Museum Station",
+    "name": "Museum",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.6673,
@@ -160,7 +160,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "St. George Station",
+    "name": "St. George",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.6686,
@@ -170,7 +170,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Spadina Station",
+    "name": "Spadina",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.6674,
@@ -180,7 +180,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Bay Station",
+    "name": "Bay",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.6696,
@@ -190,7 +190,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Kipling Station",
+    "name": "Kipling",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.6368,
@@ -200,7 +200,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Kennedy Station",
+    "name": "Kennedy",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.7326,
@@ -210,7 +210,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Wilson Station",
+    "name": "Wilson",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.7405,
@@ -220,7 +220,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Glencairn Station",
+    "name": "Glencairn",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.7117,
@@ -230,7 +230,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Lawrence West Station",
+    "name": "Lawrence West",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.7179,
@@ -240,7 +240,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Downsview Park Station",
+    "name": "Downsview Park",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.753,
@@ -250,7 +250,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Pioneer Village Station",
+    "name": "Pioneer Village",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.7849,
@@ -370,7 +370,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Waterfront Station",
+    "name": "Waterfront",
     "system": "SkyTrain",
     "city": "Vancouver",
     "lat": 49.2866,
@@ -380,7 +380,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Burrard Station",
+    "name": "Burrard",
     "system": "SkyTrain",
     "city": "Vancouver",
     "lat": 49.2853,
@@ -390,7 +390,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Granville Station",
+    "name": "Granville",
     "system": "SkyTrain",
     "city": "Vancouver",
     "lat": 49.2827,
@@ -400,7 +400,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Stadium-Chinatown Station",
+    "name": "Stadium-Chinatown",
     "system": "SkyTrain",
     "city": "Vancouver",
     "lat": 49.2793,
@@ -420,7 +420,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Commercial-Broadway Station",
+    "name": "Commercial-Broadway",
     "system": "SkyTrain",
     "city": "Vancouver",
     "lat": 49.2631,
@@ -430,7 +430,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Metrotown Station",
+    "name": "Metrotown",
     "system": "SkyTrain",
     "city": "Burnaby",
     "lat": 49.2249,
@@ -450,7 +450,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "King George Station",
+    "name": "King George",
     "system": "SkyTrain",
     "city": "Surrey",
     "lat": 49.1828,
@@ -510,7 +510,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "34th St–Penn Station",
+    "name": "34th St–Penn",
     "system": "NYC Subway",
     "city": "New York",
     "lat": 40.7506,
@@ -750,7 +750,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Shinjuku Station",
+    "name": "Shinjuku",
     "system": "Tokyo Metro",
     "city": "Tokyo",
     "lat": 35.6896,
@@ -760,7 +760,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Shibuya Station",
+    "name": "Shibuya",
     "system": "Tokyo Metro",
     "city": "Tokyo",
     "lat": 35.658,
@@ -770,7 +770,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Ikebukuro Station",
+    "name": "Ikebukuro",
     "system": "Tokyo Metro",
     "city": "Tokyo",
     "lat": 35.7295,
@@ -780,7 +780,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Tokyo Station",
+    "name": "Tokyo",
     "system": "Tokyo Metro",
     "city": "Tokyo",
     "lat": 35.6812,
@@ -790,7 +790,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Ueno Station",
+    "name": "Ueno",
     "system": "Tokyo Metro",
     "city": "Tokyo",
     "lat": 35.7141,
@@ -800,7 +800,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Ginza Station",
+    "name": "Ginza",
     "system": "Tokyo Metro",
     "city": "Tokyo",
     "lat": 35.6717,
@@ -810,7 +810,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Roppongi Station",
+    "name": "Roppongi",
     "system": "Tokyo Metro",
     "city": "Tokyo",
     "lat": 35.6641,
@@ -820,7 +820,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Akihabara Station",
+    "name": "Akihabara",
     "system": "Tokyo Metro",
     "city": "Tokyo",
     "lat": 35.6984,
@@ -830,7 +830,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Howard Station",
+    "name": "Howard",
     "system": "CTA",
     "city": "Chicago",
     "lat": 42.0192,
@@ -840,7 +840,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Belmont Station",
+    "name": "Belmont",
     "system": "CTA",
     "city": "Chicago",
     "lat": 41.9397,
@@ -850,7 +850,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Fullerton Station",
+    "name": "Fullerton",
     "system": "CTA",
     "city": "Chicago",
     "lat": 41.9247,
@@ -860,7 +860,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Chicago/State Station",
+    "name": "Chicago/State",
     "system": "CTA",
     "city": "Chicago",
     "lat": 41.8965,
@@ -870,7 +870,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Jackson Station",
+    "name": "Jackson",
     "system": "CTA",
     "city": "Chicago",
     "lat": 41.8781,
@@ -880,7 +880,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Clark/Lake Station",
+    "name": "Clark/Lake",
     "system": "CTA",
     "city": "Chicago",
     "lat": 41.8857,
@@ -890,7 +890,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Roosevelt Station",
+    "name": "Roosevelt",
     "system": "CTA",
     "city": "Chicago",
     "lat": 41.8674,
@@ -900,7 +900,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "95th/Dan Ryan Station",
+    "name": "95th/Dan Ryan",
     "system": "CTA",
     "city": "Chicago",
     "lat": 41.7225,
@@ -1000,7 +1000,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Town Hall Station",
+    "name": "Town Hall",
     "system": "Sydney Trains",
     "city": "Sydney",
     "lat": -33.8732,
@@ -1010,7 +1010,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Wynyard Station",
+    "name": "Wynyard",
     "system": "Sydney Trains",
     "city": "Sydney",
     "lat": -33.8655,
@@ -1020,7 +1020,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Bondi Junction Station",
+    "name": "Bondi Junction",
     "system": "Sydney Trains",
     "city": "Sydney",
     "lat": -33.8916,
@@ -1030,7 +1030,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "North Sydney Station",
+    "name": "North Sydney",
     "system": "Sydney Trains",
     "city": "Sydney",
     "lat": -33.8396,
@@ -1040,7 +1040,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Parramatta Station",
+    "name": "Parramatta",
     "system": "Sydney Trains",
     "city": "Sydney",
     "lat": -33.8169,
@@ -1050,7 +1050,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Strathfield Station",
+    "name": "Strathfield",
     "system": "Sydney Trains",
     "city": "Sydney",
     "lat": -33.871,
@@ -1060,7 +1060,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Chatswood Station",
+    "name": "Chatswood",
     "system": "Sydney Trains",
     "city": "Sydney",
     "lat": -33.7997,
@@ -1070,7 +1070,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Circular Quay Station",
+    "name": "Circular Quay",
     "system": "Sydney Trains",
     "city": "Sydney",
     "lat": -33.8617,
@@ -1080,7 +1080,7 @@
     "svPanoId": "legacy"
   },
   {
-    "name": "Museum Station",
+    "name": "Museum",
     "system": "Sydney Trains",
     "city": "Sydney",
     "lat": -33.876,
@@ -1176,7 +1176,7 @@
     "svEnvironment": "indoor"
   },
   {
-    "name": "Harajuku Station",
+    "name": "Harajuku",
     "system": "Tokyo Metro",
     "city": "Tokyo",
     "lat": 35.6702,
@@ -1191,7 +1191,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Omotesando Station",
+    "name": "Omotesando",
     "system": "Tokyo Metro",
     "city": "Tokyo",
     "lat": 35.6652,
@@ -1233,7 +1233,7 @@
     "svPanoId": "2WN3f27pRvkQEIBNBtml0A"
   },
   {
-    "name": "Cedarvale Station - Southbound Platform",
+    "name": "Cedarvale",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.699348,
@@ -1247,7 +1247,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Sheppard West Station - Northbound Platform",
+    "name": "Sheppard West",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.750204,
@@ -1261,7 +1261,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Vaughan Metropolitan Centre Station - Southbound Platform",
+    "name": "Vaughan Metropolitan Centre",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.794021,
@@ -1275,7 +1275,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "King Station - Southbound Platform",
+    "name": "King",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.648449,
@@ -1288,7 +1288,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Ossington Station - Eastbound Platform",
+    "name": "Ossington",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.662349,
@@ -1302,7 +1302,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Castle Frank Station - Eastbound Platform",
+    "name": "Castle Frank",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.674049,
@@ -1316,7 +1316,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Highway 407 Station - Southbound Platform",
+    "name": "Highway 407",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.783359,
@@ -1330,7 +1330,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "St Clair West Station - Northbound Platform",
+    "name": "St Clair West",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.685148,
@@ -1343,7 +1343,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "High Park Station - Eastbound Platform",
+    "name": "High Park",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.653849,
@@ -1357,7 +1357,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Coxwell Station - Westbound Platform",
+    "name": "Coxwell",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.684249,
@@ -1371,7 +1371,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Eglinton Station - Northbound Platform",
+    "name": "Eglinton",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.706548,
@@ -1385,7 +1385,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Donlands Station - Eastbound Platform",
+    "name": "Donlands",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.681149,
@@ -1399,7 +1399,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Spadina Station - Eastbound Platform",
+    "name": "Spadina",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.667249,
@@ -1413,7 +1413,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Greenwood Station - Eastbound Platform",
+    "name": "Greenwood",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.682549,
@@ -1426,7 +1426,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Victoria Park Station - Westbound Platform",
+    "name": "Victoria Park",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.694649,
@@ -1440,7 +1440,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "TMU Station - Northbound Platform",
+    "name": "Tmu",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.657149,
@@ -1453,7 +1453,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "St George Station - Northbound Platform",
+    "name": "St George",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.668249,
@@ -1467,7 +1467,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Lawrence West Station - Southbound Platform",
+    "name": "Lawrence West",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.714748,
@@ -1481,7 +1481,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Bathurst Station - Westbound Platform",
+    "name": "Bathurst",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.665649,
@@ -1494,7 +1494,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Main Street Station - Westbound Platform",
+    "name": "Main Street",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.688949,
@@ -1508,7 +1508,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Runnymede Station - Westbound Platform",
+    "name": "Runnymede",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.651749,
@@ -1522,7 +1522,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Dupont Station - Southbound Platform",
+    "name": "Dupont",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.673749,
@@ -1535,7 +1535,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "TMU Station - Southbound Platform",
+    "name": "Tmu",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.655949,
@@ -1549,7 +1549,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Victoria Park Station - Eastbound Platform",
+    "name": "Victoria Park",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.695149,
@@ -1563,7 +1563,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Runnymede Station - Eastbound Platform",
+    "name": "Runnymede",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.652049,
@@ -1577,7 +1577,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "St Patrick Station - Northbound Platform",
+    "name": "St Patrick",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.655249,
@@ -1590,7 +1590,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Lawrence Station - Northbound Platform",
+    "name": "Lawrence",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.726548,
@@ -1603,7 +1603,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Bay Station - Eastbound Platform",
+    "name": "Bay",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.670149,
@@ -1616,7 +1616,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Museum Station - Northbound Platform",
+    "name": "Museum",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.667249,
@@ -1630,7 +1630,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Greenwood Station - Westbound Platform",
+    "name": "Greenwood",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.682849,
@@ -1644,7 +1644,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "York University - Northbound Platform",
+    "name": "York University",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.774097,
@@ -1658,7 +1658,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Keele Station - Westbound Platform",
+    "name": "Keele",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.655349,
@@ -1672,7 +1672,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Lansdowne Station - Westbound Platform",
+    "name": "Lansdowne",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.659314,
@@ -1686,7 +1686,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Kennedy Station - Westbound Platform",
+    "name": "Kennedy",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.732149,
@@ -1700,7 +1700,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Queen's Park Station - Northbound Platform",
+    "name": "Queen's Park",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.660549,
@@ -1713,7 +1713,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Finch Station - Southbound Platform",
+    "name": "Finch",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.780147,
@@ -1727,7 +1727,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "York Mills Station - Northbound Platform",
+    "name": "York Mills",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.744448,
@@ -1740,7 +1740,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Eglinton Station - Southbound Platform",
+    "name": "Eglinton",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.704648,
@@ -1754,7 +1754,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Christie Station - Eastbound Platform",
+    "name": "Christie",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.664449,
@@ -1768,7 +1768,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Christie Station - Westbound Platform",
+    "name": "Christie",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.664149,
@@ -1782,7 +1782,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Dundas West Station - Westbound Platform",
+    "name": "Dundas West",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.657149,
@@ -1796,7 +1796,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Rosedale Station - Southbound Platform",
+    "name": "Rosedale",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.676049,
@@ -1810,7 +1810,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Kipling Station - Eastbound Platform",
+    "name": "Kipling",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.637648,
@@ -1824,7 +1824,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Warden Station - Eastbound Platform",
+    "name": "Warden",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.712149,
@@ -1838,7 +1838,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Woodbine Station - Eastbound Platform",
+    "name": "Woodbine",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.686649,
@@ -1852,7 +1852,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Bloor Station - Southbound Platform",
+    "name": "Bloor",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.670049,
@@ -1865,7 +1865,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Islington Station - Westbound Platform",
+    "name": "Islington",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.645248,
@@ -1879,7 +1879,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Yorkdale Station - Northbound Platform",
+    "name": "Yorkdale",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.725248,
@@ -1893,7 +1893,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Wilson Station - Southbound Platform",
+    "name": "Wilson",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.733848,
@@ -1906,7 +1906,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "York Mills Station - Southbound Platform",
+    "name": "York Mills",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.743248,
@@ -1920,7 +1920,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Warden Station - Westbound Platform",
+    "name": "Warden",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.710949,
@@ -1934,7 +1934,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Spadina Station - Southbound Platform",
+    "name": "Spadina",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.669049,
@@ -1947,7 +1947,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "St Andrew Station - Southbound Platform",
+    "name": "St Andrew",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.647049,
@@ -1960,7 +1960,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Islington Station - Eastbound Platform",
+    "name": "Islington",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.645548,
@@ -1974,7 +1974,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Glencairn Station - Southbound Platform",
+    "name": "Glencairn",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.708048,
@@ -1988,7 +1988,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Finch Station - Subway Platform",
+    "name": "Finch",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.780847,
@@ -2002,7 +2002,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Leslie Station - Westbound Platform",
+    "name": "Leslie",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.771248,
@@ -2016,7 +2016,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Sheppard-Yonge Station - Eastbound Platform",
+    "name": "Sheppard-Yonge",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.761494,
@@ -2030,7 +2030,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "North York Centre Station - Northbound Platform",
+    "name": "North York Centre",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.768547,
@@ -2044,7 +2044,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Don Mills Station - Subway Platform",
+    "name": "Don Mills",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.775547,
@@ -2057,7 +2057,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Dupont Station - Northbound Platform",
+    "name": "Dupont",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.674949,
@@ -2071,7 +2071,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "High Park Station - Westbound Platform",
+    "name": "High Park",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.653549,
@@ -2085,7 +2085,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Cedarvale Station - Northbound Platform",
+    "name": "Cedarvale",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.700648,
@@ -2098,7 +2098,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Pape Station - Westbound Platform",
+    "name": "Pape",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.679649,
@@ -2112,7 +2112,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Davisville Station - Southbound Platform",
+    "name": "Davisville",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.697048,
@@ -2126,7 +2126,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Spadina Station - Northbound Platform",
+    "name": "Spadina",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.670249,
@@ -2140,7 +2140,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Lawrence West Station - Northbound Platform",
+    "name": "Lawrence West",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.715784,
@@ -2154,7 +2154,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Wilson Station - Northbound Platform",
+    "name": "Wilson",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.735048,
@@ -2168,7 +2168,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Spadina Station - Westbound Platform",
+    "name": "Spadina",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.666949,
@@ -2182,7 +2182,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "St George Station - Southbound Platform",
+    "name": "St George",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.668549,
@@ -2196,7 +2196,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Keele Station - Eastbound Platform",
+    "name": "Keele",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.655649,
@@ -2210,7 +2210,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Old Mill Station - Eastbound Platform",
+    "name": "Old Mill",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.649448,
@@ -2224,7 +2224,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Dundas West Station - Eastbound Platform",
+    "name": "Dundas West",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.657449,
@@ -2237,7 +2237,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Jane Station - Westbound Platform",
+    "name": "Jane",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.649749,
@@ -2251,7 +2251,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Sheppard West Station - Southbound Platform",
+    "name": "Sheppard West",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.749147,
@@ -2265,7 +2265,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Pioneer Village Station - Southbound Platform",
+    "name": "Pioneer Village",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.77675,
@@ -2279,7 +2279,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Sherbourne Station - Eastbound Platform",
+    "name": "Sherbourne",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.672103,
@@ -2292,7 +2292,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "North York Centre Station - Southbound Platform",
+    "name": "North York Centre",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.767347,
@@ -2305,7 +2305,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Bathurst Station - Eastbound Platform",
+    "name": "Bathurst",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.665949,
@@ -2319,7 +2319,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Bayview Station - Westbound Platform",
+    "name": "Bayview",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.766951,
@@ -2333,7 +2333,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Kennedy Station - Subway Platform",
+    "name": "Kennedy",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.732487,
@@ -2347,7 +2347,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Summerhill Station - Southbound Platform",
+    "name": "Summerhill",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.682049,
@@ -2361,7 +2361,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Finch West Station - Southbound Platform",
+    "name": "Finch West",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.764855,
@@ -2375,7 +2375,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Dufferin Station - Westbound Platform",
+    "name": "Dufferin",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.660549,
@@ -2389,7 +2389,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "St George Station - Eastbound Platform",
+    "name": "St George",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.668549,
@@ -2403,7 +2403,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Ossington Station - Westbound Platform",
+    "name": "Ossington",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.662049,
@@ -2417,7 +2417,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Kipling Station - Subway Platform",
+    "name": "Kipling",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.637392,
@@ -2431,7 +2431,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Don Mills Station - Westbound Platform",
+    "name": "Don Mills",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.775248,
@@ -2444,7 +2444,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Yonge Station - Westbound Platform",
+    "name": "Yonge",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.671049,
@@ -2457,7 +2457,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Chester Station - Eastbound Platform",
+    "name": "Chester",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.678241,
@@ -2471,7 +2471,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Royal York Station - Westbound Platform",
+    "name": "Royal York",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.648348,
@@ -2484,7 +2484,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Downsview Park Station - Southbound Platform",
+    "name": "Downsview Park",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.753311,
@@ -2498,7 +2498,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Rosedale Station - Northbound Platform",
+    "name": "Rosedale",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.677249,
@@ -2512,7 +2512,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Union Station - Northbound Platform Towards Finch",
+    "name": "Union StationTowards Finch",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.645849,
@@ -2526,7 +2526,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Sherbourne Station - Westbound Platform",
+    "name": "Sherbourne",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.672174,
@@ -2539,7 +2539,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Coxwell Station - Eastbound Platform",
+    "name": "Coxwell",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.684549,
@@ -2552,7 +2552,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Broadview Station - Eastbound Platform",
+    "name": "Broadview",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.677049,
@@ -2565,7 +2565,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Bessarion Station - Westbound Platform",
+    "name": "Bessarion",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.769296,
@@ -2579,7 +2579,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "College Station - Southbound Platform",
+    "name": "College",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.660149,
@@ -2592,7 +2592,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Yorkdale Station - Southbound Platform",
+    "name": "Yorkdale",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.723948,
@@ -2606,7 +2606,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Davisville Station - Northbound Platform",
+    "name": "Davisville",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.698248,
@@ -2620,7 +2620,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "St Clair Station - Northbound Platform",
+    "name": "St Clair",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.688649,
@@ -2633,7 +2633,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "St Clair West Station - Southbound Platform",
+    "name": "St Clair West",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.683948,
@@ -2647,7 +2647,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Queen's Park Station - Southbound Platform",
+    "name": "Queen's Park",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.659249,
@@ -2660,7 +2660,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Lawrence Station - Southbound Platform",
+    "name": "Lawrence",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.725348,
@@ -2674,7 +2674,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Pioneer Village Station - Northbound Platform",
+    "name": "Pioneer Village",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.776741,
@@ -2688,7 +2688,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Osgoode Station - Southbound Platform",
+    "name": "Osgoode",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.650449,
@@ -2702,7 +2702,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Castle Frank Station - Westbound Platform",
+    "name": "Castle Frank",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.673549,
@@ -2716,7 +2716,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "College Station - Northbound Platform",
+    "name": "College",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.661449,
@@ -2730,7 +2730,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Sheppard-Yonge Station - Southbound Platform",
+    "name": "Sheppard-Yonge",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.760348,
@@ -2743,7 +2743,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Donlands Station - Westbound Platform",
+    "name": "Donlands",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.680949,
@@ -2756,7 +2756,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Bay Station - Westbound Platform",
+    "name": "Bay",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.669849,
@@ -2769,7 +2769,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Sheppard-Yonge Station - Subway Platform",
+    "name": "Sheppard-Yonge",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.761648,
@@ -2783,7 +2783,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Glencairn Station - Northbound Platform",
+    "name": "Glencairn",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.709148,
@@ -2797,7 +2797,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Museum Station - Southbound Platform",
+    "name": "Museum",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.665949,
@@ -2810,7 +2810,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Main Street Station - Eastbound Platform",
+    "name": "Main Street",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.689249,
@@ -2824,7 +2824,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Wellesley Station - Southbound Platform",
+    "name": "Wellesley",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.664949,
@@ -2838,7 +2838,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Dufferin Station - Eastbound Platform",
+    "name": "Dufferin",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.660849,
@@ -2851,7 +2851,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Woodbine Station - Westbound Platform",
+    "name": "Woodbine",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.686349,
@@ -2864,7 +2864,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Jane Station - Eastbound Platform",
+    "name": "Jane",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.650149,
@@ -2878,7 +2878,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Lansdowne Station - Eastbound Platform",
+    "name": "Lansdowne",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.659246,
@@ -2892,7 +2892,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Chester Station - Westbound Platform",
+    "name": "Chester",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.678351,
@@ -2906,7 +2906,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Leslie Station - Eastbound Platform",
+    "name": "Leslie",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.771348,
@@ -2920,7 +2920,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Wellesley Station - Northbound Platform",
+    "name": "Wellesley",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.666149,
@@ -2934,7 +2934,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "King Station - Northbound Platform",
+    "name": "King",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.649649,
@@ -2947,7 +2947,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Queen Station - Northbound Platform",
+    "name": "Queen",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.653349,
@@ -2960,7 +2960,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Sheppard-Yonge Station - Northbound Platform",
+    "name": "Sheppard-Yonge",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.761648,
@@ -2973,7 +2973,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Yonge Station - Eastbound Platform",
+    "name": "Yonge",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.670997,
@@ -2986,7 +2986,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Bayview Station - Eastbound Platform",
+    "name": "Bayview",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.766872,
@@ -3000,7 +3000,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Royal York Station - Eastbound Platform",
+    "name": "Royal York",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.648548,
@@ -3014,7 +3014,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Pape Station - Eastbound Platform",
+    "name": "Pape",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.679949,
@@ -3028,7 +3028,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "St Clair Station - Southbound Platform",
+    "name": "St Clair",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.687449,
@@ -3042,7 +3042,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Queen Station - Southbound Platform",
+    "name": "Queen",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.652149,
@@ -3055,7 +3055,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "St Patrick Station - Southbound Platform",
+    "name": "St Patrick",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.654049,
@@ -3068,7 +3068,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Summerhill Station - Northbound Platform",
+    "name": "Summerhill",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.683349,
@@ -3081,7 +3081,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Union Station - Northbound Platform Towards Vaughan Metropolitan Centre",
+    "name": "Union StationTowards Vaughan Metropolitan Centre",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.645549,
@@ -3094,7 +3094,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Bessarion Station - Eastbound Platform",
+    "name": "Bessarion",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.769202,
@@ -3108,7 +3108,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "St Andrew Station - Northbound Platform",
+    "name": "St Andrew",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.648249,
@@ -3121,7 +3121,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Osgoode Station - Northbound Platform",
+    "name": "Osgoode",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.651749,
@@ -3134,7 +3134,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Old Mill Station - Westbound Platform",
+    "name": "Old Mill",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.650048,
@@ -3148,7 +3148,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Bloor Station - Northbound Platform",
+    "name": "Bloor",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.671044,
@@ -3161,7 +3161,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Broadview Station - Westbound Platform",
+    "name": "Broadview",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.676349,
@@ -3174,7 +3174,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "STATION JARRY",
+    "name": "Jarry",
     "system": "STM",
     "city": "Montreal",
     "lat": 45.543156,
@@ -3188,7 +3188,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "STATION LAURIER",
+    "name": "Laurier",
     "system": "STM",
     "city": "Montreal",
     "lat": 45.527436,
@@ -3202,7 +3202,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "STATION DE L'ÉGLISE",
+    "name": "De L'église",
     "system": "STM",
     "city": "Montreal",
     "lat": 45.461894,
@@ -3216,7 +3216,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "STATION IBERVILLE",
+    "name": "Iberville",
     "system": "STM",
     "city": "Montreal",
     "lat": 45.553578,
@@ -3230,7 +3230,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "STATION PAPINEAU",
+    "name": "Papineau",
     "system": "STM",
     "city": "Montreal",
     "lat": 45.524115,
@@ -3243,7 +3243,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "STATION JOLIETTE",
+    "name": "Joliette",
     "system": "STM",
     "city": "Montreal",
     "lat": 45.54684,
@@ -3368,7 +3368,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "STATION RADISSON",
+    "name": "Radisson",
     "system": "STM",
     "city": "Montreal",
     "lat": 45.589414,
@@ -3410,7 +3410,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "PEARL/ARTS DISTRICT STATION",
+    "name": "Pearl/Arts District",
     "system": "DART",
     "city": "Dallas",
     "lat": 32.786618,
@@ -3452,7 +3452,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Watt/I-80 West Station (WB)",
+    "name": "Watt/I-80 West",
     "system": "SacRT",
     "city": "Sacramento",
     "lat": 38.642622,
@@ -3480,7 +3480,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "HISTORIC OVERTOWN/LYRIC THEATRE STAT.RAIL SOUTHBOUND",
+    "name": "Historic Overtown/Lyric Theatre",
     "system": "Metrorail",
     "city": "Miami",
     "lat": 25.781004,
@@ -3494,7 +3494,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "FAIR PARK STATION",
+    "name": "Fair Park",
     "system": "DART",
     "city": "Dallas",
     "lat": 32.782058,
@@ -3508,7 +3508,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "N Prescott St MAX Station",
+    "name": "N Prescott St MAX",
     "system": "MAX",
     "city": "Portland",
     "lat": 45.555211,
@@ -3536,7 +3536,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Cathedral Square Station (EB)",
+    "name": "Cathedral Square",
     "system": "SacRT",
     "city": "Sacramento",
     "lat": 38.578637,
@@ -3550,7 +3550,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "STATION MCGILL",
+    "name": "Mcgill",
     "system": "STM",
     "city": "Montreal",
     "lat": 45.504096,
@@ -3605,7 +3605,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "La Verne / Fairplex Station",
+    "name": "La Verne / Fairplex",
     "system": "LA Metro",
     "city": "Los Angeles",
     "lat": 34.0972,
@@ -3619,7 +3619,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Roseville Road Station (WB)",
+    "name": "Roseville Road",
     "system": "SacRT",
     "city": "Sacramento",
     "lat": 38.638011,
@@ -3633,7 +3633,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "LAS COLINAS URBAN CENTER STATION",
+    "name": "Las Colinas Urban Center",
     "system": "DART",
     "city": "Dallas",
     "lat": 32.868572,
@@ -3661,7 +3661,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Globe Avenue Station (WB)",
+    "name": "Globe Avenue",
     "system": "SacRT",
     "city": "Sacramento",
     "lat": 38.602633,
@@ -3703,7 +3703,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "MORRELL STATION",
+    "name": "Morrell",
     "system": "DART",
     "city": "Dallas",
     "lat": 32.73986,
@@ -3771,7 +3771,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "LEDBETTER STATION",
+    "name": "Ledbetter",
     "system": "DART",
     "city": "Dallas",
     "lat": 32.683394,
@@ -3785,7 +3785,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Portland Int'l Airport MAX Station",
+    "name": "Portland Int'l Airport MAX",
     "system": "MAX",
     "city": "Portland",
     "lat": 45.587584,
@@ -3799,7 +3799,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Mather Field/Mills Station (EB)",
+    "name": "Mather Field/Mills",
     "system": "SacRT",
     "city": "Sacramento",
     "lat": 38.584973,
@@ -3827,7 +3827,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "STATION PRÉFONTAINE",
+    "name": "Préfontaine",
     "system": "STM",
     "city": "Montreal",
     "lat": 45.541717,
@@ -3939,7 +3939,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "N Killingsworth St MAX Station",
+    "name": "N Killingsworth St MAX",
     "system": "MAX",
     "city": "Portland",
     "lat": 45.562668,
@@ -3967,7 +3967,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Delta Park/Vanport MAX Station",
+    "name": "Delta Park/Vanport MAX",
     "system": "MAX",
     "city": "Portland",
     "lat": 45.596122,
@@ -3981,7 +3981,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Oxford-City of Sheridan Station",
+    "name": "Oxford-City of Sheridan",
     "system": "RTD",
     "city": "Denver",
     "lat": 39.643421,
@@ -4051,7 +4051,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Kenton/N Denver Ave MAX Station",
+    "name": "Kenton/N Denver Ave MAX",
     "system": "MAX",
     "city": "Portland",
     "lat": 45.58386,
@@ -4065,7 +4065,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Jefferson / USC Station",
+    "name": "Jefferson / USC",
     "system": "LA Metro",
     "city": "Los Angeles",
     "lat": 34.022123,
@@ -4134,7 +4134,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "DREXMORE STATION",
+    "name": "Drexmore",
     "system": "GCRTA",
     "city": "Cleveland",
     "lat": 41.482138,
@@ -4190,7 +4190,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Gateway/NE 99th Ave TC MAX Station",
+    "name": "Gateway/NE 99th Ave TC MAX",
     "system": "MAX",
     "city": "Portland",
     "lat": 45.530554,
@@ -4204,7 +4204,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Elmonica/SW 170th Ave MAX Station",
+    "name": "Elmonica/SW 170th Ave MAX",
     "system": "MAX",
     "city": "Portland",
     "lat": 45.509955,
@@ -4232,7 +4232,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "39th Street Station (WB)",
+    "name": "39th Street",
     "system": "SacRT",
     "city": "Sacramento",
     "lat": 38.56087,
@@ -4260,7 +4260,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "10th St Station",
+    "name": "10th St",
     "system": "Metro Transit",
     "city": "Minneapolis",
     "lat": 44.950663,
@@ -4274,7 +4274,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Westgate Station",
+    "name": "Westgate",
     "system": "Metro Transit",
     "city": "Minneapolis",
     "lat": 44.967132,
@@ -4288,7 +4288,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "WEST END STATION",
+    "name": "West End",
     "system": "MARTA",
     "city": "Atlanta",
     "lat": 33.735705,
@@ -4302,7 +4302,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "LEXINGTON MARKET METRO",
+    "name": "Lexington Market",
     "system": "MTA Metro",
     "city": "Baltimore",
     "lat": 39.29173,
@@ -4344,7 +4344,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Meadowview Station (WB)",
+    "name": "Meadowview",
     "system": "SacRT",
     "city": "Sacramento",
     "lat": 38.483607,
@@ -4413,7 +4413,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Western Ave Station",
+    "name": "Western Ave",
     "system": "Metro Transit",
     "city": "Minneapolis",
     "lat": 44.955736,
@@ -4427,7 +4427,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Sunrise Station (EB)",
+    "name": "Sunrise",
     "system": "SacRT",
     "city": "Sacramento",
     "lat": 38.606965,
@@ -4469,7 +4469,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "SHOT TOWER METRO",
+    "name": "Shot Tower",
     "system": "MTA Metro",
     "city": "Baltimore",
     "lat": 39.289915,
@@ -4483,7 +4483,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "EAST LAKE STATION",
+    "name": "East Lake",
     "system": "MARTA",
     "city": "Atlanta",
     "lat": 33.765196,
@@ -4497,7 +4497,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "LAKE JUNE STATION",
+    "name": "Lake June",
     "system": "DART",
     "city": "Dallas",
     "lat": 32.732335,
@@ -4525,7 +4525,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "S+U Karl-Bonhoeffer-Nervenklinik (Berlin)",
+    "name": "S+U Karl-Bonhoeffer-Nervenklinik",
     "system": "BVG",
     "city": "Berlin",
     "lat": 52.578169,
@@ -4579,7 +4579,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Power Inn Station (WB)",
+    "name": "Power Inn",
     "system": "SacRT",
     "city": "Sacramento",
     "lat": 38.547483,
@@ -4607,7 +4607,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "U Louis-Lewin-Str. (Berlin)",
+    "name": "U Louis-Lewin-Str.",
     "system": "BVG",
     "city": "Berlin",
     "lat": 52.539135,
@@ -4621,7 +4621,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Holt Town (Manchester Metrolink)",
+    "name": "Holt Town",
     "system": "Metrolink",
     "city": "Manchester",
     "lat": 53.483257,
@@ -4635,7 +4635,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Garfield (Red)",
+    "name": "Garfield",
     "system": "CTA",
     "city": "Chicago",
     "lat": 41.79542,
@@ -4691,7 +4691,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "South Quay DLR Station",
+    "name": "South Quay DLR",
     "system": "London Underground",
     "city": "London",
     "lat": 51.500065,
@@ -4705,7 +4705,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Clapham South Underground Station",
+    "name": "Clapham South",
     "system": "London Underground",
     "city": "London",
     "lat": 51.452654,
@@ -4718,7 +4718,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "STATE CENTER METRO",
+    "name": "State Center",
     "system": "MTA Metro",
     "city": "Baltimore",
     "lat": 39.301515,
@@ -4745,7 +4745,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Belmont (Blue)",
+    "name": "Belmont",
     "system": "CTA",
     "city": "Chicago",
     "lat": 41.939111,
@@ -4786,7 +4786,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "LBJ / SKILLMAN STATION",
+    "name": "Lbj / Skillman",
     "system": "DART",
     "city": "Dallas",
     "lat": 32.897924,
@@ -4814,7 +4814,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "SE Tacoma/Johnson Creek MAX Station",
+    "name": "SE Tacoma/Johnson Creek MAX",
     "system": "MAX",
     "city": "Portland",
     "lat": 45.462807,
@@ -4828,7 +4828,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Old Street Underground Station",
+    "name": "Old Street",
     "system": "London Underground",
     "city": "London",
     "lat": 51.525864,
@@ -4842,7 +4842,7 @@
     "svEnvironment": "indoor"
   },
   {
-    "name": "Fort Douglas Station",
+    "name": "Fort Douglas",
     "system": "TRAX",
     "city": "Salt Lake City",
     "lat": 40.764766,
@@ -4869,7 +4869,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "St Peter's Square (Manchester Metrolink)",
+    "name": "St Peter's Square",
     "system": "Metrolink",
     "city": "Manchester",
     "lat": 53.478209,
@@ -4896,7 +4896,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Government Plaza Station",
+    "name": "Government Plaza",
     "system": "Metro Transit",
     "city": "Minneapolis",
     "lat": 44.976863,
@@ -4910,7 +4910,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "DADELAND SOUTH STAT.RAIL SOUTHBOUND",
+    "name": "Dadeland South",
     "system": "Metrorail",
     "city": "Miami",
     "lat": 25.685075,
@@ -4979,7 +4979,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "SANTA CLARA STATION RAIL SOUTHBOUND",
+    "name": "Santa Clara",
     "system": "Metrorail",
     "city": "Miami",
     "lat": 25.795807,
@@ -5006,7 +5006,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Cathedral Square Station (EB)",
+    "name": "Cathedral Square",
     "system": "SacRT",
     "city": "Sacramento",
     "lat": 38.578637,
@@ -5047,7 +5047,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Seaport Village Station",
+    "name": "Seaport Village",
     "system": "MTS Trolley",
     "city": "San Diego",
     "lat": 32.711923,
@@ -5061,7 +5061,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Barrio Logan Station",
+    "name": "Barrio Logan",
     "system": "MTS Trolley",
     "city": "San Diego",
     "lat": 32.698024,
@@ -5075,7 +5075,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Royal Oaks Station (EB)",
+    "name": "Royal Oaks",
     "system": "SacRT",
     "city": "Sacramento",
     "lat": 38.605943,
@@ -5088,7 +5088,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Louisiana / Pearl Station",
+    "name": "Louisiana / Pearl",
     "system": "RTD",
     "city": "Denver",
     "lat": 39.692708,
@@ -5170,7 +5170,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Nine Mile Station",
+    "name": "Nine Mile",
     "system": "RTD",
     "city": "Denver",
     "lat": 39.658414,
@@ -5183,7 +5183,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "COVENTRY STATION",
+    "name": "Coventry",
     "system": "GCRTA",
     "city": "Cleveland",
     "lat": 41.483231,
@@ -5197,7 +5197,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Dollis Hill Underground Station",
+    "name": "Dollis Hill",
     "system": "London Underground",
     "city": "London",
     "lat": 51.551955,
@@ -5265,7 +5265,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "UHEALTH JACKSON STATION RAIL NORTHBOUND",
+    "name": "Uhealth Jackson",
     "system": "Metrorail",
     "city": "Miami",
     "lat": 25.789712,
@@ -5307,7 +5307,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "5th Street Station",
+    "name": "5th Street",
     "system": "LA Metro",
     "city": "Los Angeles",
     "lat": 33.773598,
@@ -5321,7 +5321,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "HIALEAH STATION RAIL NORTHBOUND",
+    "name": "Hialeah",
     "system": "Metrorail",
     "city": "Miami",
     "lat": 25.841233,
@@ -5335,7 +5335,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Draper Town Center Station",
+    "name": "Draper Town Center",
     "system": "TRAX",
     "city": "Salt Lake City",
     "lat": 40.525675,
@@ -5403,7 +5403,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "U Halemweg (Berlin)",
+    "name": "U Halemweg",
     "system": "BVG",
     "city": "Berlin",
     "lat": 52.536703,
@@ -5417,7 +5417,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Woodbine Station - Eastbound Platform",
+    "name": "Woodbine",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.686649,
@@ -5431,7 +5431,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Davisville Station - Southbound Platform",
+    "name": "Davisville",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.697048,
@@ -5445,7 +5445,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "S Buch (Berlin)",
+    "name": "S Buch",
     "system": "BVG",
     "city": "Berlin",
     "lat": 52.636297,
@@ -5486,7 +5486,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Aldgate East Underground Station",
+    "name": "Aldgate East",
     "system": "London Underground",
     "city": "London",
     "lat": 51.515037,
@@ -5500,7 +5500,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "High Park Station - Westbound Platform",
+    "name": "High Park",
     "system": "TTC",
     "city": "Toronto",
     "lat": 43.653549,
@@ -5582,7 +5582,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Irwindale Station",
+    "name": "Irwindale",
     "system": "LA Metro",
     "city": "Los Angeles",
     "lat": 34.129048,
@@ -5596,7 +5596,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Lancaster Gate Underground Station",
+    "name": "Lancaster Gate",
     "system": "London Underground",
     "city": "London",
     "lat": 51.511723,
@@ -5652,7 +5652,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "S+U Jungfernheide Bhf (Berlin)",
+    "name": "S+U Jungfernheide Bhf",
     "system": "BVG",
     "city": "Berlin",
     "lat": 52.530452,
@@ -5666,7 +5666,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Lake City Way Station",
+    "name": "Lake City Way",
     "system": "SkyTrain",
     "city": "Vancouver",
     "lat": 49.254635,
@@ -5680,7 +5680,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "U Freie Universität (Thielplatz) (Berlin)",
+    "name": "U Freie Universität (Thielplatz)",
     "system": "BVG",
     "city": "Berlin",
     "lat": 52.451,
@@ -5707,7 +5707,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "U Paradestr. (Berlin)",
+    "name": "U Paradestr.",
     "system": "BVG",
     "city": "Berlin",
     "lat": 52.478142,
@@ -5748,7 +5748,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "STATION DE CASTELNAU",
+    "name": "De Castelnau",
     "system": "STM",
     "city": "Montreal",
     "lat": 45.535469,
@@ -5775,7 +5775,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Shepherd's Bush Market Underground Station",
+    "name": "Shepherd's Bush Market",
     "system": "London Underground",
     "city": "London",
     "lat": 51.505579,
@@ -5816,7 +5816,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "St. James's Park Underground Station",
+    "name": "St. James's Park",
     "system": "London Underground",
     "city": "London",
     "lat": 51.499544,
@@ -5830,7 +5830,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "PSU Urban Center/SW 5th & Mill MAX Station",
+    "name": "PSU Urban Center/SW 5th & Mill MAX",
     "system": "MAX",
     "city": "Portland",
     "lat": 45.511645,
@@ -5871,7 +5871,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Fairview Heights Station",
+    "name": "Fairview Heights",
     "system": "LA Metro",
     "city": "Los Angeles",
     "lat": 33.975252,
@@ -5912,7 +5912,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Weaste (Manchester Metrolink)",
+    "name": "Weaste",
     "system": "Metrolink",
     "city": "Manchester",
     "lat": 53.482366,
@@ -5940,7 +5940,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "SE 17th Ave & Holgate Blvd MAX Station",
+    "name": "SE 17th Ave & Holgate Blvd MAX",
     "system": "MAX",
     "city": "Portland",
     "lat": 45.490898,
@@ -5954,7 +5954,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Timperley (Manchester Metrolink)",
+    "name": "Timperley",
     "system": "Metrolink",
     "city": "Manchester",
     "lat": 53.404343,
@@ -5968,7 +5968,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Soto Station",
+    "name": "Soto",
     "system": "LA Metro",
     "city": "Los Angeles",
     "lat": 34.043747,
@@ -6009,7 +6009,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Ibrox SPT Subway Station",
+    "name": "Ibrox",
     "system": "Glasgow Subway",
     "city": "Glasgow",
     "lat": 55.854597,
@@ -6050,7 +6050,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Stadium Village Station",
+    "name": "Stadium Village",
     "system": "Metro Transit",
     "city": "Minneapolis",
     "lat": 44.974753,
@@ -6064,7 +6064,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "S Lichterfelde Süd (Berlin)",
+    "name": "S Lichterfelde Süd",
     "system": "BVG",
     "city": "Berlin",
     "lat": 52.409956,
@@ -6117,7 +6117,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "S Ostkreuz Bhf (Berlin)",
+    "name": "S Ostkreuz Bhf",
     "system": "BVG",
     "city": "Berlin",
     "lat": 52.503113,
@@ -6144,7 +6144,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Hollywood / Western Station",
+    "name": "Hollywood / Western",
     "system": "LA Metro",
     "city": "Los Angeles",
     "lat": 34.101737,
@@ -6170,7 +6170,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Harlem (Blue - O'Hare Branch)",
+    "name": "Harlem",
     "system": "CTA",
     "city": "Chicago",
     "lat": 41.98227,
@@ -6184,7 +6184,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "North Hollywood Station",
+    "name": "North Hollywood",
     "system": "LA Metro",
     "city": "Los Angeles",
     "lat": 34.168504,
@@ -6198,7 +6198,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "WEST END STATION",
+    "name": "West End",
     "system": "DART",
     "city": "Dallas",
     "lat": 32.780915,
@@ -6212,7 +6212,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "West India Quay DLR Station",
+    "name": "West India Quay DLR",
     "system": "London Underground",
     "city": "London",
     "lat": 51.50703,
@@ -6226,7 +6226,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Beckton Park DLR Station",
+    "name": "Beckton Park DLR",
     "system": "London Underground",
     "city": "London",
     "lat": 51.508793,
@@ -6239,7 +6239,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Pico / Aliso Station",
+    "name": "Pico / Aliso",
     "system": "LA Metro",
     "city": "Los Angeles",
     "lat": 34.047634,
@@ -6309,7 +6309,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "S Hackescher Markt (Berlin)",
+    "name": "S Hackescher Markt",
     "system": "BVG",
     "city": "Berlin",
     "lat": 52.522607,
@@ -6337,7 +6337,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Harlem (Blue - Forest Park Branch)",
+    "name": "Harlem",
     "system": "CTA",
     "city": "Chicago",
     "lat": 41.87349,
@@ -6351,7 +6351,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Whitechapel Underground Station",
+    "name": "Whitechapel",
     "system": "London Underground",
     "city": "London",
     "lat": 51.519518,
@@ -6365,7 +6365,7 @@
     "svEnvironment": "indoor"
   },
   {
-    "name": "Redbridge Underground Station",
+    "name": "Redbridge",
     "system": "London Underground",
     "city": "London",
     "lat": 51.576243,
@@ -6406,7 +6406,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Edinburgh Airport (Edinburgh Trams)",
+    "name": "Edinburgh Airport",
     "system": "Edinburgh Trams",
     "city": "Edinburgh",
     "lat": 55.947619,
@@ -6420,7 +6420,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Dagenham East Underground Station",
+    "name": "Dagenham East",
     "system": "London Underground",
     "city": "London",
     "lat": 51.544096,
@@ -6434,7 +6434,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Warren Street Underground Station",
+    "name": "Warren Street",
     "system": "London Underground",
     "city": "London",
     "lat": 51.524951,
@@ -6487,7 +6487,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Stokes-Windermere Station",
+    "name": "Stokes-Windermere",
     "system": "GCRTA",
     "city": "Cleveland",
     "lat": 41.530379,
@@ -6542,7 +6542,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "LYNNFIELD STATION",
+    "name": "Lynnfield",
     "system": "GCRTA",
     "city": "Cleveland",
     "lat": 41.466575,
@@ -6570,7 +6570,7 @@
     "svEnvironment": "outdoor"
   },
   {
-    "name": "Tecolote Road Station",
+    "name": "Tecolote Road",
     "system": "MTS Trolley",
     "city": "San Diego",
     "lat": 32.769855,
@@ -6597,7 +6597,7 @@
     "svStatus": "skip"
   },
   {
-    "name": "Fairlop Underground Station",
+    "name": "Fairlop",
     "system": "London Underground",
     "city": "London",
     "lat": 51.595618,
@@ -6635,6 +6635,652 @@
     "svLng": -1.424363,
     "svHeading": 242.9,
     "svPitch": -9.4,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "S Königs Wusterhausen Bhf",
+    "system": "BVG",
+    "city": "Berlin",
+    "lat": 52.296963,
+    "lng": 13.631305,
+    "svPanoId": "IdWqxZ3stQVnGL_CHgt-MQ",
+    "svLat": 52.296988,
+    "svLng": 13.630627,
+    "svHeading": 84.7,
+    "svPitch": -3.1,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Hempstead Gardens",
+    "system": "LIRR",
+    "city": "New York",
+    "lat": 40.694914,
+    "lng": -73.646209,
+    "svPanoId": "ExlBsIh3HBft8Srtiy5cVg",
+    "svLat": 40.694859,
+    "svLng": -73.646104,
+    "svHeading": 303.4,
+    "svPitch": 0.6,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Kipling",
+    "system": "TTC",
+    "city": "Toronto",
+    "lat": 43.637392,
+    "lng": -79.535892,
+    "svPanoId": "1rIBG5PuymMdasAQqXkQHA",
+    "svLat": 43.637598,
+    "svLng": -79.536207,
+    "svHeading": 165,
+    "svPitch": -1.8,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Central Library",
+    "system": "MAX",
+    "city": "Portland",
+    "lat": 45.519207,
+    "lng": -122.682443,
+    "svPanoId": "OwaHenZTBqtSAAvfPYCHjw",
+    "svLat": 45.519229,
+    "svLng": -122.682073,
+    "svHeading": 99.4,
+    "svPitch": -3.1,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Dempster",
+    "system": "CTA",
+    "city": "Chicago",
+    "lat": 42.041655,
+    "lng": -87.681602,
+    "svPanoId": "jQ_Nm9qqnqwTWOcszHdYpA",
+    "svLat": 42.041651,
+    "svLng": -87.681477,
+    "svHeading": 274.6,
+    "svPitch": -0.4,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Pleasantville",
+    "system": "Metro-North",
+    "city": "New York",
+    "lat": 41.135222,
+    "lng": -73.792661,
+    "svPanoId": "MYXwemD6PDXdAslr2C59pg",
+    "svLat": 41.135253,
+    "svLng": -73.792696,
+    "svHeading": 355.6,
+    "svPitch": 0.4,
+    "svStatus": "skip"
+  },
+  {
+    "name": "Kirkdale",
+    "system": "Merseyrail",
+    "city": "Liverpool",
+    "lat": 53.440785,
+    "lng": -2.981167,
+    "svPanoId": "K--Xipl0EI2SZS6ThhNKxA",
+    "svLat": 53.441036,
+    "svLng": -2.98132,
+    "svHeading": 0,
+    "svPitch": 0,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Magdeburg-Neustadt, Bahnhof",
+    "system": "BVG",
+    "city": "Berlin",
+    "lat": 52.148843,
+    "lng": 11.641703,
+    "svPanoId": "eLKNieFbYuAahR3X5Vf5Qg",
+    "svLat": 52.148767,
+    "svLng": 11.641522,
+    "svHeading": 207,
+    "svPitch": -3.8,
+    "svStatus": "skip"
+  },
+  {
+    "name": "Crossharbour DLR",
+    "system": "London Underground",
+    "city": "London",
+    "lat": 51.495728,
+    "lng": -0.014606,
+    "svPanoId": "-ay_BFVl4XaRH2mbwfigwQ",
+    "svLat": 51.495944,
+    "svLng": -0.014552,
+    "svHeading": 121.6,
+    "svPitch": -0.9,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "47th",
+    "system": "CTA",
+    "city": "Chicago",
+    "lat": 41.810318,
+    "lng": -87.63094,
+    "svPanoId": "hUGM8kmnd_Ue6GHvnNC3KA",
+    "svLat": 41.810325,
+    "svLng": -87.630898,
+    "svHeading": 299.7,
+    "svPitch": -7.7,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Daybreak Parkway",
+    "system": "TRAX",
+    "city": "Salt Lake City",
+    "lat": 40.543811,
+    "lng": -112.013905,
+    "svPanoId": "JHXKuJffzmMfnm12JdgWjQ",
+    "svLat": 40.543788,
+    "svLng": -112.013966,
+    "svHeading": 0.4,
+    "svPitch": -0.4,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Magdeburg, Bahnhof Rothensee",
+    "system": "BVG",
+    "city": "Berlin",
+    "lat": 52.186756,
+    "lng": 11.647915,
+    "svPanoId": "CAoSFkNJSE0wb2dLRUlDQWdJREVoN2ZmWHc.",
+    "svLat": 52.186303,
+    "svLng": 11.648246,
+    "svHeading": 16.5,
+    "svPitch": -0.1,
+    "svStatus": "skip"
+  },
+  {
+    "name": "U Adenauerplatz",
+    "system": "BVG",
+    "city": "Berlin",
+    "lat": 52.500086,
+    "lng": 13.307348,
+    "svPanoId": "PrSlprYyign0dEl1fNIK2w",
+    "svLat": 52.500088,
+    "svLng": 13.307349,
+    "svHeading": 344.4,
+    "svPitch": -2.2,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Eaton",
+    "system": "GCRTA",
+    "city": "Cleveland",
+    "lat": 41.478513,
+    "lng": -81.549625,
+    "svPanoId": "vmN-RdYIKIVapMlaG7HnHA",
+    "svLat": 41.478618,
+    "svLng": -81.549463,
+    "svHeading": 146,
+    "svPitch": -2.4,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Barbès - Rochechouart",
+    "system": "RATP",
+    "city": "Paris",
+    "lat": 48.883789,
+    "lng": 2.349755,
+    "svPanoId": "6T2d8hamA5CXMNCA6QRnoA",
+    "svLat": 48.883877,
+    "svLng": 2.349858,
+    "svHeading": 192.9,
+    "svPitch": -0.7,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Mockrehna, Bahnhof",
+    "system": "BVG",
+    "city": "Berlin",
+    "lat": 51.505606,
+    "lng": 12.819504,
+    "svPanoId": "6T2d8hamA5CXMNCA6QRnoA",
+    "svLat": 48.883877,
+    "svLng": 2.349858,
+    "svHeading": 192.9,
+    "svPitch": -0.7,
+    "svStatus": "skip"
+  },
+  {
+    "name": "Sunset TC MAX",
+    "system": "MAX",
+    "city": "Portland",
+    "lat": 45.510241,
+    "lng": -122.781028,
+    "svPanoId": "qGvKe341X43nJRbDy0rCUw",
+    "svLat": 45.510093,
+    "svLng": -122.782041,
+    "svHeading": 184.8,
+    "svPitch": -3.2,
+    "svStatus": "skip"
+  },
+  {
+    "name": "Courtland",
+    "system": "GCRTA",
+    "city": "Cleveland",
+    "lat": 41.478516,
+    "lng": -81.542833,
+    "svPanoId": "9Nm3WTJehcWt7nNqBKfbVQ",
+    "svLat": 41.478597,
+    "svLng": -81.542884,
+    "svHeading": 153.5,
+    "svPitch": -12,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Rue de la Pompe",
+    "system": "RATP",
+    "city": "Paris",
+    "lat": 48.864718,
+    "lng": 2.278202,
+    "svPanoId": "OAgrGweLlpFwQi9KQyoJsA",
+    "svLat": 48.864716,
+    "svLng": 2.278293,
+    "svHeading": 33.4,
+    "svPitch": -7,
+    "svStatus": "skip"
+  },
+  {
+    "name": "Monroe",
+    "system": "CTA",
+    "city": "Chicago",
+    "lat": 41.880703,
+    "lng": -87.629378,
+    "svPanoId": "9OfprfDqQ9AY7H4voem6tA",
+    "svLat": 41.8807,
+    "svLng": -87.629371,
+    "svHeading": 29.1,
+    "svPitch": -1,
+    "svStatus": "skip"
+  },
+  {
+    "name": "Richelieu - Drouot",
+    "system": "RATP",
+    "city": "Paris",
+    "lat": 48.872035,
+    "lng": 2.339008,
+    "svPanoId": "8qkYYnJOILoiEHQ9mGZSCQ",
+    "svLat": 48.872145,
+    "svLng": 2.339043,
+    "svHeading": 12.2,
+    "svPitch": -0.4,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Cedars",
+    "system": "DART",
+    "city": "Dallas",
+    "lat": 32.768574,
+    "lng": -96.793253,
+    "svPanoId": "8j5WXArqn96H8x3jQvOgzg",
+    "svLat": 32.768861,
+    "svLng": -96.793395,
+    "svHeading": 257.2,
+    "svPitch": -0.8,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "White Rock",
+    "system": "DART",
+    "city": "Dallas",
+    "lat": 32.855791,
+    "lng": -96.732732,
+    "svPanoId": "_MbtGmEi4jJrdwMK3xFKQg",
+    "svLat": 32.8558,
+    "svLng": -96.732931,
+    "svHeading": 106.5,
+    "svPitch": -5.1,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Sherbourne",
+    "system": "TTC",
+    "city": "Toronto",
+    "lat": 43.672103,
+    "lng": -79.376162,
+    "svPanoId": "OE7UtJTil1NeK_3DIBRZFg",
+    "svLat": 43.672174,
+    "svLng": -79.375794,
+    "svHeading": 191.6,
+    "svPitch": -3.4,
+    "svStatus": "skip"
+  },
+  {
+    "name": "Village",
+    "system": "Metrolink",
+    "city": "Manchester",
+    "lat": 53.467459,
+    "lng": -2.309142,
+    "svPanoId": "LdSifwMhSDtLiJky-8W4WQ",
+    "svLat": 53.467289,
+    "svLng": -2.309238,
+    "svHeading": 9.8,
+    "svPitch": 1.1,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "U Rathaus Neukölln",
+    "system": "BVG",
+    "city": "Berlin",
+    "lat": 52.481146,
+    "lng": 13.434807,
+    "svPanoId": "r06tID-4sD3cuS3VJKQT5A",
+    "svLat": 52.481276,
+    "svLng": 13.434815,
+    "svHeading": 300.5,
+    "svPitch": 2.6,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "U Eberswalder Str.",
+    "system": "BVG",
+    "city": "Berlin",
+    "lat": 52.541085,
+    "lng": 13.41216,
+    "svPanoId": "2E33DmTF7cGLwYn08TzQHw",
+    "svLat": 52.541065,
+    "svLng": 13.412121,
+    "svHeading": 9.6,
+    "svPitch": -1.9,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Jefferson / USC",
+    "system": "LA Metro",
+    "city": "Los Angeles",
+    "lat": 34.022123,
+    "lng": -118.278118,
+    "svPanoId": "fTw_tyyy3bJom3jaA2Hh0g",
+    "svLat": 34.022172,
+    "svLng": -118.278285,
+    "svHeading": 87.7,
+    "svPitch": 4.7,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Ainsdale",
+    "system": "Merseyrail",
+    "city": "Liverpool",
+    "lat": 53.601857,
+    "lng": -3.04264,
+    "svPanoId": "IbLF-LbFfoMdu0TOrGtHNQ",
+    "svLat": 53.602267,
+    "svLng": -3.042236,
+    "svHeading": 221,
+    "svPitch": -1.4,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Wilson",
+    "system": "TTC",
+    "city": "Toronto",
+    "lat": 43.733848,
+    "lng": -79.449892,
+    "svPanoId": "cSt4CJgsW7JJTBJMmiW2GQ",
+    "svLat": 43.733966,
+    "svLng": -79.449903,
+    "svHeading": 110.6,
+    "svPitch": -1.2,
+    "svStatus": "skip"
+  },
+  {
+    "name": "Handsworth Booth Street",
+    "system": "West Midlands Metro",
+    "city": "Birmingham",
+    "lat": 52.502119,
+    "lng": -1.952316,
+    "svPanoId": "K_kleSeyitUy651i61G3lg",
+    "svLat": 52.502281,
+    "svLng": -1.952222,
+    "svHeading": 175.6,
+    "svPitch": -4.6,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Shaw and Crompton",
+    "system": "Metrolink",
+    "city": "Manchester",
+    "lat": 53.576181,
+    "lng": -2.089442,
+    "svPanoId": "qBIrBclQHokx0y8OjFBNpQ",
+    "svLat": 53.576788,
+    "svLng": -2.089507,
+    "svHeading": 215.1,
+    "svPitch": -5.6,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Wansbeck Road",
+    "system": "Tyne and Wear Metro",
+    "city": "Newcastle",
+    "lat": 55.014291,
+    "lng": -1.635689,
+    "svPanoId": "SL2TgJcfmwIEa6gKC9k5OA",
+    "svLat": 55.01439,
+    "svLng": -1.63535,
+    "svHeading": 256.4,
+    "svPitch": 1.1,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Crumpsall",
+    "system": "Metrolink",
+    "city": "Manchester",
+    "lat": 53.51716,
+    "lng": -2.24105,
+    "svPanoId": "7MYdUts7WT0SCXoUrKi7Cg",
+    "svLat": 53.516974,
+    "svLng": -2.241461,
+    "svHeading": 104.9,
+    "svPitch": -0.8,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Flats East Bank",
+    "system": "GCRTA",
+    "city": "Cleveland",
+    "lat": 41.499531,
+    "lng": -81.703686,
+    "svPanoId": "FCY-rf1ngJJxWhj95zg0Wg",
+    "svLat": 41.49959,
+    "svLng": -81.703485,
+    "svHeading": 258.1,
+    "svPitch": -9.9,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Morgan",
+    "system": "CTA",
+    "city": "Chicago",
+    "lat": 41.885577,
+    "lng": -87.65213,
+    "svPanoId": "fySZ1QjapipdjFveVfmJ6g",
+    "svLat": 41.885577,
+    "svLng": -87.652224,
+    "svHeading": 54.1,
+    "svPitch": -1.7,
+    "svStatus": "skip"
+  },
+  {
+    "name": "Museum District Stn NB",
+    "system": "METRORail",
+    "city": "Houston",
+    "lat": 29.724323,
+    "lng": -95.388169,
+    "svPanoId": "iLAFW-D032-wZd4OvCNT3Q",
+    "svLat": 29.724394,
+    "svLng": -95.388228,
+    "svHeading": 129.1,
+    "svPitch": 1.1,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "South Wimbledon",
+    "system": "London Underground",
+    "city": "London",
+    "lat": 51.415309,
+    "lng": -0.192005,
+    "svPanoId": "GJN6J3pGJsf8BL9ZLanJpw",
+    "svLat": 51.415523,
+    "svLng": -0.192229,
+    "svHeading": 185.2,
+    "svPitch": -6.8,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "SW 11th & Clay",
+    "system": "MAX",
+    "city": "Portland",
+    "lat": 45.515106,
+    "lng": -122.686081,
+    "svPanoId": "WwdehQpkYjGXJ0wTy3q-6Q",
+    "svLat": 45.515028,
+    "svLng": -122.685983,
+    "svHeading": 322,
+    "svPitch": -0.2,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Orrell Park",
+    "system": "Merseyrail",
+    "city": "Liverpool",
+    "lat": 53.461705,
+    "lng": -2.962882,
+    "svPanoId": "LK-8J6FIAFKTUlnjoaYgag",
+    "svLat": 53.46149,
+    "svLng": -2.962803,
+    "svHeading": 352.8,
+    "svPitch": -4.9,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Sandy Springs",
+    "system": "MARTA",
+    "city": "Atlanta",
+    "lat": 33.931564,
+    "lng": -84.35096,
+    "svPanoId": "yNjEsXaF-J7OlFlgqGP7HQ",
+    "svLat": 33.931518,
+    "svLng": -84.350989,
+    "svHeading": 56.7,
+    "svPitch": -5.1,
+    "svStatus": "skip"
+  },
+  {
+    "name": "S Betriebsbahnhof Rummelsburg",
+    "system": "BVG",
+    "city": "Berlin",
+    "lat": 52.493599,
+    "lng": 13.498152,
+    "svPanoId": "Ia50ti4aWb02_BsHtHlIhA",
+    "svLat": 52.493784,
+    "svLng": 13.498306,
+    "svHeading": 198.8,
+    "svPitch": -6.2,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Richmond-Brighouse",
+    "system": "SkyTrain",
+    "city": "Vancouver",
+    "lat": 49.167943,
+    "lng": -123.136372,
+    "svPanoId": "WbD2EqC5_-dFFAwuYlMV4A",
+    "svLat": 49.16791,
+    "svLng": -123.136465,
+    "svHeading": 102.5,
+    "svPitch": -2.5,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Castle Frank",
+    "system": "TTC",
+    "city": "Toronto",
+    "lat": 43.674049,
+    "lng": -79.368088,
+    "svPanoId": "rYJNcpOUGQti6r1KL8vGyw",
+    "svLat": 43.673826,
+    "svLng": -79.36798,
+    "svHeading": 279.1,
+    "svPitch": 0.1,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "63rd St",
+    "system": "SEPTA",
+    "city": "Philadelphia",
+    "lat": 39.962786,
+    "lng": -75.246767,
+    "svPanoId": "9A9WK9axebeHcuEP9wWxKg",
+    "svLat": 39.96261,
+    "svLng": -75.246715,
+    "svHeading": 104.1,
+    "svPitch": -4,
+    "svStatus": "curated",
+    "svEnvironment": "outdoor"
+  },
+  {
+    "name": "Myrtle-Wyckoff Avs",
+    "system": "NYC Subway",
+    "city": "New York",
+    "lat": 40.69943,
+    "lng": -73.912385,
+    "svPanoId": "NPBAQp5Fq_5dnFdeQ9tvZg",
+    "svLat": 40.69945,
+    "svLng": -73.91245,
+    "svHeading": 65.1,
+    "svPitch": -7.8,
+    "svStatus": "skip"
+  },
+  {
+    "name": "Northwood",
+    "system": "London Underground",
+    "city": "London",
+    "lat": 51.611053,
+    "lng": -0.423829,
+    "svPanoId": "PDZv3BZB_B6_3GpqiCHIxA",
+    "svLat": 51.611246,
+    "svLng": -0.423628,
+    "svHeading": 283.9,
+    "svPitch": -3.7,
     "svStatus": "curated",
     "svEnvironment": "outdoor"
   }

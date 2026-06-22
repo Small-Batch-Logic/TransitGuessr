@@ -74,10 +74,12 @@ import re
 
 # Suffixes and patterns to strip from station names
 _STRIP_PATTERNS = [
+    # STM Montréal GTFS prefix: "STATION JARRY" → "JARRY"
+    r'^STATION\s+',
     # Platform directions
     r'\s*[-–]\s*(East|West|North|South)bound\s*Platform\s*\d*',
     r'\s*[-–]\s*(East|West|North|South)bound',
-    r'\s*[-–]\s*Platform\s*\d+',
+    r'\s*[-–]\s*(?:\w+\s+)?Platform\s*\d*$',
     r'\s*[-–]\s*(Upper|Lower|Mezzanine)\s*(Level|Platform)?',
     r'\s*[-–]\s*Track\s*\d+',
     r'\s*[-–]\s*Bay\s*\w+',
@@ -87,6 +89,8 @@ _STRIP_PATTERNS = [
     r'\s*\.?\s*STAT\.?\s*RAIL\s+(NORTH|SOUTH|EAST|WEST)BOUND$',
     r'\s+STATION\s+RAIL\s+(NORTH|SOUTH|EAST|WEST)BOUND$',
     r'\s+STATION\s+(NORTH|SOUTH|EAST|WEST)BOUND$',
+    # Baltimore MTA Metro suffix
+    r'\s+METRO$',
     # Mode suffixes in parens
     r'\s*\((Subway|LRT|Metro|Rail|Light Rail|Skytrain)\)$',
     # Agency/network in parens
@@ -106,13 +110,26 @@ _STRIP_PATTERNS = [
 ]
 _COMPILED = [re.compile(p, re.IGNORECASE) for p in _STRIP_PATTERNS]
 
+def _smart_title(name):
+    """Title-case with ordinal fix and hyphen/slash handling."""
+    def cap_part(p):
+        if re.match(r'^\d+(ST|ND|RD|TH)$', p, re.IGNORECASE):
+            return re.sub(r'(ST|ND|RD|TH)$', lambda m: m.group(0).lower(), p, flags=re.IGNORECASE)
+        return p[0].upper() + p[1:].lower() if p else p
+    def cap_word(w):
+        for sep in ('-', '/'):
+            if sep in w:
+                return sep.join(cap_part(p) for p in w.split(sep))
+        return cap_part(w)
+    return ' '.join(cap_word(w) for w in name.split(' '))
+
 def normalize_name(name):
     for pattern in _COMPILED:
         name = pattern.sub('', name)
     name = name.strip()
-    # Title-case if the name is all uppercase (e.g. Miami Metrorail entries)
-    if name == name.upper() and not name.isnumeric():
-        name = name.title()
+    # Title-case if the name is all uppercase (e.g. Miami Metrorail, Cleveland GCRTA, Baltimore MTA)
+    if name == name.upper() and not name.isnumeric() and any(c.isalpha() for c in name):
+        name = _smart_title(name)
     return name
 
 
