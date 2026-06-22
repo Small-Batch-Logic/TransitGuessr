@@ -70,6 +70,31 @@ FEEDS = [
 ]
 
 
+import re
+
+# Suffixes and patterns to strip from station names
+_STRIP_PATTERNS = [
+    # Platform directions
+    r'\s*[-–]\s*(East|West|North|South)bound\s*Platform\s*\d*',
+    r'\s*[-–]\s*(East|West|North|South)bound',
+    r'\s*[-–]\s*Platform\s*\d+',
+    r'\s*[-–]\s*(Upper|Lower|Mezzanine)\s*(Level|Platform)?',
+    r'\s*[-–]\s*Track\s*\d+',
+    r'\s*[-–]\s*Bay\s*\w+',
+    r'\s*[-–]\s*(Inbound|Outbound)',
+    # Mode suffixes
+    r'\s*\((Subway|LRT|Metro|Rail|Light Rail|Skytrain)\)',
+    # Trailing "Station" when preceded by a real name (keep "Union Station", "Grand Central Station")
+    r'(?<!\bUnion)(?<!\bCentral)(?<!\bVictoria)(?<!\bPaddington)(?<!\bWaterloo)\s+Station$',
+]
+_COMPILED = [re.compile(p, re.IGNORECASE) for p in _STRIP_PATTERNS]
+
+def normalize_name(name):
+    for pattern in _COMPILED:
+        name = pattern.sub('', name)
+    return name.strip()
+
+
 def read_csv(zf, filename):
     try:
         with zf.open(filename) as f:
@@ -144,7 +169,7 @@ def resolve_stops(zf, stop_ids, system, city):
         except (ValueError, KeyError):
             continue
 
-        name = stop.get("stop_name", "").strip()
+        name = normalize_name(stop.get("stop_name", "").strip())
         if not name or not lat or not lng:
             continue
 

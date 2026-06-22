@@ -1,334 +1,5 @@
 [
   {
-    "name": "Washington",
-    "system": "CTA",
-    "city": "Chicago",
-    "lat": 41.883164,
-    "lng": -87.62944
-  },
-  {
-    "name": "Nine Mile Station",
-    "system": "RTD",
-    "city": "Denver",
-    "lat": 39.658414,
-    "lng": -104.845517
-  },
-  {
-    "name": "COVENTRY STATION",
-    "system": "GCRTA",
-    "city": "Cleveland",
-    "lat": 41.483231,
-    "lng": -81.584274
-  },
-  {
-    "name": "Dollis Hill Underground Station",
-    "system": "London Underground",
-    "city": "London",
-    "lat": 51.551955,
-    "lng": -0.239068
-  },
-  {
-    "name": "Naugatuck",
-    "system": "Metro-North",
-    "city": "New York",
-    "lat": 41.494204,
-    "lng": -73.052655
-  },
-  {
-    "name": "2nd St",
-    "system": "SEPTA",
-    "city": "Philadelphia",
-    "lat": 39.949858,
-    "lng": -75.143746
-  },
-  {
-    "name": "Cedarhurst",
-    "system": "LIRR",
-    "city": "New York",
-    "lat": 40.622175,
-    "lng": -73.726183
-  },
-  {
-    "name": "Millbourne",
-    "system": "SEPTA",
-    "city": "Philadelphia",
-    "lat": 39.96432,
-    "lng": -75.252243
-  },
-  {
-    "name": "UHEALTH JACKSON STATION RAIL NORTHBOUND",
-    "system": "Metrorail",
-    "city": "Miami",
-    "lat": 25.789712,
-    "lng": -80.215002
-  },
-  {
-    "name": "Halsey St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.68637,
-    "lng": -73.916559
-  },
-  {
-    "name": "SE M L King & Morrison",
-    "system": "MAX",
-    "city": "Portland",
-    "lat": 45.51696,
-    "lng": -122.661919
-  },
-  {
-    "name": "5th Street Station",
-    "system": "LA Metro",
-    "city": "Los Angeles",
-    "lat": 33.773598,
-    "lng": -118.189412
-  },
-  {
-    "name": "HIALEAH STATION RAIL NORTHBOUND",
-    "system": "Metrorail",
-    "city": "Miami",
-    "lat": 25.841233,
-    "lng": -80.278995
-  },
-  {
-    "name": "Draper Town Center Station",
-    "system": "TRAX",
-    "city": "Salt Lake City",
-    "lat": 40.525675,
-    "lng": -111.859915
-  },
-  {
-    "name": "Millennium Point",
-    "system": "West Midlands Metro",
-    "city": "Birmingham",
-    "lat": 52.480922,
-    "lng": -1.889839
-  },
-  {
-    "name": "Speonk",
-    "system": "LIRR",
-    "city": "New York",
-    "lat": 40.821315,
-    "lng": -72.705262
-  },
-  {
-    "name": "Northern Blvd",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.752885,
-    "lng": -73.906006
-  },
-  {
-    "name": "Bootle Oriel Road",
-    "system": "Merseyrail",
-    "city": "Liverpool",
-    "lat": 53.4467,
-    "lng": -2.995668
-  },
-  {
-    "name": "U Halemweg (Berlin)",
-    "system": "BVG",
-    "city": "Berlin",
-    "lat": 52.536703,
-    "lng": 13.286578
-  },
-  {
-    "name": "Woodbine Station - Eastbound Platform",
-    "system": "TTC",
-    "city": "Toronto",
-    "lat": 43.686649,
-    "lng": -79.312286
-  },
-  {
-    "name": "Davisville Station - Southbound Platform",
-    "system": "TTC",
-    "city": "Toronto",
-    "lat": 43.697048,
-    "lng": -79.39689
-  },
-  {
-    "name": "S Buch (Berlin)",
-    "system": "BVG",
-    "city": "Berlin",
-    "lat": 52.636297,
-    "lng": 13.492369
-  },
-  {
-    "name": "69 St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.746325,
-    "lng": -73.896403
-  },
-  {
-    "name": "Broad-Allegheny",
-    "system": "SEPTA",
-    "city": "Philadelphia",
-    "lat": 40.001589,
-    "lng": -75.152828
-  },
-  {
-    "name": "Aldgate East Underground Station",
-    "system": "London Underground",
-    "city": "London",
-    "lat": 51.515037,
-    "lng": -0.072384
-  },
-  {
-    "name": "High Park Station - Westbound Platform",
-    "system": "TTC",
-    "city": "Toronto",
-    "lat": 43.653549,
-    "lng": -79.468691
-  },
-  {
-    "name": "Kew Gardens-Union Tpke",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.714441,
-    "lng": -73.831008
-  },
-  {
-    "name": "Stadium Park / Astrodome SB",
-    "system": "METRORail",
-    "city": "Houston",
-    "lat": 29.685928,
-    "lng": -95.403411
-  },
-  {
-    "name": "Bulwell",
-    "system": "Nottingham NET",
-    "city": "Nottingham",
-    "lat": 52.999034,
-    "lng": -1.195625
-  },
-  {
-    "name": "Cinderhill",
-    "system": "Nottingham NET",
-    "city": "Nottingham",
-    "lat": 52.988973,
-    "lng": -1.20051
-  },
-  {
-    "name": "Roberts Rd",
-    "system": "SEPTA",
-    "city": "Philadelphia",
-    "lat": 40.021401,
-    "lng": -75.330234
-  },
-  {
-    "name": "Irwindale Station",
-    "system": "LA Metro",
-    "city": "Los Angeles",
-    "lat": 34.129048,
-    "lng": -117.932506
-  },
-  {
-    "name": "Lancaster Gate Underground Station",
-    "system": "London Underground",
-    "city": "London",
-    "lat": 51.511723,
-    "lng": -0.175494
-  },
-  {
-    "name": "Long Island City",
-    "system": "LIRR",
-    "city": "New York",
-    "lat": 40.741343,
-    "lng": -73.957639
-  },
-  {
-    "name": "Aquarium",
-    "system": "MBTA",
-    "city": "Boston",
-    "lat": 42.359784,
-    "lng": -71.051652
-  },
-  {
-    "name": "Wapping",
-    "system": "London Overground",
-    "city": "London",
-    "lat": 51.504434,
-    "lng": -0.056021
-  },
-  {
-    "name": "S+U Jungfernheide Bhf (Berlin)",
-    "system": "BVG",
-    "city": "Berlin",
-    "lat": 52.530452,
-    "lng": 13.300124
-  },
-  {
-    "name": "Lake City Way Station",
-    "system": "SkyTrain",
-    "city": "Vancouver",
-    "lat": 49.254635,
-    "lng": -122.939192
-  },
-  {
-    "name": "U Freie Universität (Thielplatz) (Berlin)",
-    "system": "BVG",
-    "city": "Berlin",
-    "lat": 52.451,
-    "lng": 13.281651
-  },
-  {
-    "name": "Scarborough",
-    "system": "Metro-North",
-    "city": "New York",
-    "lat": 41.135763,
-    "lng": -73.866163
-  },
-  {
-    "name": "U Paradestr. (Berlin)",
-    "system": "BVG",
-    "city": "Berlin",
-    "lat": 52.478142,
-    "lng": 13.386725
-  },
-  {
-    "name": "Richard-Lenoir",
-    "system": "RATP",
-    "city": "Paris",
-    "lat": 48.858909,
-    "lng": 2.371594
-  },
-  {
-    "name": "Les Agnettes",
-    "system": "RATP",
-    "city": "Paris",
-    "lat": 48.922883,
-    "lng": 2.286587
-  },
-  {
-    "name": "STATION DE CASTELNAU",
-    "system": "STM",
-    "city": "Montreal",
-    "lat": 45.535469,
-    "lng": -73.619874
-  },
-  {
-    "name": "Walnut-Locust",
-    "system": "SEPTA",
-    "city": "Philadelphia",
-    "lat": 39.948734,
-    "lng": -75.164462
-  },
-  {
-    "name": "Shepherd's Bush Market Underground Station",
-    "system": "London Underground",
-    "city": "London",
-    "lat": 51.505579,
-    "lng": -0.226375
-  },
-  {
-    "name": "South Acton",
-    "system": "London Overground",
-    "city": "London",
-    "lat": 51.499722,
-    "lng": -0.269898
-  },
-  {
     "name": "86 St",
     "system": "NYC Subway",
     "city": "New York",
@@ -1113,13 +784,6 @@
     "lng": -3.099984
   },
   {
-    "name": "COVENTRY STATION",
-    "system": "GCRTA",
-    "city": "Cleveland",
-    "lat": 41.483336,
-    "lng": -81.584694
-  },
-  {
     "name": "Prospect Park",
     "system": "NYC Subway",
     "city": "New York",
@@ -1258,13 +922,6 @@
     "city": "Philadelphia",
     "lat": 40.027974,
     "lng": -75.336361
-  },
-  {
-    "name": "Cinderhill",
-    "system": "Nottingham NET",
-    "city": "Nottingham",
-    "lat": 52.988961,
-    "lng": -1.20071
   },
   {
     "name": "KING MEMORIAL STATION",
@@ -3199,13 +2856,6 @@
     "lng": -74.002578
   },
   {
-    "name": "Broad-Allegheny",
-    "system": "SEPTA",
-    "city": "Philadelphia",
-    "lat": 40.001589,
-    "lng": -75.152922
-  },
-  {
     "name": "Colfax Station",
     "system": "RTD",
     "city": "Denver",
@@ -5010,13 +4660,6 @@
     "city": "London",
     "lat": 51.5107,
     "lng": -0.085969
-  },
-  {
-    "name": "2nd St",
-    "system": "SEPTA",
-    "city": "Philadelphia",
-    "lat": 39.949795,
-    "lng": -75.143758
   },
   {
     "name": "Porte de Versailles",
@@ -11242,13 +10885,6 @@
     "lng": -122.660621
   },
   {
-    "name": "Cinderhill",
-    "system": "Nottingham NET",
-    "city": "Nottingham",
-    "lat": 52.988988,
-    "lng": -1.200228
-  },
-  {
     "name": "Talmadge Hill",
     "system": "Metro-North",
     "city": "New York",
@@ -13011,13 +12647,6 @@
     "city": "Paris",
     "lat": 48.845135,
     "lng": 2.402167
-  },
-  {
-    "name": "Roberts Rd",
-    "system": "SEPTA",
-    "city": "Philadelphia",
-    "lat": 40.021401,
-    "lng": -75.330341
   },
   {
     "name": "Bolivar",
@@ -15995,13 +15624,6 @@
     "lng": -73.926138
   },
   {
-    "name": "Walnut-Locust",
-    "system": "SEPTA",
-    "city": "Philadelphia",
-    "lat": 39.948734,
-    "lng": -75.164368
-  },
-  {
     "name": "Valley Centertainment",
     "system": "Supertram",
     "city": "Sheffield",
@@ -18079,13 +17701,6 @@
     "city": "New York",
     "lat": 40.815716,
     "lng": -73.626872
-  },
-  {
-    "name": "Halsey St",
-    "system": "NYC Subway",
-    "city": "New York",
-    "lat": 40.695602,
-    "lng": -73.904084
   },
   {
     "name": "Charles/MGH",
@@ -20748,13 +20363,6 @@
     "lng": -122.660593
   },
   {
-    "name": "Millbourne",
-    "system": "SEPTA",
-    "city": "Philadelphia",
-    "lat": 39.964391,
-    "lng": -75.252243
-  },
-  {
     "name": "Stadium",
     "system": "SEPTA",
     "city": "Philadelphia",
@@ -22643,13 +22251,6 @@
     "city": "New York",
     "lat": 40.757895,
     "lng": -73.831347
-  },
-  {
-    "name": "Draper Town Center Station",
-    "system": "TRAX",
-    "city": "Salt Lake City",
-    "lat": 40.525496,
-    "lng": -111.858805
   },
   {
     "name": "Deansgate-Castlefield (Manchester Metrolink)",
@@ -27638,13 +27239,6 @@
     "lng": -2.278036
   },
   {
-    "name": "Bulwell",
-    "system": "Nottingham NET",
-    "city": "Nottingham",
-    "lat": 52.999403,
-    "lng": -1.195617
-  },
-  {
     "name": "Beaverton Creek MAX Station",
     "system": "MAX",
     "city": "Portland",
@@ -29516,5 +29110,117 @@
     "lat": 40.873412,
     "lng": -73.890064,
     "_indoorPanoId": "CAoSFkNJSE0wb2dLRUlDQWdJQzR2ZVNJQWc."
+  },
+  {
+    "name": "Dollis Hill Underground Station",
+    "system": "London Underground",
+    "city": "London",
+    "lat": 51.551955,
+    "lng": -0.239068,
+    "_indoorPanoId": "CAoSFkNJSE0wb2dLRUlDQWdJREU1NnJzWWc."
+  },
+  {
+    "name": "2nd St",
+    "system": "SEPTA",
+    "city": "Philadelphia",
+    "lat": 39.949858,
+    "lng": -75.143746,
+    "_indoorPanoId": "CAoSFkNJSE0wb2dLRUlDQWdJRGFtWjdqVEE."
+  },
+  {
+    "name": "Speonk",
+    "system": "LIRR",
+    "city": "New York",
+    "lat": 40.821315,
+    "lng": -72.705262,
+    "_indoorPanoId": "QBOUCsM6lASvAGETVz3-wg"
+  },
+  {
+    "name": "S Buch (Berlin)",
+    "system": "BVG",
+    "city": "Berlin",
+    "lat": 52.636297,
+    "lng": 13.492369,
+    "_indoorPanoId": "CAoSF0NJSE0wb2dLRUlDQWdJRDRrOWpyeEFF"
+  },
+  {
+    "name": "Broad-Allegheny",
+    "system": "SEPTA",
+    "city": "Philadelphia",
+    "lat": 40.001589,
+    "lng": -75.152828,
+    "_indoorPanoId": "CAoSF0NJSE0wb2dLRUlDQWdJRGEyWTdkcWdF"
+  },
+  {
+    "name": "Irwindale Station",
+    "system": "LA Metro",
+    "city": "Los Angeles",
+    "lat": 34.129048,
+    "lng": -117.932506,
+    "_indoorPanoId": "CAoSFkNJSE0wb2dLRUlDQWdJQ2tySURGUVE."
+  },
+  {
+    "name": "Lancaster Gate Underground Station",
+    "system": "London Underground",
+    "city": "London",
+    "lat": 51.511723,
+    "lng": -0.175494,
+    "_indoorPanoId": "CAoSF0NJSE0wb2dLRUlDQWdJQzg0TWpnNEFF"
+  },
+  {
+    "name": "S+U Jungfernheide Bhf (Berlin)",
+    "system": "BVG",
+    "city": "Berlin",
+    "lat": 52.530452,
+    "lng": 13.300124,
+    "_indoorPanoId": "CAoSF0NJSE0wb2dLRUlDQWdJQ0dnZExOX3dF"
+  },
+  {
+    "name": "U Freie Universität (Thielplatz) (Berlin)",
+    "system": "BVG",
+    "city": "Berlin",
+    "lat": 52.451,
+    "lng": 13.281651,
+    "_indoorPanoId": "CAoSF0NJSE0wb2dLRUlDQWdJRGEwYmp3OWdF"
+  },
+  {
+    "name": "U Paradestr. (Berlin)",
+    "system": "BVG",
+    "city": "Berlin",
+    "lat": 52.478142,
+    "lng": 13.386725,
+    "_indoorPanoId": "CAoSF0NJSE0wb2dLRUlDQWdJREo1YV9zcFFF"
+  },
+  {
+    "name": "Richard-Lenoir",
+    "system": "RATP",
+    "city": "Paris",
+    "lat": 48.858909,
+    "lng": 2.371594,
+    "_indoorPanoId": "CAoSFkNJSE0wb2dLRUlDQWdJQ0VrSkc4V1E."
+  },
+  {
+    "name": "STATION DE CASTELNAU",
+    "system": "STM",
+    "city": "Montreal",
+    "lat": 45.535469,
+    "lng": -73.619874,
+    "_indoorPanoId": "CAoSF0NJSE0wb2dLRUlDQWdJRDR1NXUxc0FF"
+  },
+  {
+    "name": "Walnut-Locust",
+    "system": "SEPTA",
+    "city": "Philadelphia",
+    "lat": 39.948734,
+    "lng": -75.164462,
+    "_indoorPanoId": "CAoSFkNJSE0wb2dLRUlDQWdJRGVoWjZYR0E."
+  },
+  {
+    "name": "South Acton",
+    "system": "London Overground",
+    "city": "London",
+    "lat": 51.499722,
+    "lng": -0.269898,
+    "_indoorPanoId": "CAoSF0NJSE0wb2dLRUlDQWdJRG02N1NzdXdF"
   }
 ]

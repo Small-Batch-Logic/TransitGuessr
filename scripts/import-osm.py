@@ -12,10 +12,29 @@ Usage:
 import argparse
 import json
 import os
+import re
 import time
 import urllib.parse
 import urllib.request
 from collections import defaultdict
+
+_STRIP_PATTERNS = [
+    r'\s*[-–]\s*(East|West|North|South)bound\s*Platform\s*\d*',
+    r'\s*[-–]\s*(East|West|North|South)bound',
+    r'\s*[-–]\s*Platform\s*\d+',
+    r'\s*[-–]\s*(Upper|Lower|Mezzanine)\s*(Level|Platform)?',
+    r'\s*[-–]\s*Track\s*\d+',
+    r'\s*[-–]\s*Bay\s*\w+',
+    r'\s*[-–]\s*(Inbound|Outbound)',
+    r'\s*\((Subway|LRT|Metro|Rail|Light Rail|Skytrain)\)',
+    r'(?<!\bUnion)(?<!\bCentral)(?<!\bVictoria)(?<!\bPaddington)(?<!\bWaterloo)\s+Station$',
+]
+_COMPILED = [re.compile(p, re.IGNORECASE) for p in _STRIP_PATTERNS]
+
+def normalize_name(name):
+    for pattern in _COMPILED:
+        name = pattern.sub('', name)
+    return name.strip()
 
 OVERPASS_URL = "https://overpass-api.de/api/interpreter"
 
@@ -74,7 +93,7 @@ out body;
 
     seen = {}
     for el in elements:
-        name = el["tags"].get("name", "").strip()
+        name = normalize_name(el["tags"].get("name", "").strip())
         lat = round(el["lat"], 6)
         lng = round(el["lon"], 6)
         if not name or not lat or not lng:
