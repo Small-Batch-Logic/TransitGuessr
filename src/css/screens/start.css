@@ -73,18 +73,25 @@
 }
 
 .cities-card-chip {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   background: var(--card-item-bg);
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: city-float 3s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 0.45s);
 }
 
 .cities-card-chip svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
+}
+
+@keyframes city-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
 }
 
 .cities-card-body {

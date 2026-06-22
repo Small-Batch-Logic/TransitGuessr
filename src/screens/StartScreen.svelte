@@ -107,6 +107,13 @@
 
   let pendingMode = $state(null);
   let showCityBrowser = $state(false);
+  let previewCities = $state([]);
+
+  $effect(() => {
+    if (previewCities.length === 0 && cityModes.length > 0) {
+      previewCities = [...cityModes].sort(() => Math.random() - 0.5).slice(0, 4);
+    }
+  });
 
   function playMode(mode) {
     if (mode === 'daily') {
@@ -264,8 +271,8 @@
     <!-- City Maps Card -->
     <button type="button" class="cities-card cities-card--compact" onclick={() => showCityBrowser = true}>
       <div class="cities-card-icons">
-        {#each cityModes.slice(0, 4) as [, mode]}
-          <div class="cities-card-chip" style="color: {mode.color}">{@html mode.icon}</div>
+        {#each previewCities as [, mode], i}
+          <div class="cities-card-chip" style="color: {mode.color}; --i: {i}">{@html mode.icon}</div>
         {/each}
       </div>
       <div class="cities-card-body">
