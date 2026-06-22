@@ -212,7 +212,8 @@
 
 .city-browser-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, 200px);
+  justify-content: center;
   gap: 12px;
   width: 100%;
   max-width: 640px;
