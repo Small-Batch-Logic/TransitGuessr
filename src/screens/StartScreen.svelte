@@ -2,6 +2,31 @@
   import { currentScreen, selectedMode, selectedDifficulty } from '../stores.js';
   import { MODES } from '../config.js';
   import { getDayNumber, getDailyStreak, hasDailyBeenPlayed, getDailyPlayedScore, getDailyThemeType, THEME_NAMES } from '../daily.js';
+  import STATIONS from '../stations.json';
+
+  const ROUNDS_PER_GAME = 5;
+  const MIN_UNIQUE_GAMES = 10; // city must support this many non-repeating games before cycling
+  const MIN_CURATED = ROUNDS_PER_GAME * MIN_UNIQUE_GAMES; // 50
+
+  const curatedCountByCity = (() => {
+    const counts = {};
+    for (const s of STATIONS) {
+      if (s.svStatus === 'curated' && s.svPanoId !== 'legacy') {
+        counts[s.city] = (counts[s.city] || 0) + 1;
+      }
+    }
+    return counts;
+  })();
+
+  function modeHasEnoughStations(modeConfig) {
+    if (!modeConfig.filter) return false;
+    const city = modeConfig.city;
+    if (city) return (curatedCountByCity[city] || 0) >= MIN_CURATED;
+    // For multi-city modes, sum across all matching cities
+    return Object.entries(curatedCountByCity)
+      .filter(([c]) => modeConfig.filter({ city: c, svStatus: 'curated', svPanoId: 'x' }))
+      .reduce((sum, [, n]) => sum + n, 0) >= MIN_CURATED;
+  }
 
   function getHighScoreForMode(mode) {
     try {
@@ -66,9 +91,11 @@
     localStorage.setItem('transitguessr_theme', next);
   }
 
-  // City grid: all modes except worldwide and daily
+  // City grid: modes with enough curated stations to be worth playing
   let cityModes = $derived(
-    Object.entries(MODES).filter(([key]) => !['worldwide', 'daily'].includes(key))
+    Object.entries(MODES).filter(([key, mode]) =>
+      !['worldwide', 'daily'].includes(key) && modeHasEnoughStations(mode)
+    )
   );
 
   let filteredCityModes = $derived(

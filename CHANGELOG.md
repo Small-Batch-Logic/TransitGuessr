@@ -6,6 +6,20 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - **Audit Mode Picker** — audit screen now opens with a mode selector; Screen mode is the existing screening queue (N/I/O decisions); Details mode browses approved stations and lets you tag them (underground, elevated, island platform, snowy, heritage, art, etc.) for use in future themed daily challenges.
+- **Result card quit button** — timed-out rounds now show a Quit button on the left of the footer; regular rounds show a small "Quit game" link below the footer, giving players a way to exit without finishing all 5 rounds.
+- **End screen score colours** — round scores in the breakdown are now colour-coded: green (4,500+), cyan (3,000+), amber (1,000+), red (below 1,000). Round numbers (R1–R5) added as a dim prefix on each row.
+
+### Changed
+- **Dynamic city list** — city modes are now only shown in the picker when they have at least 50 genuinely curated stations (5 rounds × 10 unique sessions without repeat); cities with insufficient data are hidden until more auditing is done.
+- **Start screen layout** — vertically centred to eliminate dead whitespace at the bottom on tall viewports.
+- **Daily Challenge greyed out** — card is now faded and non-interactive with a "Coming Soon" badge while the themed daily challenge system is in development.
+- **End screen copy** — "Station hidden (4,500+ to reveal)" shortened to "Station hidden"; "Previous best: 0" on first play replaced with "First game!".
+- **Result card labels** — stripped all-caps from every label in the result card (kicker badge, city/system, Miss Distance, Progress, Points) and end screen (New Record, View Photo) and start screen badges (Coming Soon, Practice Map).
+- **Timed-out reaction copy** — "Timer cooked you" changed to "Time's up"; reaction chip is hidden on timeout rounds (the kicker badge already says "Round timed out").
+
+### Fixed
+- **View Photo blur** — Street View was still blurred after clicking "View Photo" because the overlay's `backdrop-filter` persisted in peek mode; cleared in `.peek` state.
+- **Legacy panoId stations in gameplay** — stations with `svPanoId: 'legacy'` (pre-audit data) were being loaded by passing the string "legacy" as a real panorama ID; now treated as no panoId and use coordinate-based fallback lookup instead.
 - **Svelte 5 Migration** — converted from vanilla HTML/JS to Svelte 5 with Vite; shared `GameHeader` component now used across game and audit screens; audit tool merged into the main SPA (no more separate `audit.html`).
 - **GTFS Station Import Pipeline** — added `scripts/extract-gtfs.py` to extract rapid transit stations from GTFS feeds; populated `src/queries.json` with 2,362 candidates across 23 cities (Toronto, Montreal, Vancouver, New York, Boston, Philadelphia, Baltimore, Chicago, Minneapolis, Atlanta, Dallas, San Francisco, Los Angeles, San Diego, Phoenix, Portland, Seattle, Denver, Sacramento, Salt Lake City, Cleveland, Miami, Houston).
 - **Split Data Architecture** — separated station data into `queries.json` (unreviewed GTFS candidates) and `stations.json` (decided entries); audit tool now reads from `queries.json` and moves each decision into `stations.json`.
