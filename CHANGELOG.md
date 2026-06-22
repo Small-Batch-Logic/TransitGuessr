@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - **Consistent header across all screens** — StartScreen and EndScreen now use the shared `GameHeader` component; logo always appears in the same position regardless of screen.
 
 ### Changed
+- **Start screen header width** — header content constrained to match the 1000px content column; logo and actions no longer span the full viewport on wide screens.
 - **Toast unified** — AuditScreen's local toast state removed; all screens now use the `toastMsg` store and the single `#toast` element in App.svelte.
 - **Audit button labelled** — "Audit" text label added to the icon button in the start screen header; was icon-only and unclear.
 - **Logo text non-selectable** — added `user-select: none` to the wordmark so clicking/dragging the logo text doesn't highlight it.
