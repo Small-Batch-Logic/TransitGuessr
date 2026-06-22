@@ -554,7 +554,6 @@
         const unseen = pool.filter(s => !seen.includes(s.id));
         const finalPool = unseen.length >= 5 ? unseen : pool;
         roundStations = shuffle(finalPool).slice(0, 5);
-        markSeen(roundStations.map(s => s.id));
         replacementPool = pool;
       }
 
@@ -588,6 +587,7 @@
     const revealName = shouldRevealStationName(pts);
     totalScore += pts;
     roundResults = [...roundResults, { station, dist, pts, timedOut: false }];
+    markSeen([station.id]);
     hotStreak = pts >= 3600 ? hotStreak + 1 : 0;
 
     const totalKey = 'transitguessr_total_guessed';
@@ -636,6 +636,7 @@
     const station = roundStations[currentRound];
     totalScore += 0;
     roundResults = [...roundResults, { station, dist: null, pts: 0, timedOut: true }];
+    markSeen([station.id]);
     hotStreak = 0;
 
     resultStationName = `Station hidden (${STATION_NAME_REVEAL_SCORE.toLocaleString()}+ to reveal)`;

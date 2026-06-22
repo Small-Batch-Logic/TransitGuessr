@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
 - **Timed-out reaction copy** — "Timer cooked you" changed to "Time's up"; reaction chip is hidden on timeout rounds (the kicker badge already says "Round timed out").
 
 ### Fixed
+- **Seen-station tracking** — stations were previously marked as seen at game start, so errored, skipped, or quit-early rounds would burn slots from the unseen pool without the player ever seeing them; now marked per round on completion only.
 - **View Photo blur** — Street View was still blurred after clicking "View Photo" because the overlay's `backdrop-filter` persisted in peek mode; cleared in `.peek` state.
 - **Legacy panoId stations in gameplay** — stations with `svPanoId: 'legacy'` (pre-audit data) were being loaded by passing the string "legacy" as a real panorama ID; now treated as no panoId and use coordinate-based fallback lookup instead.
 - **Svelte 5 Migration** — converted from vanilla HTML/JS to Svelte 5 with Vite; shared `GameHeader` component now used across game and audit screens; audit tool merged into the main SPA (no more separate `audit.html`).
