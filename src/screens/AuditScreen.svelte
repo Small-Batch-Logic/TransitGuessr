@@ -37,6 +37,7 @@
   let detailIdx = $state(0);
   let detailTags = $state(new Set());
   let detailSaving = $state(false);
+  let customTagInput = $state('');
 
   const AUDIT_TAGS = [
     { key: 'underground',     label: 'Underground' },
@@ -401,6 +402,15 @@
     detailTags = next;
   }
 
+  function addCustomTag() {
+    const key = customTagInput.trim().toLowerCase().replace(/\s+/g, '-');
+    if (!key) return;
+    detailTags = new Set([...detailTags, key]);
+    customTagInput = '';
+  }
+
+  const PRESET_KEYS = new Set(AUDIT_TAGS.map(t => t.key));
+
   async function saveDetailAndAdvance(dir) {
     const station = detailStations[detailIdx];
     if (!station) return;
@@ -464,7 +474,7 @@
         else { setLoading('No stations to review.'); loadingSpinner = false; }
 
       } else {
-        detailStations = stationsResult.filter(s => s.svStatus === 'curated');
+        detailStations = stationsResult.filter(s => s.svStatus === 'curated' && s.svPanoId && s.svPanoId !== 'legacy');
         if (detailStations.length) loadDetailStation(0);
         else { setLoading('No curated stations yet.'); loadingSpinner = false; }
       }
@@ -585,6 +595,21 @@
                   onclick={() => toggleTag(tag.key)}
                 >{tag.label}</button>
               {/each}
+              {#each [...detailTags].filter(k => !PRESET_KEYS.has(k)) as key}
+                <button type="button" class="tag-chip tag-chip--custom active" onclick={() => toggleTag(key)}>
+                  {key} ×
+                </button>
+              {/each}
+            </div>
+            <div class="custom-tag-row">
+              <input
+                type="text"
+                class="custom-tag-input"
+                placeholder="Add custom tag…"
+                bind:value={customTagInput}
+                onkeydown={e => e.key === 'Enter' && addCustomTag()}
+              />
+              <button type="button" class="custom-tag-add" onclick={addCustomTag}>Add</button>
             </div>
           </div>
           <div class="details-nav">

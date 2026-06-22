@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- **Custom tags in Details mode** — free-text input below the preset tag chips; type any tag and press Enter or click Add; custom tags appear as dashed chips and can be toggled off like presets.
+
 - **`Modal.svelte` shared component** — generic backdrop + dialog shell with icon/title/subtitle/cancel slots; used by AuditScreen mode picker (and available for future dialogs).
 - **`PhotoLoading.svelte` shared component** — shared Street View loading overlay (spinner + message + optional error state); replaces duplicate inline divs in GameScreen and AuditScreen.
 - **Full-page difficulty selector** — clicking a city no longer opens a modal; navigates to a dedicated full-page difficulty screen with the city name, icon, and two large choice tiles.
@@ -14,6 +16,8 @@ All notable changes to this project will be documented in this file.
 - **Toast unified** — AuditScreen's local toast state removed; all screens now use the `toastMsg` store and the single `#toast` element in App.svelte.
 - **Audit button labelled** — "Audit" text label added to the icon button in the start screen header; was icon-only and unclear.
 - **Logo text non-selectable** — added `user-select: none` to the wordmark so clicking/dragging the logo text doesn't highlight it.
+- **Start screen layout** — content now top-aligned with padding rather than vertically centred, which left an awkward gap between the header and the cards.
+- **Details mode pano filter** — legacy stations (`svPanoId: 'legacy'`) excluded from the Details queue; previously caused "Saved pano not found" on every legacy entry.
 - **Difficulty descriptions** — "Forgiving scoring curve" → "A few km off still scores well"; "Precision required" → "Points drop fast with distance".
 - **City icon fixes** — Toronto: replaced rectangular logo-style icon with a stroke-circle T; NYC: fixed `stroke="black"` → `stroke="white"`; London: removed hardcoded `#0019a8` fill on the bar; Chicago: replaced `<text>` element with path-based L letterform; Berlin: replaced `<text>` element + hardcoded `#003591` with a path-based U letterform.
 
