@@ -16,7 +16,6 @@
   let toastTimer = null;
 
   // Header center info
-  let auditProgressHtml = $state('Loading…');
   let auditStationSystem = $state('');
   let auditStationName = $state('');
   let auditProgressPct = $state(0);
@@ -400,6 +399,7 @@
     detailTags = new Set(station.tags || []);
     auditStationName = station.name;
     auditStationSystem = `${station.city} · ${station.system}`;
+    auditProgressPct = detailStations.length ? ((idx + 1) / detailStations.length) * 100 : 0;
     loadPano(station);
   }
 
@@ -465,6 +465,7 @@
       initializePanorama();
 
       if (mode === 'screen') {
+        if (typeof L !== 'undefined' && mapEl) initializeMap();
         queries = queriesResult.sort(() => Math.random() - 0.5);
         updateHeader();
         const first = queries[0];
@@ -473,7 +474,6 @@
 
       } else {
         detailStations = stationsResult.filter(s => s.svStatus === 'curated');
-        auditProgressHtml = `${detailStations.length} curated stations`;
         if (detailStations.length) loadDetailStation(0);
         else { setLoading('No curated stations yet.'); loadingSpinner = false; }
       }
@@ -516,19 +516,31 @@
 
   <GameHeader mode="Station Curation" onTitleClick={handleTitleClick}>
     {#snippet center()}
-      <div class="round-info">
-        This session: <strong>{sessionReviewed}</strong>
-        <span class="header-divider">|</span>Best: <strong>{getBestSession()}</strong>
-        <span class="header-divider">|</span>Curated: <strong>{totalCurated}</strong>
-        <span class="header-divider">|</span>Remaining: <strong>{queries.length}</strong>
-      </div>
-      {#if auditStationSystem}
-        <span class="header-divider">|</span>
-        <div class="round-info">{auditStationSystem}</div>
-      {/if}
-      {#if auditStationName}
-        <span class="header-divider" style="display: none" id="audit-station-sep"></span>
-        <div class="audit-station-name">{auditStationName}</div>
+      {#if auditMode === 'details'}
+        <div class="round-info">
+          Station <strong>{detailIdx + 1}</strong> of <strong>{detailStations.length}</strong>
+          {#if auditStationSystem}
+            <span class="header-divider">|</span>
+            <span>{auditStationSystem}</span>
+          {/if}
+        </div>
+        {#if auditStationName}
+          <div class="audit-station-name">{auditStationName}</div>
+        {/if}
+      {:else}
+        <div class="round-info">
+          This session: <strong>{sessionReviewed}</strong>
+          <span class="header-divider">|</span>Best: <strong>{getBestSession()}</strong>
+          <span class="header-divider">|</span>Curated: <strong>{totalCurated}</strong>
+          <span class="header-divider">|</span>Remaining: <strong>{queries.length}</strong>
+        </div>
+        {#if auditStationSystem}
+          <span class="header-divider">|</span>
+          <div class="round-info">{auditStationSystem}</div>
+        {/if}
+        {#if auditStationName}
+          <div class="audit-station-name">{auditStationName}</div>
+        {/if}
       {/if}
     {/snippet}
     {#snippet right()}
@@ -565,7 +577,7 @@
           {:else}
             {#if loadingSpinner}<div class="spinner"></div>{/if}
             {loadingMsg}
-            {#if loadingMsg === 'Loading Street View…' || loadingMsg === 'Saved pano not found.'}
+            {#if auditMode === 'screen' && (loadingMsg === 'Loading Street View…' || loadingMsg === 'Saved pano not found.')}
               <button type="button" class="loading-skip-btn" onclick={handleSkip}>Skip <kbd>S</kbd></button>
             {/if}
           {/if}
