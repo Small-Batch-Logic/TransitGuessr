@@ -7,7 +7,7 @@
 }
 
 #start-screen .header-inner {
-  padding: 0 calc(50% - 500px);
+  padding: 0 max(20px, calc((100% - 1000px) / 2 + 24px));
 }
 
 .start-content {
