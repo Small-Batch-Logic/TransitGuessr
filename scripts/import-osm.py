@@ -29,6 +29,14 @@ SYSTEMS = [
                                              "NET"],                              ["tram_stop", "station"]),
     ("Merseyrail",          "Liverpool",    ["Merseyrail"],                       ["station"]),
     ("London Overground",   "London",       ["London Overground"],                ["station"]),
+    # North America additions
+    ("Washington Metro",    "Washington",   ["Washington Metro", "WMATA"],        ["station"]),
+    ("Pittsburgh T",        "Pittsburgh",   ["Port Authority of Allegheny County",
+                                             "Pittsburgh Regional Transit"],      ["station", "tram_stop"]),
+    ("Hudson-Bergen LRT",   "Jersey City",  ["Hudson-Bergen Light Rail",
+                                             "NJ Transit"],                       ["tram_stop", "station"]),
+    ("Newark Light Rail",   "Newark",       ["Newark Light Rail",
+                                             "NJ Transit"],                       ["tram_stop", "station"]),
 ]
 
 
