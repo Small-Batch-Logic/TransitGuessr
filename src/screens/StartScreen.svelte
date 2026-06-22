@@ -225,10 +225,22 @@
 {#if pendingMode}
   <div class="difficulty-backdrop" onclick={() => pendingMode = null}>
     <div class="difficulty-modal" onclick={(e) => e.stopPropagation()}>
-      <p class="difficulty-modal-title">{MODES[pendingMode]?.name}</p>
-      <p class="difficulty-modal-subtitle">Choose difficulty</p>
+      <div class="difficulty-modal-header">
+        <div class="difficulty-modal-icon" style="color: {MODES[pendingMode]?.color}">
+          {@html MODES[pendingMode]?.icon ?? ''}
+        </div>
+        <div>
+          <p class="difficulty-modal-title">{MODES[pendingMode]?.name}</p>
+          <p class="difficulty-modal-subtitle">Choose difficulty</p>
+        </div>
+      </div>
       <div class="difficulty-options">
-        <button type="button" class="difficulty-option" onclick={() => launchWithDifficulty('normal')}>
+        <button
+          type="button"
+          class="difficulty-option"
+          style="--mode-color: {MODES[pendingMode]?.color}"
+          onclick={() => launchWithDifficulty('normal')}
+        >
           <span class="difficulty-option-name">Normal</span>
           <span class="difficulty-option-desc">Forgiving scoring curve</span>
         </button>
