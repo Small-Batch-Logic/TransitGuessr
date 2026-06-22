@@ -281,3 +281,4 @@
 .view-photo-btn:hover { color: #f1f5f9; background: #0f172a; }
 #result-overlay.peek .result-content { transform: translateY(100%); }
 #result-overlay.peek .view-photo-btn { background: #3b82f6; color: #fff; top: -64px; }
+#result-overlay.peek { backdrop-filter: none; background: none; }
