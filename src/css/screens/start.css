@@ -28,7 +28,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   margin-bottom: 16px;
-  align-items: start;
+  align-items: stretch;
   width: 100%;
 }
 
@@ -48,10 +48,8 @@
   font: inherit;
   cursor: pointer;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 16px;
-  padding: 20px 20px;
+  flex-direction: column;
+  padding: 24px;
   border-radius: 18px;
   border: 1px solid var(--card-item-border);
   background: var(--card-bg);
@@ -63,36 +61,53 @@
 
 .cities-card--compact:hover {
   border-color: var(--accent);
-  transform: translateY(-2px);
   box-shadow: 0 8px 24px -4px rgba(59, 130, 246, 0.15);
 }
 
-.cities-card-icons {
+.cities-card-preview {
+  flex: 1;
   display: flex;
-  gap: 6px;
-  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 16px 0;
 }
 
 .cities-card-chip {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
   background: var(--card-item-bg);
   display: flex;
   align-items: center;
   justify-content: center;
   animation: city-float 3s ease-in-out infinite;
   animation-delay: calc(var(--i, 0) * 0.45s);
+  transition: box-shadow 0.2s;
+}
+
+.cities-card--compact:hover .cities-card-chip {
+  box-shadow: 0 4px 12px -2px rgba(0,0,0,0.12);
 }
 
 .cities-card-chip svg {
-  width: 22px;
-  height: 22px;
+  width: 32px;
+  height: 32px;
 }
 
 @keyframes city-float {
   0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-5px); }
+  50%       { transform: translateY(-6px); }
+}
+
+.cities-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
 }
 
 .cities-card-body {
@@ -102,11 +117,11 @@
 .cities-card-arrow {
   color: var(--text-dim);
   flex-shrink: 0;
-  transition: transform 0.2s;
+  transition: transform 0.2s, color 0.2s;
 }
 
 .cities-card--compact:hover .cities-card-arrow {
-  transform: translateX(3px);
+  transform: translateX(4px);
   color: var(--accent);
 }
 

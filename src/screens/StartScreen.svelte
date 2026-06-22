@@ -270,16 +270,18 @@
 
     <!-- City Maps Card -->
     <button type="button" class="cities-card cities-card--compact" onclick={() => showCityBrowser = true}>
-      <div class="cities-card-icons">
+      <div class="cities-card-preview">
         {#each previewCities as [, mode], i}
           <div class="cities-card-chip" style="color: {mode.color}; --i: {i}">{@html mode.icon}</div>
         {/each}
       </div>
-      <div class="cities-card-body">
-        <h2 class="cities-title">Explore City Maps</h2>
-        <p class="cities-desc">{cityModes.length} transit {cityModes.length === 1 ? 'system' : 'systems'} available</p>
+      <div class="cities-card-footer">
+        <div class="cities-card-body">
+          <h2 class="cities-title">Explore City Maps</h2>
+          <p class="cities-desc">{cityModes.length} transit {cityModes.length === 1 ? 'system' : 'systems'} available</p>
+        </div>
+        <svg class="cities-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </div>
-      <svg class="cities-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </button>
   </div>
   </div>
