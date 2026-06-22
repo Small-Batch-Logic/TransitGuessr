@@ -1,7 +1,7 @@
 <script>
   import { currentScreen, selectedMode } from '../stores.js';
   import { MODES } from '../config.js';
-  import { getDayNumber, getDailyStreak, hasDailyBeenPlayed, getDailyPlayedScore, getDailyThemeType } from '../daily.js';
+  import { getDayNumber, getDailyStreak, hasDailyBeenPlayed, getDailyPlayedScore, getDailyThemeType, THEME_NAMES } from '../daily.js';
 
   function getHighScoreForMode(mode) {
     try {
@@ -139,7 +139,7 @@
             </div>
           </div>
           <h2 class="play-card-title">Daily Challenge</h2>
-          <p class="play-card-desc">The same 5 stations for everyone in the world. New challenge every day. Today: {getDailyThemeType()} theme.</p>
+          <p class="play-card-desc">The same 5 stations for everyone in the world. New challenge every day. Today: {THEME_NAMES[getDailyThemeType()]}.</p>
           <div class="play-card-status">{dailyStatusText}</div>
         </div>
         <div class="mode-action">

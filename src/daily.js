@@ -2,6 +2,13 @@ const LAUNCH_DATE_UTC = Date.UTC(2026, 2, 22);
 
 export const THEME_CYCLE = ['city', 'region', 'worldwide', 'random'];
 
+export const THEME_NAMES = {
+  city: 'City Spotlight',
+  region: 'Regional Mix',
+  worldwide: 'World Tour',
+  random: 'Wildcard',
+};
+
 export function getDailyThemeType() {
   return THEME_CYCLE[getDayNumber() % THEME_CYCLE.length];
 }

@@ -29,6 +29,11 @@ All notable changes to this project will be documented in this file.
 - **Report Issue Button** — players can flag a station mid-round using a flag button overlaid on the Street View panel; options are "Not a transit station" or "Can't tell where this is"; reports stored in `src/reports.js` via localStorage.
 - **Report Auto-Advance** — reporting a station removes it from the queue, appends a theme-consistent replacement to the end (preloads during remaining rounds), and immediately advances to the next already-loaded station with no score penalty.
 - **Play History Roadmap Item** — added persistent daily play history (requires Supabase backend) to `docs/FEATURES.md`.
+- **Daily Theme Proper Names** — theme types now display as City Spotlight, Regional Mix, World Tour, and Wildcard across the start card, in-game badge, and share text; city/region themes include the specific city or region name (e.g. "City Spotlight: Tokyo").
+- **Dynamic Score Scale** — scoring curve now derived from the actual geographic spread of the round's stations (bounding box diagonal ÷ 4, capped at 2000 km); city challenges naturally score tighter, regional challenges scale to their actual footprint, worldwide stays loose.
+- **IQR City Eligibility Floor** — city theme eligibility now uses IQR outlier detection to compute a dynamic station count floor, preventing any single over-represented city from dominating the rotation.
+- **Region "Other" Excluded** — cities not mapped to a region no longer surface as a playable daily theme.
+- **Round Length Hardcoding Fixed** — next-round label and game-end check now use `roundStations.length` instead of hardcoded `5`, correctly handling rounds modified by station reports.
 
 ### Changed
 - **Daily Countdown** — timer now shows hours only (e.g. "Ends in 3h"); drops to "Ends in less than an hour" when under 60 minutes; seconds removed.

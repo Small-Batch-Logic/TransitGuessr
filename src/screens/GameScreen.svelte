@@ -6,7 +6,7 @@
   import STATIONS from '../stations.json';
   import * as StationUtils from '../station-utils.js';
   import { escHtml, seededShuffle, shuffle, haversineKm, bearingBetween } from '../utils.js';
-  import { getDayNumber, markDailyPlayed, getDailyThemeType } from '../daily.js';
+  import { getDayNumber, markDailyPlayed, getDailyThemeType, THEME_NAMES } from '../daily.js';
   import { reportStation } from '../reports.js';
   import { CITY_REGIONS } from '../config.js';
   import GameHeader from '../components/GameHeader.svelte';
@@ -140,9 +140,20 @@
   }
 
   // ── Score ──
+  // Derive scale from the actual geographic spread of this round's stations
+  let roundScale = $derived.by(() => {
+    if (!roundStations.length) return 2000;
+    const lats = roundStations.map(s => s.lat);
+    const lngs = roundStations.map(s => s.lng);
+    const diagonal = haversineKm(
+      Math.min(...lats), Math.min(...lngs),
+      Math.max(...lats), Math.max(...lngs)
+    );
+    return Math.max(1, Math.min(2000, diagonal / 4));
+  });
+
   function calcScore(distKm) {
-    const scale = ['worldwide', 'daily'].includes(mode) ? 2000 : 5;
-    return Math.round(5000 * Math.exp(-distKm / scale));
+    return Math.round(5000 * Math.exp(-distKm / roundScale));
   }
 
   function shouldRevealStationName(pts) {
@@ -468,7 +479,15 @@
         if (themeType === 'city') {
           const byCity = {};
           pool.forEach(s => { if (!byCity[s.city]) byCity[s.city] = []; byCity[s.city].push(s); });
-          const eligibleCities = Object.keys(byCity).filter(c => byCity[c].length >= 5).sort();
+          const cityCounts = Object.values(byCity).map(s => s.length).sort((a, b) => a - b);
+          const q1 = cityCounts[Math.floor(cityCounts.length * 0.25)];
+          const q3 = cityCounts[Math.floor(cityCounts.length * 0.75)];
+          const iqr = q3 - q1;
+          const outlierThreshold = q3 + 1.5 * iqr;
+          const inlierCounts = cityCounts.filter(n => n <= outlierThreshold);
+          const mean = inlierCounts.reduce((a, b) => a + b, 0) / (inlierCounts.length || 1);
+          const cityFloor = Math.max(5, Math.round(mean));
+          const eligibleCities = Object.keys(byCity).filter(c => byCity[c].length >= cityFloor).sort();
           const city = pickFromDeck(eligibleCities);
           chosenStations = seededShuffle([...byCity[city]], day).slice(0, 5);
           themeLabel = city;
@@ -480,7 +499,7 @@
             if (!byRegion[r]) byRegion[r] = [];
             byRegion[r].push(s);
           });
-          const eligibleRegions = Object.keys(byRegion).filter(r => byRegion[r].length >= 5).sort();
+          const eligibleRegions = Object.keys(byRegion).filter(r => r !== 'Other' && byRegion[r].length >= 5).sort();
           const region = pickFromDeck(eligibleRegions);
           const regionPool = byRegion[region];
           const bySystem = {};
@@ -507,14 +526,14 @@
             const s = seededShuffle([...bySystem[sys]], day + idx)[0];
             if (s) chosenStations.push(s);
           });
-          themeLabel = 'Worldwide';
+          themeLabel = THEME_NAMES.worldwide;
 
         } else {
           // random — exhaust all stations before repeating
           const stationDeck = seededShuffle([...pool], DECK_SEED);
           const offset = (day * 5) % stationDeck.length;
           chosenStations = [...stationDeck.slice(offset), ...stationDeck].slice(0, 5);
-          themeLabel = 'Random';
+          themeLabel = THEME_NAMES.random;
         }
 
         roundStations = chosenStations;
@@ -590,7 +609,7 @@
     resultPerfectHit = pts >= 5000;
     resultKicker = 'Round Result';
     resultRound = `Round ${currentRound + 1} of 5`;
-    resultNextLabel = currentRound === 4 ? 'See Results' : 'Next Round';
+    resultNextLabel = currentRound === roundStations.length - 1 ? 'See Results' : 'Next Round';
     updateStreak();
     resultActive = true;
     resultPeeking = false;
@@ -623,7 +642,7 @@
     resultPerfectHit = false;
     resultKicker = 'Round Timed Out';
     resultRound = `Round ${currentRound + 1} of 5`;
-    resultNextLabel = currentRound === 4 ? 'See Results' : 'Next Round';
+    resultNextLabel = currentRound === roundStations.length - 1 ? 'See Results' : 'Next Round';
     resultActive = true;
     resultPeeking = false;
     preloadNextStation();
@@ -631,7 +650,7 @@
 
   function nextRound() {
     currentRound++;
-    if (currentRound < 5) {
+    if (currentRound < roundStations.length) {
       resultActive = false;
       setupRound();
       loadStreetView();
@@ -696,11 +715,15 @@
   }
 
   // ── Mode badge label ──
-  let modeBadgeLabel = $derived(
-    mode === 'daily'
-      ? `Daily #${getDayNumber()}${dailyThemeLabel ? ` · ${dailyThemeLabel}` : ''}`
-      : (MODES[mode]?.name || mode)
-  );
+  let modeBadgeLabel = $derived.by(() => {
+    if (mode !== 'daily') return MODES[mode]?.name || mode;
+    const themeType = getDailyThemeType();
+    const themeName = THEME_NAMES[themeType];
+    const suffix = (themeType === 'city' || themeType === 'region') && dailyThemeLabel
+      ? `${themeName}: ${dailyThemeLabel}`
+      : themeName;
+    return `Daily #${getDayNumber()} · ${suffix}`;
+  });
 
   let streakDisplay = $derived(
     hotStreak > 1 ? `${hotStreak}-round streak` : 'No streak'
