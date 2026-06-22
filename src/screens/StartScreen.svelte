@@ -191,8 +191,15 @@
     <div class="city-browser-grid">
       {#each filteredCityModes as [key, mode]}
         <button type="button" class="city-browser-item" style="--system-color: {mode.color}" onclick={() => playMode(key)}>
-          <div class="city-browser-icon" style="color: {mode.color}">{@html mode.icon}</div>
-          <span class="city-browser-name">{mode.name}</span>
+          {#if mode.graphic}
+            <div class="city-browser-graphic">{@html mode.graphic}</div>
+          {:else}
+            <div class="city-browser-icon" style="color: {mode.color}">{@html mode.icon}</div>
+          {/if}
+          <div class="city-browser-footer">
+            <div class="city-browser-logo" style="color: {mode.color}">{@html mode.icon}</div>
+            <span class="city-browser-name">{mode.name}</span>
+          </div>
         </button>
       {/each}
       {#if filteredCityModes.length === 0}

@@ -225,25 +225,61 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  padding: 24px 16px;
+  padding: 0;
   border-radius: 18px;
   border: 2px solid var(--border);
   background: var(--card-bg);
+  overflow: hidden;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: var(--card-shadow);
+  text-align: left;
 }
 
 .city-browser-item:hover {
   border-color: var(--system-color, var(--accent));
   transform: translateY(-3px);
-  box-shadow: 0 12px 28px -6px rgba(0,0,0,0.12);
+  box-shadow: 0 12px 28px -6px rgba(0,0,0,0.15);
 }
 
+.city-browser-graphic {
+  width: 100%;
+  height: 110px;
+  overflow: hidden;
+  display: block;
+  flex-shrink: 0;
+}
+
+.city-browser-graphic svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.city-browser-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-top: 1px solid var(--border);
+}
+
+.city-browser-logo {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.city-browser-logo svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* fallback when no graphic */
 .city-browser-icon {
   width: 48px;
   height: 48px;
+  margin: 24px auto 8px;
 }
 
 .city-browser-icon svg {
@@ -252,7 +288,7 @@
 }
 
 .city-browser-name {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: var(--text);
   letter-spacing: -0.01em;
