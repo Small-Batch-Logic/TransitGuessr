@@ -6,6 +6,10 @@
   width: 100%;
 }
 
+#start-screen .header-inner {
+  max-width: 1048px;
+}
+
 .start-content {
   flex: 1;
   display: flex;
