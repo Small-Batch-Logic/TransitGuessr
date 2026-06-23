@@ -153,7 +153,9 @@
     <span class="new-record" class:show={isNewRecord}>New Record</span>
     <div class="final-score">{displayedScore.toLocaleString()}</div>
     <div class="final-label">out of 25,000</div>
-    <div class="high-score-label">{highScoreLabel}</div>
+    {#if !(isNewRecord && previousBest === 0)}
+      <div class="high-score-label">{highScoreLabel}</div>
+    {/if}
     <div class="final-grade">{finalGrade}</div>
   </div>
 
@@ -222,8 +224,8 @@
   </div>
 
   <div class="end-actions">
-    <button type="button" class="btn-share" onclick={shareResult}>Share Result</button>
-    <button type="button" class="btn-share" onclick={goToMenu}>Change Mode</button>
+    <button type="button" class="btn-share" onclick={shareResult}>Share</button>
+    <button type="button" class="btn-share" onclick={goToMenu}>Menu</button>
     <button type="button" class="btn-primary" onclick={playAgain}>Play Again</button>
   </div>
   </div>
