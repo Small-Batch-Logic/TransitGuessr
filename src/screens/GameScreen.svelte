@@ -83,7 +83,7 @@
   }
 
   function getMapsApiKey() {
-    return window.TRANSITGUESSR_CONFIG?.googleMapsApiKey || '';
+    return window.TRANSITGUESSR_CONFIG?.googleMapsApiKey || import.meta.env.VITE_GOOGLE_MAPS_KEY || '';
   }
 
   async function ensureGoogleMapsApi() {

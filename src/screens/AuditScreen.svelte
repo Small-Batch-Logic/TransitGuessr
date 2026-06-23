@@ -164,7 +164,7 @@
 
   // ── Google Maps / Street View ──
   function loadGoogleMaps() {
-    const key = window.TRANSITGUESSR_CONFIG?.googleMapsApiKey || '';
+    const key = window.TRANSITGUESSR_CONFIG?.googleMapsApiKey || import.meta.env.VITE_GOOGLE_MAPS_KEY || '';
     if (!key) return Promise.resolve(false);
     if (window.google?.maps?.StreetViewService) return Promise.resolve(true);
     return new Promise((resolve) => {
