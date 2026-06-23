@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.8.1]
+
+### Fixed
+- **End screen header full-width** — header was rendering as a floating pill due to `align-items: center` on the screen container; fixed by adding `width: 100%` to `.game-header`.
+- **End screen hero too tall** — reduced gap between hero elements and removed redundant "First game!" label when the New Record badge is already visible.
+- **End screen button labels** — "Share Result" → "Share", "Change Mode" → "Menu".
+
 ## [1.8.0]
 
 ### Added
