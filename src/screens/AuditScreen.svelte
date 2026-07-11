@@ -4,7 +4,7 @@
   import GameHeader from '../components/GameHeader.svelte';
   import Modal from '../components/Modal.svelte';
   import PhotoLoading from '../components/PhotoLoading.svelte';
-  import '../../audit.css';
+  import '../css/audit.css';
 
   const BEST_SESSION_KEY = 'transitguessr_audit_best_session';
 

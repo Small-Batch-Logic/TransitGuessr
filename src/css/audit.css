@@ -6,6 +6,29 @@
   flex-direction: column;
 }
 
+#audit-screen .game-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+#audit-screen .photo-panel {
+  flex: 6;
+  position: relative !important;
+  background: #1e293b;
+  overflow: hidden !important;
+}
+
+#audit-screen .map-panel {
+  flex: 4;
+  position: relative !important;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--border);
+  overflow: hidden !important;
+}
+
 /* Station name in header right */
 .audit-station-name {
   font-size: 0.88rem;

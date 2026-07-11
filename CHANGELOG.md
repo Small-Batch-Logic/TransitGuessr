@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Fixed
+- **Playwright Smoke Tests** — rewrote Playwright integration tests to interact with standard UI components (difficulty selection, class-based query selectors) instead of accessing obsolete global `window.game` state from the pre-Svelte codebase.
+
+### Changed
+- **Audit Style Paths** — moved `audit.css` into `src/css/audit.css` and updated `AuditScreen.svelte` import statement.
+
 ## [1.8.1]
 
 ### Fixed
