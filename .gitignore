@@ -1,9 +1,7 @@
 .DS_Store
 ai_studio_prompt.md
 config.local.js
-handoff.md
 node_modules/
 test-results/
 dist/
-.claude/
 .vercel
