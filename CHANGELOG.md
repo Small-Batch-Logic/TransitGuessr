@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - **Daily Challenge Unlock** — unlocked the Daily Challenge map card on the start screen, replacing the static 'Coming Soon' badge with the dynamic NYC time-zoned daily countdown timer.
+- **Deterministic Daily Challenge Rotation** — implemented a stateless, deterministic sliding window rotation algorithm for the Daily Challenge deck generator (City Spotlight, Regional Mix, and World Tour themes). This guarantees zero station repeats and complete uniqueness across days until the system/city station pools are fully exhausted.
 
 ### Fixed
 - **Playwright Smoke Tests** — rewrote Playwright integration tests to interact with standard UI components (difficulty selection, class-based query selectors) instead of accessing obsolete global `window.game` state from the pre-Svelte codebase.
@@ -13,6 +14,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - **Audit Style Paths** — moved `audit.css` into `src/css/audit.css` and updated `AuditScreen.svelte` import statement.
 - **Play Button Disabled States** — added custom styled disabled states for the play mode buttons (daily and worldwide) on the start screen, and disabled the Daily Challenge play button when already completed for the day.
+- **Daily Challenge Refactor** — modularized daily challenge deck generation by moving the logic out of `GameScreen.svelte` into a dedicated `getDailyDeck` function in `daily.js`.
 
 ## [1.8.1]
 

@@ -6,7 +6,7 @@
   import STATIONS from '../stations.json';
   import * as StationUtils from '../station-utils.js';
   import { escHtml, seededShuffle, shuffle, haversineKm, bearingBetween } from '../utils.js';
-  import { getDayNumber, markDailyPlayed, getDailyThemeType, THEME_NAMES } from '../daily.js';
+  import { getDayNumber, markDailyPlayed, getDailyThemeType, THEME_NAMES, getDailyDeck } from '../daily.js';
   import { reportStation } from '../reports.js';
   import { CITY_REGIONS } from '../config.js';
   import GameHeader from '../components/GameHeader.svelte';
@@ -471,80 +471,7 @@
       if (currentMode === 'daily') {
         const pool = StationUtils.selectStationPool(NORMALIZED_STATIONS);
         const day = getDayNumber();
-        const themeType = getDailyThemeType();
-        let chosenStations = [];
-        let themeLabel = '';
-
-        // Fixed seed for ordering — determines the cycle order, not the stations themselves
-        const DECK_SEED = 7331;
-
-        // Pick item at position (day mod deck size) from a fixed-order deck,
-        // then seed station selection within that item by day so stations vary each cycle
-        const pickFromDeck = (items, itemSeed = DECK_SEED) => {
-          const deck = seededShuffle([...items], itemSeed);
-          return deck[day % deck.length];
-        };
-
-        if (themeType === 'city') {
-          const byCity = {};
-          pool.forEach(s => { if (!byCity[s.city]) byCity[s.city] = []; byCity[s.city].push(s); });
-          const cityCounts = Object.values(byCity).map(s => s.length).sort((a, b) => a - b);
-          const q1 = cityCounts[Math.floor(cityCounts.length * 0.25)];
-          const q3 = cityCounts[Math.floor(cityCounts.length * 0.75)];
-          const iqr = q3 - q1;
-          const outlierThreshold = q3 + 1.5 * iqr;
-          const inlierCounts = cityCounts.filter(n => n <= outlierThreshold);
-          const mean = inlierCounts.reduce((a, b) => a + b, 0) / (inlierCounts.length || 1);
-          const cityFloor = Math.max(5, Math.round(mean));
-          const eligibleCities = Object.keys(byCity).filter(c => byCity[c].length >= cityFloor).sort();
-          const city = pickFromDeck(eligibleCities);
-          chosenStations = seededShuffle([...byCity[city]], day).slice(0, 5);
-          themeLabel = city;
-
-        } else if (themeType === 'region') {
-          const byRegion = {};
-          pool.forEach(s => {
-            const r = CITY_REGIONS[s.city] || 'Other';
-            if (!byRegion[r]) byRegion[r] = [];
-            byRegion[r].push(s);
-          });
-          const eligibleRegions = Object.keys(byRegion).filter(r => r !== 'Other' && byRegion[r].length >= 5).sort();
-          const region = pickFromDeck(eligibleRegions);
-          const regionPool = byRegion[region];
-          const bySystem = {};
-          regionPool.forEach(s => { if (!bySystem[s.system]) bySystem[s.system] = []; bySystem[s.system].push(s); });
-          const systems = seededShuffle(Object.keys(bySystem).sort(), DECK_SEED).slice(0, 5);
-          systems.forEach((sys, idx) => {
-            const s = seededShuffle([...bySystem[sys]], day + idx)[0];
-            if (s) chosenStations.push(s);
-          });
-          if (chosenStations.length < 5) {
-            const extra = seededShuffle([...regionPool], day + 99).filter(s => !chosenStations.includes(s));
-            chosenStations.push(...extra.slice(0, 5 - chosenStations.length));
-          }
-          themeLabel = region;
-
-        } else if (themeType === 'worldwide') {
-          const bySystem = {};
-          pool.forEach(s => { if (!bySystem[s.system]) bySystem[s.system] = []; bySystem[s.system].push(s); });
-          // Fixed system order, rotate through it — each cycle picks a different offset
-          const systemDeck = seededShuffle(Object.keys(bySystem).sort(), DECK_SEED);
-          const offset = (day * 5) % systemDeck.length;
-          const systems = [...systemDeck.slice(offset), ...systemDeck].slice(0, 5);
-          systems.forEach((sys, idx) => {
-            const s = seededShuffle([...bySystem[sys]], day + idx)[0];
-            if (s) chosenStations.push(s);
-          });
-          themeLabel = THEME_NAMES.worldwide;
-
-        } else {
-          // random — exhaust all stations before repeating
-          const stationDeck = seededShuffle([...pool], DECK_SEED);
-          const offset = (day * 5) % stationDeck.length;
-          chosenStations = [...stationDeck.slice(offset), ...stationDeck].slice(0, 5);
-          themeLabel = THEME_NAMES.random;
-        }
-
+        const { chosenStations, themeLabel } = getDailyDeck(pool, day);
         roundStations = chosenStations;
         dailyThemeLabel = themeLabel;
         replacementPool = pool;
