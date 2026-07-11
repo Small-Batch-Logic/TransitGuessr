@@ -4,11 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+- **Daily Challenge Unlock** — unlocked the Daily Challenge map card on the start screen, replacing the static 'Coming Soon' badge with the dynamic NYC time-zoned daily countdown timer.
+
 ### Fixed
 - **Playwright Smoke Tests** — rewrote Playwright integration tests to interact with standard UI components (difficulty selection, class-based query selectors) instead of accessing obsolete global `window.game` state from the pre-Svelte codebase.
 
 ### Changed
 - **Audit Style Paths** — moved `audit.css` into `src/css/audit.css` and updated `AuditScreen.svelte` import statement.
+- **Play Button Disabled States** — added custom styled disabled states for the play mode buttons (daily and worldwide) on the start screen, and disabled the Daily Challenge play button when already completed for the day.
 
 ## [1.8.1]
 

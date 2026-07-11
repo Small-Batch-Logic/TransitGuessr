@@ -225,6 +225,17 @@
   box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
 }
 
+.daily-play-card .btn-play-mode:disabled,
+.worldwide-play-card .btn-play-mode:disabled {
+  background: var(--card-item-bg);
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
 .theme-toggle-btn,
 .audit-mode-btn {
   background: var(--island);
