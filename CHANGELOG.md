@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - **Deterministic Daily Challenge Rotation** — implemented a stateless, deterministic sliding window rotation algorithm for the Daily Challenge deck generator (City Spotlight, Regional Mix, and World Tour themes). This guarantees zero station repeats and complete uniqueness across days until the system/city station pools are fully exhausted.
 
 ### Fixed
+- **Dependency security updates** — updated transitive `nanoid` and `postcss` packages to remove their open security advisories.
 - **Playwright Smoke Tests** — rewrote Playwright integration tests to interact with standard UI components (difficulty selection, class-based query selectors) instead of accessing obsolete global `window.game` state from the pre-Svelte codebase.
 
 ### Changed
