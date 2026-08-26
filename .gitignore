@@ -5,3 +5,6 @@ node_modules/
 test-results/
 dist/
 .vercel
+AGENTS.md
+CLAUDE.md
+GEMINI.md
