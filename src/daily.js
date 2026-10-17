@@ -3,14 +3,54 @@ import { CITY_REGIONS } from './config.js';
 
 const LAUNCH_DATE_UTC = Date.UTC(2026, 2, 22);
 
-export const THEME_CYCLE = ['city', 'region', 'worldwide', 'random'];
+export const THEME_CYCLE = ['city', 'region', 'worldwide', 'themed', 'random'];
 
 export const THEME_NAMES = {
   city: 'City Spotlight',
   region: 'Regional Mix',
   worldwide: 'World Tour',
+  themed: 'Themed Playlist',
   random: 'Wildcard',
 };
+
+export const PLAYLISTS = [
+  {
+    id: 'underground',
+    name: 'Underground Wonders',
+    description: 'Transit stations deep below the surface.',
+    filter: s => s.tags?.includes('underground') || s.svEnvironment === 'indoor'
+  },
+  {
+    id: 'elevated',
+    name: 'Elevated Views',
+    description: 'High-flying transit stations above the streets.',
+    filter: s => s.tags?.includes('elevated')
+  },
+  {
+    id: 'bridge',
+    name: 'Bridge Stations',
+    description: 'Stations built on bridges, overpasses, or viaducts.',
+    filter: s => s.tags?.includes('bridge') || s.tags?.includes('viaduct')
+  },
+  {
+    id: 'snowy',
+    name: 'Winter Wonderland',
+    description: 'Stations captured during cold, snowy winter conditions.',
+    filter: s => s.tags?.includes('snowy') || s.tags?.includes('winter') || s.tags?.includes('cold')
+  },
+  {
+    id: 'heritage',
+    name: 'Historic Landmarks',
+    description: 'Stations with beautiful historic architecture.',
+    filter: s => s.tags?.includes('heritage') || s.tags?.includes('historic')
+  },
+  {
+    id: 'art',
+    name: 'Art & Architecture',
+    description: 'Stations featuring notable art, murals, or unique architecture.',
+    filter: s => s.tags?.includes('art') || s.tags?.includes('aesthetic')
+  }
+];
 
 export function getDailyThemeType() {
   return THEME_CYCLE[getDayNumber() % THEME_CYCLE.length];
@@ -98,6 +138,7 @@ export function getDailyDeck(pool, day) {
   // 2. Simulate daily choices up to target day to find selection counters
   const citySelectionCounts = {};
   const systemSelectionCounts = {};
+  const playlistSelectionCounts = {};
 
   const pickFromDeckForDay = (items, d, itemSeed = DECK_SEED) => {
     const deck = seededShuffle([...items], itemSeed);
@@ -130,6 +171,12 @@ export function getDailyDeck(pool, day) {
         dSystems.forEach(sys => {
           systemSelectionCounts[sys] = (systemSelectionCounts[sys] || 0) + 1;
         });
+      }
+    } else if (dThemeType === 'themed') {
+      const eligiblePlaylists = PLAYLISTS.filter(p => pool.filter(p.filter).length >= 5);
+      if (eligiblePlaylists.length > 0) {
+        const dPlaylist = pickFromDeckForDay(eligiblePlaylists, d);
+        playlistSelectionCounts[dPlaylist.id] = (playlistSelectionCounts[dPlaylist.id] || 0) + 1;
       }
     }
   }
@@ -189,6 +236,26 @@ export function getDailyDeck(pool, day) {
         const s = sysStations[sysOffset];
         if (s) chosenStations.push(s);
       });
+    }
+
+  } else if (themeType === 'themed') {
+    const eligiblePlaylists = PLAYLISTS.filter(p => pool.filter(p.filter).length >= 5);
+    if (eligiblePlaylists.length > 0) {
+      const playlist = pickFromDeckForDay(eligiblePlaylists, day);
+      themeLabel = playlist.name;
+      const playlistSelectedCount = playlistSelectionCounts[playlist.id] || 1;
+      const playlistStations = pool.filter(playlist.filter);
+      const playlistStationsShuffled = seededShuffle(playlistStations, DECK_SEED);
+      const playlistOffset = ((playlistSelectedCount - 1) * 5) % playlistStationsShuffled.length;
+      chosenStations = [...playlistStationsShuffled.slice(playlistOffset), ...playlistStationsShuffled].slice(0, 5);
+    } else {
+      // Fallback to random if no playlists are eligible
+      themeLabel = THEME_NAMES.random;
+      const stationDeck = seededShuffle([...pool], DECK_SEED);
+      if (stationDeck.length > 0) {
+        const offset = (day * 5) % stationDeck.length;
+        chosenStations = [...stationDeck.slice(offset), ...stationDeck].slice(0, 5);
+      }
     }
 
   } else {
