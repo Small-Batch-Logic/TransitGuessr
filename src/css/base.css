@@ -1,0 +1,149 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  /* Light Mode (Default) */
+  --bg: #f8fafc;
+  --island: #ffffff;
+  --card: #fafafa;
+  --border: rgba(15, 23, 42, 0.08);
+  --text: #0f172a;
+  --text-dim: #64748b;
+  --accent: #2563eb;
+  --grid-color: rgba(15, 23, 42, 0.02);
+  --toast-bg: #0f172a;
+  --toast-text: #ffffff;
+  --card-bg: rgba(255, 255, 255, 0.75);
+  --card-item-bg: rgba(15, 23, 42, 0.03);
+  --card-item-hover: rgba(15, 23, 42, 0.06);
+  --card-item-border: rgba(15, 23, 42, 0.06);
+  --selected-bg: #0f172a;
+  --selected-text: #f8fafc;
+  --selected-meta: #64748b;
+  --overlay-bg: rgba(255, 255, 255, 0.96);
+  --overlay-border: rgba(15, 23, 42, 0.08);
+  --metric-card-bg: rgba(15, 23, 42, 0.02);
+  --metric-card-border: rgba(15, 23, 42, 0.06);
+  --summary-card-bg: rgba(15, 23, 42, 0.02);
+  --summary-card-border: rgba(15, 23, 42, 0.05);
+  --round-row-bg: rgba(255, 255, 255, 0.8);
+  --round-row-border: rgba(15, 23, 42, 0.06);
+  --round-row-system: #64748b;
+
+  /* Ambient Glows */
+  --glow-1: rgba(37, 99, 235, 0.04);
+  --glow-2: rgba(99, 102, 241, 0.04);
+  --glow-3: rgba(16, 185, 129, 0.02);
+
+  /* Logo Gradients */
+  --logo-start: #2563eb;
+  --logo-end: #10b981;
+  --card-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+
+  /* Reaction Chips */
+  --reaction-hot-bg: rgba(217, 119, 6, 0.08);
+  --reaction-hot-border: rgba(217, 119, 6, 0.25);
+  --reaction-hot-text: #b45309;
+  --reaction-good-bg: rgba(5, 150, 105, 0.08);
+  --reaction-good-border: rgba(5, 150, 105, 0.2);
+  --reaction-good-text: #047857;
+  --reaction-rough-bg: rgba(220, 38, 38, 0.08);
+  --reaction-rough-border: rgba(220, 38, 38, 0.2);
+  --reaction-rough-text: #b91c1c;
+  --reaction-default-bg: var(--bg);
+  --reaction-default-border: var(--border);
+  --reaction-default-text: var(--text);
+  
+  /* System Tokens (Premium Saturation) */
+  --ttc: #e11d48;
+  --stm: #0284c7;
+  --skytrain: #2563eb;
+  --nyc: #ca8a04;
+  --tube: #dc2626;
+  --ratp: #059669;
+  --tokyo: #0284c7;
+  --cta: #0ea5e9;
+  --ubahn: #d97706;
+  --sydney: #ea580c;
+  --world: #4f46e5;
+  --daily: #059669;
+}
+
+:root[data-theme="dark"] {
+  /* Dark Mode Override */
+  --bg: #030712;
+  --island: #111827;
+  --card: #1f2937;
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #f9fafb;
+  --text-dim: #9ca3af;
+  --accent: #3b82f6;
+  --grid-color: rgba(255, 255, 255, 0.01);
+  --toast-bg: #ffffff;
+  --toast-text: #030712;
+  --card-bg: rgba(17, 24, 39, 0.55);
+  --card-item-bg: rgba(255, 255, 255, 0.03);
+  --card-item-hover: rgba(255, 255, 255, 0.06);
+  --card-item-border: rgba(255, 255, 255, 0.06);
+  --selected-bg: #f9fafb;
+  --selected-text: #030712;
+  --selected-meta: #4b5563;
+  --overlay-bg: linear-gradient(180deg, rgba(17, 24, 39, 0.96) 0%, rgba(3, 7, 18, 0.98) 100%);
+  --overlay-border: rgba(59, 130, 246, 0.2);
+  --metric-card-bg: rgba(3, 7, 18, 0.6);
+  --metric-card-border: rgba(31, 41, 55, 0.9);
+  --summary-card-bg: #0b0f19;
+  --summary-card-border: #1e293b;
+  --round-row-bg: #111827;
+  --round-row-border: #1f2937;
+  --round-row-system: #1f2937;
+
+  /* Ambient Glows */
+  --glow-1: rgba(59, 130, 246, 0.12);
+  --glow-2: rgba(99, 102, 241, 0.10);
+  --glow-3: rgba(16, 185, 129, 0.05);
+
+  /* Logo Gradients */
+  --logo-start: #60a5fa;
+  --logo-end: #34d399;
+  --card-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.5);
+
+  /* Reaction Chips */
+  --reaction-hot-bg: rgba(245, 158, 11, 0.12);
+  --reaction-hot-border: rgba(245, 158, 11, 0.32);
+  --reaction-hot-text: #fcd34d;
+  --reaction-good-bg: rgba(16, 185, 129, 0.12);
+  --reaction-good-border: rgba(16, 185, 129, 0.32);
+  --reaction-good-text: #86efac;
+  --reaction-rough-bg: rgba(239, 68, 68, 0.12);
+  --reaction-rough-border: rgba(239, 68, 68, 0.28);
+  --reaction-rough-text: #fca5a5;
+  --reaction-default-bg: rgba(24, 24, 27, 0.4);
+  --reaction-default-border: rgba(63, 63, 70, 0.4);
+  --reaction-default-text: #cbd5e1;
+
+  /* System Tokens (Dark Saturation) */
+  --ttc: #f43f5e;
+  --stm: #0ea5e9;
+  --skytrain: #3b82f6;
+  --nyc: #eab308;
+  --tube: #ef4444;
+  --ratp: #10b981;
+  --tokyo: #0284c7;
+  --cta: #0ea5e9;
+  --ubahn: #f59e0b;
+  --sydney: #f97316;
+  --world: #6366f1;
+  --daily: #10b981;
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--border) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--text);
+  height: 100dvh;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.02em;
+}
